@@ -1,27 +1,31 @@
 package ru.yeroshenko.domain;
 
+import sun.util.calendar.LocalGregorianCalendar.*;
+
 import javax.persistence.*;
-import sun.util.calendar.LocalGregorianCalendar.Date;
+
+
 /**
  * Created by Genie Yeroshenko on 08/11/15.
  */
 @Entity
-@Table(name="Trip")
-public class Trip {
+@Table(name="Ord")
+public class Ord {
 
     private Long id;
+    private OrderStatus orderStatus;
     private Date date;
-    private String rout;
+    private CabDriver cabDriver;
     private CarType carType;
-    private String tripStatus;
+    private String rout;
 
 
-    public Trip() {
+    public Ord() {
         rout = null;
     }
 
-    public Trip(Trip trip) {
-        rout = trip.getRout();
+    public Ord(Ord ord) {
+        rout = ord.getRout();
     }
 
     @Id
@@ -35,13 +39,14 @@ public class Trip {
         this.id = id;
     }
 
-
     @Column(name = "rout")
-    public String getRout() {
+    private String getRout() {
         return rout;
     }
 
     public void setRout(String rout) {
         this.rout = rout;
     }
+
+
 }
