@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Ord {
 
     private Long id;
-    private OrderStatus orderStatus;
+    private OrdStatus ordStatus;
     private Date date;
     private CabDriver cabDriver;
     private CarType carType;

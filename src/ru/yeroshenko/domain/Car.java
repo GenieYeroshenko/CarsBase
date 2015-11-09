@@ -13,16 +13,21 @@ public class Car {
     private Long id;
     private String model;
     private String licencePlate;
-    private CarType carType;
-    private Boolean carStatus;
+    //private CarType carType;
+   // private Boolean carStatus;
 
 
     public Car() {
-        model = null;
+        //model = null;
     }
 
     public Car(Car car) {
         model = car.getModel();
+        id = car.getId();
+        licencePlate = car.getLicencePlate();
+        //carType = car.getCarType();
+        //carStatus = car.getCarStatus();
+
     }
 
     @Id
@@ -45,5 +50,31 @@ public class Car {
         this.model = model;
     }
 
+    @Column(name = "licencePlate")
+    private String getLicencePlate() {
+        return licencePlate;
+    }
+
+    public void setLicencePlate(String licencePlate) {
+        this.licencePlate = licencePlate;
+    }
+
+//    @Column(name="carType")
+//    private CarType getCarType() {
+//        return carType;
+//    }
+//
+//    public void setCarType(CarType carType) {
+//        this.carType = carType;
+//    }
+//
+//    @Column(name="carStatus")
+//    private boolean getCarStatus() {
+//        return carStatus;
+//    }
+//
+//    public void setCarStatus(boolean carStatus) {
+//        this.carStatus = carStatus;
+//    }
 
 }
