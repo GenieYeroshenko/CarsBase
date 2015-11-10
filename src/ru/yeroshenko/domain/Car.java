@@ -13,20 +13,20 @@ public class Car {
     private Long id;
     private String model;
     private String licencePlate;
-    //private CarType carType;
-   // private Boolean carStatus;
+//    private CarType carType;
+//    private Boolean carStatus;
 
 
     public Car() {
-        //model = null;
+
     }
 
     public Car(Car car) {
         model = car.getModel();
         id = car.getId();
         licencePlate = car.getLicencePlate();
-        //carType = car.getCarType();
-        //carStatus = car.getCarStatus();
+//        carType = car.getCarType();
+//        carStatus = car.getCarStatus();
 
     }
 
