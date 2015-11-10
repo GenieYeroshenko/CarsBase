@@ -11,6 +11,7 @@ public class HibernateUtil {
 
     static {
         try {
+            // todo rework deprecated
             sessionFactory = new Configuration().configure().buildSessionFactory();
 
 

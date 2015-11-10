@@ -17,8 +17,8 @@ public class Main {
         session.persist(new Car());
         session.persist(new Ord());
         session.persist(new Trip());
-        //session.persist(new OrdStatus());
-        //session.persist(new CarType());
+        session.persist(new OrdStatus());
+        session.persist(new CarType());
 
         sessionFactory.close();
     }

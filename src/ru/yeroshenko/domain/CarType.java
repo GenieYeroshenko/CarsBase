@@ -15,7 +15,7 @@ public class CarType {
 
 
     public CarType() {
-        //model = null;
+
     }
 
     public CarType(CarType carType) {

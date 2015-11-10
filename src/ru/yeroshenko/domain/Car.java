@@ -42,7 +42,7 @@ public class Car {
     }
 
     @Column(name = "model")
-    private String getModel() {
+    public String getModel() {
         return model;
     }
 
@@ -51,7 +51,7 @@ public class Car {
     }
 
     @Column(name = "licencePlate")
-    private String getLicencePlate() {
+    public String getLicencePlate() {
         return licencePlate;
     }
 
