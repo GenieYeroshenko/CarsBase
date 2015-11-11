@@ -7,6 +7,7 @@ import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -17,11 +18,13 @@ import static org.junit.Assert.*;
 public class CabDriverTest {
 
     CabDriverDao cabDriverDao;
+    CarDao carDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         cabDriverDao = new CabDriverDao(sessionFactory);
+        carDao = new CarDao(sessionFactory);
     }
 
     @Test
@@ -83,4 +86,35 @@ public class CabDriverTest {
 
         assertTrue(!cabDrivers.isEmpty());
     }
+
+
+
+    //todo  java.lang.AssertionError: Expected :2 Actual   :0
+    /*
+    @Test
+    public void testGetAllCarsFromCabDriver() throws Exception {
+        Car car1 = new Car();
+        Car car2 = new Car();
+        car1.setModel("kia");
+        car2.setModel("kia2");
+
+        List<Car> cars = new ArrayList<Car>();
+        cars.add(car1);
+        cars.add(car2);
+        System.out.println("number of cars in list: " + cars.size());
+
+        CabDriver cabDriver = new CabDriver();
+        cabDriver.setName("Tom");
+
+        cabDriver.setCars(cars);
+        cabDriverDao.add(cabDriver);
+
+        CabDriver cabDriverFromDb = cabDriverDao.findById(cabDriver.getId());
+
+        assertEquals(cabDriver.getCars().size(), cabDriverFromDb.getCars().size());
+        Car carFromDriver = carDao.findById(cabDriverFromDb.getCars().get(0).getId());
+        assertEquals(carFromDriver.getCabDriver().getName(), cabDriverFromDb.getName());
+
+    }
+    */
 }

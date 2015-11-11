@@ -1,8 +1,10 @@
 package ru.yeroshenko.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 
 import java.util.List;
@@ -78,4 +80,14 @@ public class CarDao {
         session.close();
         return list;
     }
+
+    public List<Car> findAllByDriver(CabDriver cabDriver) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Car car where car.cabDriver = ?");
+        query.setParameter(1, cabDriver);
+        List list = query.list();
+        session.close();
+        return list;
+    }
+
 }

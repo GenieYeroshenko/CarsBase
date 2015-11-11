@@ -7,12 +7,25 @@ import javax.persistence.*;
  * Created by Genie Yeroshenko on 08/11/15.
  */
 @Entity
-@Table(name="Car")
+@Table(name = "Car")
 public class Car {
 
     private Long id;
     private String model;
     private String licencePlate;
+
+
+    private CabDriver cabDriver;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    public CabDriver getCabDriver() {
+        return cabDriver;
+    }
+
+    public void setCabDriver(CabDriver cabDriver) {
+        this.cabDriver = cabDriver;
+    }
+
 //    private CarType carType;
 //    private Boolean carStatus;
 
@@ -32,12 +45,12 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,6 +71,8 @@ public class Car {
     public void setLicencePlate(String licencePlate) {
         this.licencePlate = licencePlate;
     }
+
+
 
 //    @Column(name="carType")
 //    private CarType getCarType() {
