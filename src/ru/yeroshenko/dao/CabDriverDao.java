@@ -3,27 +3,27 @@ package ru.yeroshenko.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ru.yeroshenko.domain.Car;
+import ru.yeroshenko.domain.CabDriver;
 
 import java.util.List;
 
 /**
  * Created by Genie Yeroshenko on 10/11/15.
  */
-public class CarDao {
+public class CabDriverDao {
 
     private SessionFactory sessionFactory;
 
-    public CarDao(SessionFactory sessionFactory) {
+    public CabDriverDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public void update(Car car) {
+    public void update(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.update(car);
+            session.update(cabDriver);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -33,12 +33,12 @@ public class CarDao {
         }
     }
 
-    public void add(Car car) {
+    public void add(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.persist(car);
+            session.persist(cabDriver);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -48,14 +48,14 @@ public class CarDao {
         }
     }
 
-    public void delete(Car car) {
+    public void delete(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(car);
+            session.delete(cabDriver);
             session.flush();
-            System.out.println("Car deleted");
+            System.out.println("CabDriver deleted");
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -65,16 +65,16 @@ public class CarDao {
         }
     }
 
-    public Car findById(long id) {
+    public CabDriver findById(long id) {
         Session session = sessionFactory.openSession();
-        Car car = (Car) session.get(Car.class, id);
+        CabDriver cabDriver = (CabDriver) session.get(CabDriver.class, id);
         session.close();
-        return car;
+        return cabDriver;
     }
 
-    public List<Car> findAll() {
+    public List<CabDriver> findAll() {
         Session session = sessionFactory.openSession();
-        List list = session.createQuery("from Car").list();
+        List list = session.createQuery("from CabDriver").list();
         session.close();
         return list;
     }

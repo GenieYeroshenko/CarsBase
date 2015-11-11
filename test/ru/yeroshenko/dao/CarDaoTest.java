@@ -41,39 +41,39 @@ public class CarDaoTest {
         Car car = new Car();
         car.setLicencePlate("EN 2222");
         car.setModel("bmw");
-
         carDao.add(car);
-
         long id = car.getId();
 
         Car carFromDb = carDao.findById(id);
-
         carFromDb.setModel("mercedes");
 
         carDao.update(carFromDb);
+        //Car carFromDb2 = carDao.findById(id);
 
-        Car carFromDb2 = carDao.findById(id);
-
-        assertEquals("mercedes", carFromDb2.getModel());
+        assertEquals("mercedes", carFromDb.getModel());
     }
 
     @Test
     public void testDelete() throws Exception {
-
+        Car car = new Car();
+        car.setLicencePlate("EN 1111");
+        car.setModel("bmw");
+        carDao.add(car);
+        long id = car.getId();
+        carDao.delete(car);
+        Car carFromDb = carDao.findById(id);
+        assertNull(carFromDb);
     }
+
 
     @Test
     public void testFindById() throws Exception {
         Car car = new Car();
         car.setLicencePlate("EN 2222");
         car.setModel("bmw");
-
         carDao.add(car);
-
         long id = car.getId();
-
         Car carFromDb = carDao.findById(id);
-
         assertEquals(carFromDb.getLicencePlate(), car.getLicencePlate());
     }
 

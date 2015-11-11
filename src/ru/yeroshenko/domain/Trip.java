@@ -17,7 +17,7 @@ public class Trip {
 
 
     public Trip() {
-        rout = null;
+
     }
 
     public Trip(Trip trip) {

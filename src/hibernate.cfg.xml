@@ -19,6 +19,7 @@
         <property name="hibernate.show_sql">true</property>
 
         <mapping class="ru.yeroshenko.domain.Car"/>
+        <mapping class="ru.yeroshenko.domain.CabDriver"/>
         <mapping class="ru.yeroshenko.domain.Ord" />
         <mapping class="ru.yeroshenko.domain.Trip" />
         <mapping class="ru.yeroshenko.domain.CarType" />
