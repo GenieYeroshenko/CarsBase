@@ -5,8 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
-import ru.yeroshenko.domain.CabDriver;
-import ru.yeroshenko.domain.Car;
+import ru.yeroshenko.domain.*;
 import ru.yeroshenko.util.HibernateUtil;
 
 import java.util.List;
@@ -103,6 +102,10 @@ public class CarDaoTest {
 
         Car carFromDb = carDao.findById(car.getId());
         assertEquals(carFromDb.getCabDriver().getName(), cabDriver.getName());
+
+
+
+
     }
 
 //todo All cars from one driver

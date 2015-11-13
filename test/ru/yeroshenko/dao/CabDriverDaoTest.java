@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Genie Yeroshenko on 10/11/15.
  */
-public class CabDriverTest {
+public class CabDriverDaoTest {
 
     CabDriverDao cabDriverDao;
     CarDao carDao;
@@ -48,7 +48,7 @@ public class CabDriverTest {
         cabDriverFromDb.setName("Vasya");
 
         cabDriverDao.update(cabDriverFromDb);
-        //Car carFromDb2 = carDao.findById(id);
+        Car carFromDb2 = carDao.findById(id);
 
         assertEquals("Vasya", cabDriverFromDb.getName());
     }
@@ -89,8 +89,6 @@ public class CabDriverTest {
 
 
 
-    //todo  java.lang.AssertionError: Expected :2 Actual   :0
-    /*
     @Test
     public void testGetAllCarsFromCabDriver() throws Exception {
         Car car1 = new Car();
@@ -107,14 +105,13 @@ public class CabDriverTest {
         cabDriver.setName("Tom");
 
         cabDriver.setCars(cars);
+        car1.setCabDriver(cabDriver);
+        car2.setCabDriver(cabDriver);
         cabDriverDao.add(cabDriver);
 
         CabDriver cabDriverFromDb = cabDriverDao.findById(cabDriver.getId());
 
         assertEquals(cabDriver.getCars().size(), cabDriverFromDb.getCars().size());
-        Car carFromDriver = carDao.findById(cabDriverFromDb.getCars().get(0).getId());
-        assertEquals(carFromDriver.getCabDriver().getName(), cabDriverFromDb.getName());
-
     }
-    */
+
 }

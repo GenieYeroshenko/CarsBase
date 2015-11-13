@@ -1,5 +1,6 @@
 package ru.yeroshenko.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -79,5 +80,13 @@ public class OrdDao {
         return list;
     }
 
+    public List<Ord> findAllByStatus(Ord.OrdStatus ordStatus) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Ord ord where ord.ordStatus = ?");
+        query.setParameter(1, ordStatus);
+        List list = query.list();
+        session.close();
+        return list;
+    }
 
 }

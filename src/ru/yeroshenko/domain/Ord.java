@@ -1,8 +1,8 @@
 package ru.yeroshenko.domain;
 
-import sun.util.calendar.LocalGregorianCalendar.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -29,7 +29,7 @@ public class Ord {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
-    @Transient
+    @Enumerated(EnumType.STRING)
     private OrdStatus ordStatus;
 
     public Ord() {
@@ -77,5 +77,10 @@ public class Ord {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public enum OrdStatus {
+
+        ASSIGNED, IN_QUEUE, IN_TRANSIT, DONE;
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
+//import ru.yeroshenko.domain.CarType;
 
 import java.util.List;
 
@@ -85,6 +86,25 @@ public class CarDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Car car where car.cabDriver = ?");
         query.setParameter(1, cabDriver);
+        List list = query.list();
+        session.close();
+        return list;
+    }
+
+    public List<Car> findAllByType(Boolean carTypeLorry) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Car car where car.carTypeLorry = ?");
+        query.setParameter(1, carTypeLorry);
+        List list = query.list();
+        session.close();
+        return list;
+    }
+
+
+    public List<Car> findAllByStatus(Boolean carStatus) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Car car where car.carStatus = ?");
+        query.setParameter(1, carStatus);
         List list = query.list();
         session.close();
         return list;

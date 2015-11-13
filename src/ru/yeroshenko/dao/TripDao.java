@@ -1,5 +1,6 @@
 package ru.yeroshenko.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -75,6 +76,15 @@ public class TripDao {
     public List<Trip> findAll() {
         Session session = sessionFactory.openSession();
         List list = session.createQuery("from Trip").list();
+        session.close();
+        return list;
+    }
+
+    public List<Trip> findAllByStatus(Boolean tripStatus) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Trip trip where trip.tripStatus = ?");
+        query.setParameter(1, tripStatus);
+        List list = query.list();
         session.close();
         return list;
     }

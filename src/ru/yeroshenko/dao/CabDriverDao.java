@@ -1,9 +1,11 @@
 package ru.yeroshenko.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import ru.yeroshenko.domain.CabDriver;
+import ru.yeroshenko.domain.Car;
 
 import java.util.List;
 

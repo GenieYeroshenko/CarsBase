@@ -1,7 +1,7 @@
 package ru.yeroshenko.domain;
 
 import javax.persistence.*;
-import sun.util.calendar.LocalGregorianCalendar.Date;
+import java.util.Date;
 
 
 /**
