@@ -10,24 +10,23 @@ import java.util.List;
 @Entity
 @Table(name = "CabDriver")
 public class CabDriver {
-    private Long id;
-    private String name;
-
-
-    private List<Car> cars = new ArrayList<Car>();
-
-
-    public CabDriver() {
-    }
-
-    public CabDriver(CabDriver cabDriver) {
-        name = cabDriver.getName();
-        id = cabDriver.getId();
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cabDriver")
+    @ElementCollection(targetClass = Car.class)
+    @Column(name = "car_id")
+    private List<Car> cars = new ArrayList<Car>();
+
+    public CabDriver() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -36,7 +35,6 @@ public class CabDriver {
         this.id = id;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -45,7 +43,6 @@ public class CabDriver {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cabDriver")
     public List<Car> getCars() {
         return cars;
     }
