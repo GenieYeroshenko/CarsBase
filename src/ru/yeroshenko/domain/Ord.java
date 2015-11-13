@@ -20,9 +20,6 @@ public class Ord {
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "cabDriver")
-    private CabDriver cabDriver = new CabDriver();
-
     @Column(name = "carTypeLorry")
     private Boolean carTypeLorry;
 
@@ -40,10 +37,6 @@ public class Ord {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public OrdStatus getOrdStatus() {
@@ -78,5 +71,11 @@ public class Ord {
         this.rout = rout;
     }
 
+    public Car getCar() {
+        return car;
+    }
 
+    public void setCar(Car car) {
+        this.car = car;
+    }
 }

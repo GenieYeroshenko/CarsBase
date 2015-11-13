@@ -2,6 +2,8 @@ package ru.yeroshenko.domain;
 
 import javax.persistence.*;
 import sun.util.calendar.LocalGregorianCalendar.Date;
+
+
 /**
  * Created by Genie Yeroshenko on 08/11/15.
  */
@@ -9,39 +11,70 @@ import sun.util.calendar.LocalGregorianCalendar.Date;
 @Table(name="Trip")
 public class Trip {
 
-    private Long id;
-    private Date date;
-    private String rout;
-    private CarType carType;
-    private String tripStatus;
-
-
-    public Trip() {
-
-    }
-
-    public Trip(Trip trip) {
-        rout = trip.getRout();
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
+    private Long id;
+
+    @Column(name="date")
+    private Date date;
+
+    @Column(name = "rout")
+    private String rout;
+
+    @Column(name = "carTypeLorry")
+    private Boolean carTypeLorry;
+
+    @Column(name = "tripStatus")
+    private Boolean tripStatus;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Ord ord;
+
+    public Trip() {
+    }
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
-        this.id = id;
+    public Date getDate() {
+        return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-    @Column(name = "rout")
     public String getRout() {
         return rout;
     }
 
     public void setRout(String rout) {
         this.rout = rout;
+    }
+
+    public Boolean getCarTypeLorry() {
+        return carTypeLorry;
+    }
+
+    public void setCarTypeLorry(Boolean carTypeLorry) {
+        this.carTypeLorry = carTypeLorry;
+    }
+
+    public Boolean getTripStatus() {
+        return tripStatus;
+    }
+
+    public void setTripStatus(Boolean tripStatus) {
+        this.tripStatus = tripStatus;
+    }
+
+    public Ord getOrd() {
+        return ord;
+    }
+
+    public void setOrd(Ord ord) {
+        this.ord = ord;
     }
 }
