@@ -9,37 +9,67 @@ import javax.persistence.*;
  * Created by Genie Yeroshenko on 08/11/15.
  */
 @Entity
-@Table(name="Ord")
+@Table(name = "Ord")
 public class Ord {
-
-    private Long id;
-    private OrdStatus ordStatus;
-    private Date date;
-    private CabDriver cabDriver;
-    private CarType carType;
-    private String rout;
-
-
-    public Ord() {
-        rout = null;
-    }
-
-    public Ord(Ord ord) {
-        rout = ord.getRout();
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "date")
+    private Date date;
+
+    @Column(name = "cabDriver")
+    private CabDriver cabDriver = new CabDriver();
+
+    @Column(name = "carTypeLorry")
+    private Boolean carTypeLorry;
+
+    @Column(name = "rout")
+    private String rout;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Car car;
+
+    @Transient
+    private OrdStatus ordStatus;
+
+    public Ord() {
+    }
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name = "rout")
+    public OrdStatus getOrdStatus() {
+        return ordStatus;
+    }
+
+    public void setOrdStatus(OrdStatus ordStatus) {
+        this.ordStatus = ordStatus;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Boolean getCarTypeLorry() {
+        return carTypeLorry;
+    }
+
+    public void setCarTypeLorry(Boolean carType) {
+        this.carTypeLorry = carType;
+    }
+
     private String getRout() {
         return rout;
     }
