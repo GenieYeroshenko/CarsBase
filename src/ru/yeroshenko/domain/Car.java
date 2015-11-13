@@ -10,42 +10,29 @@ import javax.persistence.*;
 @Table(name = "Car")
 public class Car {
 
-    private Long id;
-    private String model;
-    private String licencePlate;
-
-
-    private CabDriver cabDriver;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    public CabDriver getCabDriver() {
-        return cabDriver;
-    }
-
-    public void setCabDriver(CabDriver cabDriver) {
-        this.cabDriver = cabDriver;
-    }
-
-//    private CarType carType;
-//    private Boolean carStatus;
-
-
-    public Car() {
-
-    }
-
-    public Car(Car car) {
-        model = car.getModel();
-        id = car.getId();
-        licencePlate = car.getLicencePlate();
-//        carType = car.getCarType();
-//        carStatus = car.getCarStatus();
-
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    private Long id;
+
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "licencePlate")
+    private String licencePlate;
+
+    @Column(name = "carType")
+    private Boolean carTypeLorry;
+
+    @Column(name = "carStatus")
+    private Boolean carStatus;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private CabDriver cabDriver;
+
+    public Car() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,7 +41,14 @@ public class Car {
         this.id = id;
     }
 
-    @Column(name = "model")
+    public void setCabDriver(CabDriver cabDriver) {
+        this.cabDriver = cabDriver;
+    }
+
+    public CabDriver getCabDriver() {
+        return cabDriver;
+    }
+
     public String getModel() {
         return model;
     }
@@ -63,7 +57,7 @@ public class Car {
         this.model = model;
     }
 
-    @Column(name = "licencePlate")
+
     public String getLicencePlate() {
         return licencePlate;
     }
@@ -72,24 +66,20 @@ public class Car {
         this.licencePlate = licencePlate;
     }
 
+    public boolean getCarTypeLorry() {
+        return carTypeLorry;
+    }
 
+    public void setCarTypeLorry(Boolean carType) {
+        this.carTypeLorry = carType;
+    }
 
-//    @Column(name="carType")
-//    private CarType getCarType() {
-//        return carType;
-//    }
-//
-//    public void setCarType(CarType carType) {
-//        this.carType = carType;
-//    }
-//
-//    @Column(name="carStatus")
-//    private boolean getCarStatus() {
-//        return carStatus;
-//    }
-//
-//    public void setCarStatus(boolean carStatus) {
-//        this.carStatus = carStatus;
-//    }
+    public boolean getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(Boolean carStatus) {
+        this.carStatus = carStatus;
+    }
 
 }
