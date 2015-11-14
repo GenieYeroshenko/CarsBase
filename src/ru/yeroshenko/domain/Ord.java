@@ -63,7 +63,7 @@ public class Ord {
         this.carTypeLorry = carType;
     }
 
-    private String getRout() {
+    public String getRout() {
         return rout;
     }
 

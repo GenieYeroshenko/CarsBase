@@ -35,6 +35,7 @@ public class OrdDaoTest {
         ordDao.update(ordFromDb);
         Ord ordFromDb2 = ordDao.findById(id);
         assertEquals("MSK", ordFromDb2.getRout());
+        ordDao.delete(ordFromDb);
     }
 
     @Test
@@ -43,6 +44,8 @@ public class OrdDaoTest {
         ord.setRout("SPb");
         ordDao.add(ord);
         assertTrue(ord.getId() > 0);
+        ordDao.delete(ord);
+
     }
 
     @Test
@@ -64,15 +67,23 @@ public class OrdDaoTest {
         long id = ord.getId();
         Ord ordFromDb = ordDao.findById(id);
         assertEquals(ordFromDb.getRout(), ord.getRout());
+        ordDao.delete(ord);
+
     }
 
     @Test
     public void testFindAll() {
-        Ord ord = new Ord();
-        ord.setRout("SPb");
-        ordDao.add(ord);
+        Ord ord1 = new Ord();
+        ord1.setRout("NY");
+        ordDao.add(ord1);
+        Ord ord2 = new Ord();
+        ord2.setRout("NY");
+        ordDao.add(ord2);
         List<Ord> ords = ordDao.findAll();
-        assertTrue(!ords.isEmpty());
+        assertEquals(ords.size(), 2);
+        ordDao.delete(ord1);
+        ordDao.delete(ord2);
+
     }
 
     @Test
@@ -88,5 +99,8 @@ public class OrdDaoTest {
         ordDao.add(ord3);
         List<Ord> ords = ordDao.findAllByStatus(OrdStatus.ASSIGNED);
         assertEquals(ords.size(), 2);
+        ordDao.delete(ord1);
+        ordDao.delete(ord2);
+        ordDao.delete(ord3);
     }
 }

@@ -80,10 +80,11 @@ public class TripDao {
         return list;
     }
 
+//todo ?????? (0, tripStatus)
     public List<Trip> findAllByStatus(Boolean tripStatus) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Trip trip where trip.tripStatus = ?");
-        query.setParameter(1, tripStatus);
+        query.setParameter(0, tripStatus);
         List list = query.list();
         session.close();
         return list;
