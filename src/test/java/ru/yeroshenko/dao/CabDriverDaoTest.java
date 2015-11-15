@@ -1,7 +1,6 @@
 package ru.yeroshenko.dao;
 
 import org.hibernate.SessionFactory;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ru.yeroshenko.domain.CabDriver;

@@ -1,11 +1,9 @@
 package ru.yeroshenko.dao;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import ru.yeroshenko.domain.CabDriver;
-import ru.yeroshenko.domain.Car;
 
 import java.util.List;
 
@@ -50,6 +48,13 @@ public class CabDriverDao {
         }
     }
 
+    public CabDriver findById(long id) {
+        Session session = sessionFactory.openSession();
+        CabDriver cabDriver = (CabDriver) session.get(CabDriver.class, id);
+        session.close();
+        return cabDriver;
+    }
+
     public void delete(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -65,13 +70,6 @@ public class CabDriverDao {
         } finally {
             session.close();
         }
-    }
-
-    public CabDriver findById(long id) {
-        Session session = sessionFactory.openSession();
-        CabDriver cabDriver = (CabDriver) session.get(CabDriver.class, id);
-        session.close();
-        return cabDriver;
     }
 
     public List<CabDriver> findAll() {

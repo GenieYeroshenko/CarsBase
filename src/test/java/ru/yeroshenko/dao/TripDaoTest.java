@@ -3,15 +3,12 @@ package ru.yeroshenko.dao;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
-import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.domain.Trip;
 import ru.yeroshenko.util.HibernateUtil;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by Genie Yeroshenko on 10/11/15.

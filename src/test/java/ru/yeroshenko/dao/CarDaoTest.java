@@ -1,16 +1,15 @@
 package ru.yeroshenko.dao;
 
 import org.hibernate.SessionFactory;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.yeroshenko.domain.*;
+import ru.yeroshenko.domain.CabDriver;
+import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.util.HibernateUtil;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Genie Yeroshenko on 10/11/15.
@@ -49,8 +48,6 @@ public class CarDaoTest {
         Car carFromDb2 = carDao.findById(id);
         assertEquals("mercedes", carFromDb2.getModel());
         carDao.delete(carFromDb);
-
-
     }
 
     @Test

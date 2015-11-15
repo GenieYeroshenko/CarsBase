@@ -1,10 +1,10 @@
 package ru.yeroshenko.util;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
+
 //import org.hibernate.cfg.AnnotationConfiguration;
 //import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;
@@ -12,7 +12,7 @@ public class HibernateUtil {
     static {
         try {
             // todo rework deprecated
-            sessionFactory = new Configuration().configure().buildSessionFactory();
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 
 
         //    sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();

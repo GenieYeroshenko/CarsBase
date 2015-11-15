@@ -4,29 +4,27 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ru.yeroshenko.domain.CabDriver;
-import ru.yeroshenko.domain.Car;
-//import ru.yeroshenko.domain.CarType;
+import ru.yeroshenko.domain.Trip;
 
 import java.util.List;
 
 /**
  * Created by Genie Yeroshenko on 10/11/15.
  */
-public class CarDao {
+public class TripDao {
 
     private SessionFactory sessionFactory;
 
-    public CarDao(SessionFactory sessionFactory) {
+    public TripDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public void update(Car car) {
+    public void update(Trip trip) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.update(car);
+            session.update(trip);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -36,12 +34,12 @@ public class CarDao {
         }
     }
 
-    public void add(Car car) {
+    public void add(Trip trip) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.persist(car);
+            session.persist(trip);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -51,14 +49,14 @@ public class CarDao {
         }
     }
 
-    public void delete(Car car) {
+    public void delete(Trip trip) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(car);
+            session.delete(trip);
             session.flush();
-            System.out.println("Car deleted");
+            System.out.println("Trip deleted");
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -68,46 +66,28 @@ public class CarDao {
         }
     }
 
-    public Car findById(long id) {
+    public Trip findById(long id) {
         Session session = sessionFactory.openSession();
-        Car car = (Car) session.get(Car.class, id);
+        Trip trip = (Trip) session.get(Trip.class, id);
         session.close();
-        return car;
+        return trip;
     }
 
-    public List<Car> findAll() {
+    public List<Trip> findAll() {
         Session session = sessionFactory.openSession();
-        List list = session.createQuery("from Car").list();
+        List list = session.createQuery("from Trip").list();
         session.close();
         return list;
     }
 
-    public List<Car> findAllByDriver(CabDriver cabDriver) {
+    public List<Trip> findAllByStatus(Boolean tripStatus) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Car car where car.cabDriver = ?");
-        query.setParameter(1, cabDriver);
+        Query query = session.createQuery("from Trip trip where trip.tripStatus = ?");
+        query.setParameter(0, tripStatus);
         List list = query.list();
         session.close();
         return list;
     }
 
-    public List<Car> findAllByType(Boolean carTypeLorry) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Car car where car.carTypeLorry = ?");
-        query.setParameter(1, carTypeLorry);
-        List list = query.list();
-        session.close();
-        return list;
-    }
-
-
-    public List<Car> findAllByStatus(Boolean carStatus) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Car car where car.carStatus = ?");
-        query.setParameter(1, carStatus);
-        List list = query.list();
-        session.close();
-        return list;
-    }
 
 }

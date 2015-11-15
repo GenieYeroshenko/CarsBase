@@ -80,7 +80,6 @@ public class OrdDao {
         return list;
     }
 
-    //todo 0?????? (0, ordStatus)
     public List<Ord> findAllByStatus(Ord.OrdStatus ordStatus) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.ordStatus = ?");
