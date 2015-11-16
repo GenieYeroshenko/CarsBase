@@ -11,7 +11,6 @@
 
     <div>
         <label style="line-height:1.6">Дата</label>
-        <input name="date" size="15" type="text"/>
     </div>
 
     </div>
@@ -31,8 +30,9 @@
     </div>
 
 
-    <p>Машина (список)</p>
-    <p>Водитель (список)</p>
+    <p>Машина+водитель (список)</p>
+    <input name="rout" size="15" type="text"/>
+
     </div>
 
     <div>
