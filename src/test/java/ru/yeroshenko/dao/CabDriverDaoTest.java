@@ -26,72 +26,32 @@ public class CabDriverDaoTest {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         cabDriverDao = new CabDriverDao(sessionFactory);
         carDao = new CarDao(sessionFactory);
-
     }
 
     @Test
     public void testAdd() throws Exception {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setName("Vasya");
-
         cabDriverDao.add(cabDriver);
-
         assertTrue(cabDriver.getId() > 0);
         cabDriverDao.delete(cabDriver);
     }
 
-    //todo
     @Test
     public void testUpdate() throws Exception {
         CabDriver cabDriver = new CabDriver();
-
         cabDriver.setName("Vasya");
-
         cabDriverDao.add(cabDriver);
         long idD = cabDriver.getId();
-
         CabDriver cabDriverFromDb = cabDriverDao.findById(idD);
-
         cabDriver.setName("Sveta");
         cabDriverDao.update(cabDriver);
         long idD2 = cabDriver.getId();
-
         CabDriver cabDriverFromDb2 = cabDriverDao.findById(idD2);
-
+        assertEquals("Vasya", cabDriverFromDb.getName());
         assertEquals("Sveta", cabDriverFromDb2.getName());
-
         cabDriverDao.delete(cabDriver);
-
     }
-
-//
-//    @Test
-//    public void testUpdate() throws Exception {
-//        CabDriver cabDriver = new CabDriver();
-//        Car car = new Car();
-//        cabDriver.setName("Vasya");
-//
-//        car.setCabDriver(cabDriver);
-//
-//        cabDriverDao.add(cabDriver);
-//        long id = cabDriver.getId();
-//
-//        CabDriver cabDriverFromDb = cabDriverDao.findById(id);
-//        cabDriverFromDb.setName("Vasya");
-//        car.setModel("Kia");
-//
-//
-//        cabDriverDao.update(cabDriverFromDb);
-//        //Car carFromDb = carDao.findById(id);
-//        //carDao.update(carFromDb);
-//
-//        // assertEquals("Kia", carFromDb.getModel());
-//        assertEquals("Vasya", cabDriverFromDb.getName());
-//        //assertEquals("Kia", carFromDb.getModel());
-//
-//
-//    }
-
 
     @Test
     public void testDelete() throws Exception {
@@ -104,7 +64,6 @@ public class CabDriverDaoTest {
         assertNull(cabDriverFromDb);
     }
 
-
     @Test
     public void testFindById() throws Exception {
         CabDriver cabDriver = new CabDriver();
@@ -114,7 +73,6 @@ public class CabDriverDaoTest {
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);
         assertEquals(cabDriverFromDb.getName(), cabDriver.getName());
         cabDriverDao.delete(cabDriver);
-
     }
 
     @Test
@@ -129,8 +87,6 @@ public class CabDriverDaoTest {
         assertEquals(drivers.size(), 2);
         cabDriverDao.delete(cabDriver1);
         cabDriverDao.delete(cabDriver2);
-
-
     }
 
     @Test
@@ -139,7 +95,6 @@ public class CabDriverDaoTest {
         Car car2 = new Car();
         car1.setModel("kia");
         car2.setModel("kia2");
-
         List<Car> cars = new ArrayList<Car>();
         cars.add(car1);
         cars.add(car2);
@@ -152,9 +107,5 @@ public class CabDriverDaoTest {
         CabDriver cabDriverFromDb = cabDriverDao.findById(cabDriver.getId());
         assertEquals(cabDriver.getCars().size(), cabDriverFromDb.getCars().size());
         cabDriverDao.delete(cabDriver);
-
     }
-
-
-
 }

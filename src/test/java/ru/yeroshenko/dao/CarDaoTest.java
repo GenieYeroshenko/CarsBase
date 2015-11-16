@@ -32,7 +32,6 @@ public class CarDaoTest {
         carDao.add(car);
         assertTrue(car.getId() > 0);
         carDao.delete(car);
-
     }
 
     @Test
@@ -97,10 +96,8 @@ public class CarDaoTest {
         car.setCabDriver(cabDriver);
         carDao.add(car);
         Car carFromDb = carDao.findById(car.getId());
+        assertEquals(carFromDb.getModel(), car.getModel());
         assertEquals(carFromDb.getCabDriver().getName(), cabDriver.getName());
         carDao.delete(car);
     }
-
-
-
 }

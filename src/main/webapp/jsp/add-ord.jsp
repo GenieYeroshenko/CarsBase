@@ -31,7 +31,7 @@
 
 
     <p>Машина+водитель (список)</p>
-    <input name="rout" size="15" type="text"/>
+    <input name="carId" size="15" type="text"/>
 
     </div>
 

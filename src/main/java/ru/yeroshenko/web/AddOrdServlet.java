@@ -31,7 +31,7 @@ public class AddOrdServlet extends HttpServlet {
         LocalDate date = LocalDate.now();
         String rout = routFromForm;
         Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
-        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);//?????????????????????????
+        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
 
         long carId = Integer.parseInt(carFromForm);
         CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
