@@ -5,26 +5,135 @@
     <display-name>Servlet 2.3 deployment description</display-name>
 
     <welcome-file-list>
-        <welcome-file>jsp/cars-list.jsp</welcome-file>
+        <welcome-file>jsp/login.jsp</welcome-file>
     </welcome-file-list>
+
+
+
+
+
+
+
 
     <servlet>
         <servlet-name>addCar</servlet-name>
         <servlet-class>ru.yeroshenko.web.AddCarServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>addCar</servlet-name>
+        <url-pattern>/add-car</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>listCar</servlet-name>
         <servlet-class>ru.yeroshenko.web.ListCarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addCar</servlet-name>
-        <url-pattern>/add-car</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>listCar</servlet-name>
         <url-pattern>/list-car</url-pattern>
     </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>addOrd</servlet-name>
+        <servlet-class>ru.yeroshenko.web.AddOrdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addOrd</servlet-name>
+        <url-pattern>/add-ord</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>listOrd</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ListOrdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOrd</servlet-name>
+        <url-pattern>/list-ord</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+    <servlet>
+        <servlet-name>listTrip</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ListTripServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listTrip</servlet-name>
+        <url-pattern>/list-trip</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+    <servlet>
+        <servlet-name>logIn</servlet-name>
+        <servlet-class>ru.yeroshenko.web.LogInServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logIn</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>ru.yeroshenko.web.RegistrationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <servlet>
+        <servlet-name>listOrdAssigned</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ListOrdAssignedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOrdAssigned</servlet-name>
+        <url-pattern>/list-ord-assigned</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>listOrdInTransit</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ListOrdInTransitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOrdInTransit</servlet-name>
+        <url-pattern>/list-ord-in-transit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>listOrdDone</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ListOrdDoneServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOrdDone</servlet-name>
+        <url-pattern>/list-ord-done</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>listOrdInQueue</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ListOrdInQueueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOrdInQueue</servlet-name>
+        <url-pattern>/list-ord-in-queue</url-pattern>
+    </servlet-mapping>
+
+
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
 </web-app>
