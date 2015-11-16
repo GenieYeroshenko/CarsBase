@@ -78,10 +78,15 @@ public class CarDaoTest {
         Car car1 = new Car();
         car1.setLicencePlate("EN 2222");
         car1.setModel("bmw");
+        car1.setCarTypeLorry(true);
+        car1.setCarStatus(true);
+
         carDao.add(car1);
         Car car2 = new Car();
         car2.setLicencePlate("EN 333");
         car2.setModel("kia");
+        car2.setCarTypeLorry(false);
+        car2.setCarStatus(false);
         carDao.add(car2);
         List<Car> cars = carDao.findAll();
         assertEquals(cars.size(), 2);

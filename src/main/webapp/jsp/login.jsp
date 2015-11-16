@@ -29,7 +29,7 @@
 
     <a href="/jsp/ords-list.jsp">Журнал заявок</a> &nbsp;
     <a href="/jsp/trips-list.jsp">Журнал рейсов</a>&nbsp;
-    <a href="/jsp/cars-list.jsp">Журнал машин</a>
+    <a href="/list-car">Журнал машин</a>
 
 
 </form>

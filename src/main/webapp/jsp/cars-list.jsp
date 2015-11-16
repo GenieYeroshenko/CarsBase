@@ -1,14 +1,16 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Журнал машин</title>
-</head>
 
+</head>
 <body>
 
 <a href="/jsp/trips-list.jsp">Журнал рейсов</a>
+
 <p>&nbsp;</p>
 
 
@@ -25,33 +27,49 @@
             <th scope="col">Марка машины</th>
             <th scope="col">Номер машины</th>
             <th scope="col">Состояние машины</th>
-
+            <th scope="col">&nbsp;</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="radio" name="car-id"/></td>
-            <td>${requestScope.newListOfCars}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-        </tr>
-        <tr>
-            <td><input type="radio" name="car-id"/></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-
-        </tr>
+        <c:forEach var="car" items="${requestScope.newListOfCars}">
+            <tr>
+                <td><input type="radio" name="car-id"/></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${car.carTypeLorry}">
+                            грузовая
+                        </c:when>
+                        <c:otherwise>
+                            легковая
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td><c:out value="${car.model}"/></td>
+                <td><c:out value="${car.licencePlate}"/></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${car.carStatus}">
+                            кондиционная
+                        </c:when>
+                        <c:otherwise>
+                            не кондиционная
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td>
+                    <c:choose>
+                        <c:when test="${car.carStatus}">
+                            <a href="/change-car-status?id=${car.id}">сломалась</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/change-car-status?id=${car.id}">починилась</a>
+                        </c:otherwise>
+                    </c:choose>
+                    <a></a></td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
-
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
 
     <a href="/jsp/add-car.jsp">Добавить машину</a>&nbsp; &nbsp; &nbsp;
 
@@ -63,7 +81,8 @@
 <p>&nbsp;</p>
 
 <p style="text-align: left;"><span style="font-size:14px">
-    <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;"><span style="font-family:comic sans ms,cursive">
+    <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;"><span
+            style="font-family:comic sans ms,cursive">
         <strong>Выйти</strong></span></a></span></p>
 </body>
 </html>

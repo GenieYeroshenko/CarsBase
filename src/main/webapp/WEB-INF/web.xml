@@ -34,6 +34,15 @@
         <url-pattern>/list-car</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>changeCarStatus</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ChangeCarStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeCarStatus</servlet-name>
+        <url-pattern>/change-car-status</url-pattern>
+    </servlet-mapping>
+
 
 
     <servlet>
