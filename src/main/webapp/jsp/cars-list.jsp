@@ -5,84 +5,108 @@
 <head>
     <meta charset="UTF-8">
     <title>Журнал машин</title>
-
+    <jsp:include page="header.jsp"/>
 </head>
 <body>
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-<a href="/jsp/trips-list.jsp">Журнал рейсов</a>
+<div class="container">
 
-<p>&nbsp;</p>
+    <div class="text-center">
 
+        <a href="/jsp/trips-list.jsp">Журнал рейсов</a>
 
-<form>
+        <h1>Журнал машин</h1>
 
-    <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px">
-        <strong>Журнал машин</strong></span></span></p>
-
-    <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:500px">
-        <thead>
-        <tr>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">Тип машины</th>
-            <th scope="col">Марка машины</th>
-            <th scope="col">Номер машины</th>
-            <th scope="col">Состояние машины</th>
-            <th scope="col">&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="car" items="${requestScope.newListOfCars}">
+        <table class="table" style="width:500px">
+            <thead>
             <tr>
-                <td><input type="radio" name="car-id"/></td>
-                <td>
-                    <c:choose>
-                        <c:when test="${car.carTypeLorry}">
-                            грузовая
-                        </c:when>
-                        <c:otherwise>
-                            легковая
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td><c:out value="${car.model}"/></td>
-                <td><c:out value="${car.licencePlate}"/></td>
-                <td>
-                    <c:choose>
-                        <c:when test="${car.carStatus}">
-                            кондиционная
-                        </c:when>
-                        <c:otherwise>
-                            не кондиционная
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td>
-                    <c:choose>
-                        <c:when test="${car.carStatus}">
-                            <a href="/change-car-status?id=${car.id}">сломалась</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/change-car-status?id=${car.id}">починилась</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <a></a></td>
+                <th scope="col">Тип машины</th>
+                <th scope="col">Марка машины</th>
+                <th scope="col">Номер машины</th>
+                <th scope="col">Состояние машины</th>
+                <th scope="col">&nbsp;</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach var="car" items="${requestScope.newListOfCars}">
+                <tr>
+                    <td>
+                        <c:choose>
+                            <c:when test="${car.carTypeLorry}">
+                                грузовая
+                            </c:when>
+                            <c:otherwise>
+                                легковая
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td><c:out value="${car.model}"/></td>
+                    <td><c:out value="${car.licencePlate}"/></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${car.carStatus}">
+                                кондиционная
+                            </c:when>
+                            <c:otherwise>
+                                не кондиционная
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${car.carStatus}">
+                                <a class="btn btn-default" href="/change-car-status?id=${car.id}">сломать</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn btn-info" href="/change-car-status?id=${car.id}">починить</a>
+                            </c:otherwise>
+                        </c:choose>
+                        <a></a></td>
+                    <td>
+                        <a class="btn btn-danger" href="/delete-car?id=${car.id}">удалить</a>
+                        <a></a></td>
+                    <td>
+                        <a class="btn btn-warning" href="/jsp/add-car.jsp">редактировать</a>
+                        <a></a></td>
 
-    <a href="/jsp/add-car.jsp">Добавить машину</a>&nbsp; &nbsp; &nbsp;
-
-    <input name="Update" type="button" value="Редактировать"/>&nbsp; &nbsp; &nbsp;
-    <input name="Delete" type="button" value="Удалить"/>
 
 
-</form>
-<p>&nbsp;</p>
 
-<p style="text-align: left;"><span style="font-size:14px">
-    <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;"><span
-            style="font-family:comic sans ms,cursive">
-        <strong>Выйти</strong></span></a></span></p>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+
+        <a class="btn btn-default" href="/jsp/add-car.jsp">Добавить машину</a>&nbsp; &nbsp; &nbsp;
+
+
+        <strong>Выйти</strong>
+    </div>
+
+</div>
+
 </body>
 </html>
+
+

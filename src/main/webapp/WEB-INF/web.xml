@@ -17,7 +17,7 @@
 
     <servlet>
         <servlet-name>addCar</servlet-name>
-        <servlet-class>ru.yeroshenko.web.AddCarServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.car.AddCarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addCar</servlet-name>
@@ -27,7 +27,7 @@
 
     <servlet>
         <servlet-name>listCar</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListCarServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.car.ListCarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listCar</servlet-name>
@@ -35,19 +35,28 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>changeCarStatus</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ChangeCarStatusServlet</servlet-class>
-    </servlet>
+    <servlet-name>changeCarStatus</servlet-name>
+    <servlet-class>ru.yeroshenko.web.car.ChangeCarStatusServlet</servlet-class>
+</servlet>
     <servlet-mapping>
         <servlet-name>changeCarStatus</servlet-name>
         <url-pattern>/change-car-status</url-pattern>
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>deleteCar</servlet-name>
+        <servlet-class>ru.yeroshenko.web.car.DeleteCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteCar</servlet-name>
+        <url-pattern>/delete-car</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>addOrd</servlet-name>
-        <servlet-class>ru.yeroshenko.web.AddOrdServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ord.AddOrdServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addOrd</servlet-name>
@@ -57,7 +66,7 @@
 
     <servlet>
         <servlet-name>listOrd</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListOrdServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listOrd</servlet-name>
@@ -70,7 +79,7 @@
 
     <servlet>
         <servlet-name>listTrip</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListTripServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.trip.ListTripServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listTrip</servlet-name>
@@ -84,7 +93,7 @@
 
     <servlet>
         <servlet-name>logIn</servlet-name>
-        <servlet-class>ru.yeroshenko.web.LogInServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.user.LogInServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logIn</servlet-name>
@@ -93,7 +102,7 @@
 
     <servlet>
         <servlet-name>registration</servlet-name>
-        <servlet-class>ru.yeroshenko.web.RegistrationServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.user.RegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -105,7 +114,7 @@
 
     <servlet>
         <servlet-name>listOrdAssigned</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListOrdAssignedServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdAssignedServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listOrdAssigned</servlet-name>
@@ -114,7 +123,7 @@
 
     <servlet>
         <servlet-name>listOrdInTransit</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListOrdInTransitServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdInTransitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listOrdInTransit</servlet-name>
@@ -123,7 +132,7 @@
 
     <servlet>
         <servlet-name>listOrdDone</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListOrdDoneServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdDoneServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listOrdDone</servlet-name>
@@ -132,7 +141,7 @@
 
     <servlet>
         <servlet-name>listOrdInQueue</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ListOrdInQueueServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdInQueueServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>listOrdInQueue</servlet-name>

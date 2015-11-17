@@ -1,7 +1,7 @@
-package ru.yeroshenko.web;
+package ru.yeroshenko.web.trip;
 
-import ru.yeroshenko.dao.OrdDao;
-import ru.yeroshenko.domain.Ord;
+import ru.yeroshenko.dao.TripDao;
+import ru.yeroshenko.domain.Trip;
 import ru.yeroshenko.util.HibernateUtil;
 
 import javax.servlet.ServletException;
@@ -14,16 +14,16 @@ import java.util.List;
 /**
  * Created by evgeniya on 15/11/15.
  */
-public class ListOrdAssignedServlet extends HttpServlet {
+public class ListTripServlet extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
-        List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.ASSIGNED);
+        TripDao tripDao = new TripDao(HibernateUtil.getSessionFactory());
+        List<Trip> trips = tripDao.findAll();
 
-        request.setAttribute("newListOfOrdsAssigned", ords);
-        request.getRequestDispatcher("/jsp/ords-list-assigned.jsp").forward(request, response);
+        request.setAttribute("newListOfTrips", trips);
+        request.getRequestDispatcher("/jsp/trips-list.jsp").forward(request, response);
 
     }
 

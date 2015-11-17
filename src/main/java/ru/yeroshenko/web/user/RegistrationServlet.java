@@ -1,29 +1,21 @@
-package ru.yeroshenko.web;
-
-import ru.yeroshenko.dao.OrdDao;
-import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.util.HibernateUtil;
+package ru.yeroshenko.web.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by evgeniya on 15/11/15.
  */
-public class ListOrdInTransitServlet extends HttpServlet {
+//todo
+public class RegistrationServlet extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
-        List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.IN_TRANSIT);
-
-        request.setAttribute("newListOfOrdsInTransit", ords);
-        request.getRequestDispatcher("/jsp/ords-list-in-transit.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/registration.jsp").forward(request, response);
 
     }
 

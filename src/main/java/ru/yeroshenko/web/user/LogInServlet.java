@@ -1,29 +1,22 @@
-package ru.yeroshenko.web;
-
-import ru.yeroshenko.dao.OrdDao;
-import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.util.HibernateUtil;
+package ru.yeroshenko.web.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by evgeniya on 15/11/15.
  */
-public class ListOrdInQueueServlet extends HttpServlet {
+
+//todo
+public class LogInServlet extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
-        List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.IN_QUEUE);
-
-        request.setAttribute("newListOfOrdsInQueue", ords);
-        request.getRequestDispatcher("/jsp/ords-list-in-queue.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 
     }
 

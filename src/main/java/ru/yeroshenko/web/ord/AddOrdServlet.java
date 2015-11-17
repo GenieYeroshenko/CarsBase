@@ -1,4 +1,4 @@
-package ru.yeroshenko.web;
+package ru.yeroshenko.web.ord;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
