@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +31,13 @@
     </div>
 
 
-    <p>Машина+водитель (список)</p>
-    <input name="carId" size="15" type="text"/>
+    <p>Машина</p>
+    <select name="carId">
+        <c:forEach var="car" items="${requestScope.newListOfCars}">
+            <option value="${car.id}">${car.licencePlate} - ${car.cabDriver.name}</option>
+        </c:forEach>
+    </select>
+
 
     </div>
 

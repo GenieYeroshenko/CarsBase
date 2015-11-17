@@ -3,9 +3,11 @@ package ru.yeroshenko.dao;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
+import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.domain.Trip;
 import ru.yeroshenko.util.HibernateUtil;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -71,15 +73,33 @@ public class TripDaoTest {
     @Test
     public void testFindAll() {
         Trip trip1 = new Trip();
-        trip1.setCarTypeLorry(true);
+        trip1.setCarTypeLorry(false);
+        trip1.setCarTypeLorry(false);
+        trip1.setTripStatus(false);
+        Date date = new Date();
+        trip1.setDate(date);
+        Ord ord = new Ord();
+        trip1.setOrd(ord);
+        trip1.setRout("spb");
         tripDao.add(trip1);
+
+
+
         Trip trip2 = new Trip();
-        trip2.setCarTypeLorry(false);
+        trip2.setCarTypeLorry(true);
+        trip2.setCarTypeLorry(true);
+        trip2.setTripStatus(true);
+        Date date2 = new Date();
+        trip2.setDate(date2);
+        Ord ord2 = new Ord();
+        trip2.setOrd(ord2);
+        trip2.setRout("msk");
         tripDao.add(trip2);
+
         List<Trip> trips = tripDao.findAll();
         assertEquals(trips.size(), 2);
-        tripDao.delete(trip1);
-        tripDao.delete(trip2);
+//        tripDao.delete(trip1);
+//        tripDao.delete(trip2);
     }
 
     @Test

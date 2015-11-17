@@ -1,9 +1,11 @@
 package ru.yeroshenko.web.ord;
 
+import org.hibernate.SessionFactory;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
+import ru.yeroshenko.service.OrdService;
 import ru.yeroshenko.util.HibernateUtil;
 
 import javax.servlet.ServletException;
@@ -12,12 +14,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by evgeniya on 15/11/15.
  */
 //todo
 public class AddOrdServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        List<Car> cars = carDao.findAll();
+
+        request.setAttribute("newListOfCars", cars);
+        request.getRequestDispatcher("/jsp/add-ord.jsp").forward(request, response);
+
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,9 +49,6 @@ public class AddOrdServlet extends HttpServlet {
         Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
 
-        long carId = Integer.parseInt(carFromForm);
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
-        Car carFromDB = carDao.findById(carId);
 
 
         Ord ord = new Ord();
@@ -43,11 +56,10 @@ public class AddOrdServlet extends HttpServlet {
         ord.setRout(rout);
         ord.setOrdStatus(ordStatus);
         ord.setDate(date);
-        ord.setCar(carFromDB);
-
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
-        ordDao.add(ord);
-
+        long carId = Integer.parseInt(carFromForm);
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        OrdService service = new OrdService(new CarDao(sessionFactory), new OrdDao(sessionFactory));
+        service.createOrd(ord, carId);
         request.getRequestDispatcher("/list-ord").forward(request, response);
     }
 

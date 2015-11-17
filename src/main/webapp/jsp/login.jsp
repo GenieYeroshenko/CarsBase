@@ -27,8 +27,8 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-    <a href="/jsp/ords-list.jsp">Журнал заявок</a> &nbsp;
-    <a href="/jsp/trips-list.jsp">Журнал рейсов</a>&nbsp;
+    <a href="/list-ord">Журнал заявок</a> &nbsp;
+    <a href="/list-trip">Журнал рейсов</a>&nbsp;
     <a href="/list-car">Журнал машин</a>
 
 

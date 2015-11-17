@@ -80,6 +80,9 @@ public class CarDaoTest {
         car1.setModel("bmw");
         car1.setCarTypeLorry(true);
         car1.setCarStatus(true);
+        CabDriver cabDriver = new CabDriver();
+        cabDriver.setName("Kolya");
+        car1.setCabDriver(cabDriver);
 
         carDao.add(car1);
         Car car2 = new Car();
@@ -87,6 +90,10 @@ public class CarDaoTest {
         car2.setModel("kia");
         car2.setCarTypeLorry(false);
         car2.setCarStatus(false);
+        CabDriver cabDriver2 = new CabDriver();
+        cabDriver2.setName("Vasya");
+        car2.setCabDriver(cabDriver2);
+
         carDao.add(car2);
         List<Car> cars = carDao.findAll();
         assertEquals(cars.size(), 2);

@@ -7,34 +7,47 @@
     <title>Журнал машин</title>
     <jsp:include page="header.jsp"/>
 </head>
+
 <body>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
         </div>
+
+
+        <a class="navbar-brand" href="/jsp/trips-list.jsp">Журнал рейсов</a>
+
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="#">Журнал машин</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <a class="navbar-brand" href="/jsp/add-car.jsp">Добавить машину</a>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://ya.ru/">Выход</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">About</a></li>
+                <li><a href="#En|Ru">En|Ru</a></li>
             </ul>
         </div>
+
+
     </div>
 </div>
 
 <div class="container">
 
+
     <div class="text-center">
 
-        <a href="/jsp/trips-list.jsp">Журнал рейсов</a>
 
         <h1>Журнал машин</h1>
 
@@ -45,7 +58,7 @@
                 <th scope="col">Марка машины</th>
                 <th scope="col">Номер машины</th>
                 <th scope="col">Состояние машины</th>
-                <th scope="col">&nbsp;</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -82,26 +95,21 @@
                                 <a class="btn btn-info" href="/change-car-status?id=${car.id}">починить</a>
                             </c:otherwise>
                         </c:choose>
-                        <a></a></td>
+                        <a></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/update-car?id=${car.id}">редактировать</a>
+
+                        <a></a>
+                    </td>
                     <td>
                         <a class="btn btn-danger" href="/delete-car?id=${car.id}">удалить</a>
                         <a></a></td>
-                    <td>
-                        <a class="btn btn-warning" href="/jsp/add-car.jsp">редактировать</a>
-                        <a></a></td>
-
-
-
-
                 </tr>
             </c:forEach>
             </tbody>
         </table>
 
-        <a class="btn btn-default" href="/jsp/add-car.jsp">Добавить машину</a>&nbsp; &nbsp; &nbsp;
-
-
-        <strong>Выйти</strong>
     </div>
 
 </div>

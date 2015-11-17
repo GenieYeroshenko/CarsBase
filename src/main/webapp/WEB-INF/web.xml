@@ -34,6 +34,16 @@
         <url-pattern>/list-car</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>changeTripStatus</servlet-name>
+        <servlet-class>ru.yeroshenko.web.trip.ChangeTripStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeTripStatus</servlet-name>
+        <url-pattern>/change-trip-status</url-pattern>
+    </servlet-mapping>
+
     <servlet>
     <servlet-name>changeCarStatus</servlet-name>
     <servlet-class>ru.yeroshenko.web.car.ChangeCarStatusServlet</servlet-class>
@@ -51,6 +61,15 @@
     <servlet-mapping>
         <servlet-name>deleteCar</servlet-name>
         <url-pattern>/delete-car</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateCar</servlet-name>
+        <servlet-class>ru.yeroshenko.web.car.UpdateCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateCar</servlet-name>
+        <url-pattern>/update-car</url-pattern>
     </servlet-mapping>
 
 
@@ -85,8 +104,6 @@
         <servlet-name>listTrip</servlet-name>
         <url-pattern>/list-trip</url-pattern>
     </servlet-mapping>
-
-
 
 
 

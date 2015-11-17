@@ -64,7 +64,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <a href="/jsp/add-ord.jsp">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
+    <a href="/add-ord">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
     <input name="Update" type="button" value="Редактировать"/>&nbsp; &nbsp; &nbsp;
     <input name="Delete" type="button" value="Удалить"/>
 
