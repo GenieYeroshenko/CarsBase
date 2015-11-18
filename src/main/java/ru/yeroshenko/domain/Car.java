@@ -27,7 +27,7 @@ public class Car {
     @Column(name = "carStatus")
     private Boolean carStatus;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private CabDriver cabDriver;
 
     public Car() {

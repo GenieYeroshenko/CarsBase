@@ -38,7 +38,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://ya.ru/">Выход</a></li>
+                <li><a href="/">Выход</a></li>
             </ul>
         </div>
 
