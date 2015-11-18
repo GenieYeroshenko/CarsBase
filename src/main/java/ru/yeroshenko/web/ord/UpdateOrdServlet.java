@@ -3,7 +3,6 @@ package ru.yeroshenko.web.ord;
 import org.hibernate.SessionFactory;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
-import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.service.OrdService;
 import ru.yeroshenko.util.HibernateUtil;
@@ -14,41 +13,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by evgeniya on 15/11/15.
  */
-//todo
-public class AddOrdServlet extends HttpServlet {
+public class UpdateOrdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
-        List<Car> cars = carDao.findAll();
+        String idFromFormToUpdate = request.getParameter("id");
 
-        request.setAttribute("newListOfCars", cars);
-        request.getRequestDispatcher("/jsp/add-ord.jsp").forward(request, response);
+        long id = Long.parseLong(idFromFormToUpdate);
+
+        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
+        Ord ord = ordDao.findById(id);
+
+        request.setAttribute("updatedOrd", ord);
+        request.getRequestDispatcher("/jsp/update-ord.jsp").forward(request, response);
 
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         response.setContentType("text/html");
-        //String dateFromForm = request.getParameter("date");
+        String idFromForm = request.getParameter("id");
         String routFromForm = request.getParameter("rout");
         String carTypeLorryFromForm = request.getParameter("carTypeLorry");
-        String carFromForm = request.getParameter("carId");
+
+        String carIdFromForm = request.getParameter("carId");
         String ordStatusFromForm = request.getParameter("ordStatus");
 
+
+        long id = Long.parseLong(idFromForm);
         LocalDate date = LocalDate.now();
         String rout = routFromForm;
         Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
-
+        long carId = Integer.parseInt(carIdFromForm);
 
 
         Ord ord = new Ord();
@@ -56,12 +60,25 @@ public class AddOrdServlet extends HttpServlet {
         ord.setRout(rout);
         ord.setOrdStatus(ordStatus);
         ord.setDate(date);
-        long carId = Integer.parseInt(carFromForm);
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         OrdService service = new OrdService(new CarDao(sessionFactory), new OrdDao(sessionFactory));
-        service.createOrd(ord, carId);
-        request.getRequestDispatcher("/list-ord").forward(request, response);
-    }
 
+
+
+        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
+
+        Ord updatedOrd = ordDao.findById(id);
+        updatedOrd.setCarTypeLorry(carTypeLorry);
+        updatedOrd.setRout(rout);
+        updatedOrd.setOrdStatus(ordStatus);
+        updatedOrd.setDate(date);
+
+        service.updateOrd(updatedOrd, carId);
+        //ordDao.update(updatedOrd);
+
+        //request.getRequestDispatcher("/jsp/cars-list.jsp").forward(request, response);
+        request.getRequestDispatcher("/list-ord").forward(request, response);
+
+    }
 }

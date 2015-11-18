@@ -1,30 +1,68 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Журнал заявок</title>
+    <jsp:include page="header.jsp"/>
 </head>
 
 <body>
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
 
-<form>
+        <div class="collapse navbar-collapse">
+            <a class="navbar-brand" href="/jsp/ords-list-assigned.jsp">Назначенные</a>
+            <a class="navbar-brand" href="/jsp/ords-list-in-transit.jsp">В пути</a>
+            <a class="navbar-brand" href="/jsp/ords-list-done.jsp">Выполненные</a>
+            <a class="navbar-brand" href="/jsp/ords-list-in-queue.jsp">Не назначенные</a>
 
-    <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px"><strong>Журнал заявок</strong></span></span>
-    </p>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Журнал заявок</a></li>
+            </ul>
 
-    <label>Все</label>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-assigned.jsp">Назначенные</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-transit.jsp">В пути</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-done.jsp">Выполненные</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-queue.jsp">Не назначенные</a>&nbsp; &nbsp; &nbsp;
-    <p>&nbsp;</p>
+            <ul class="nav navbar-nav">
+                <a class="navbar-brand" href="/add-ord">Добавить заявку</a>
+            </ul>
 
-    <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:500px">
-        <thead>
-        <tr>
-            <th scope="col">&nbsp;</th>
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#En|Ru">En|Ru</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://ya.ru/">Выход</a></li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="container">
+
+
+    <div class="text-center">
+
+
+        <h1>Журнал заявок</h1>
+
+        <table class="table" style="width:500px">
+            <thead>
+            <tr>
             <th scope="col">Номер заявки</th>
             <th scope="col">Дата</th>
             <th scope="col">Маршрут</th>
@@ -36,45 +74,31 @@
         </thead>
 
         <tbody>
-        <tr>
-            <td><input type="radio" name="ord-id"/></td>
-            <td>${requestScope.newListOfOrds}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <c:forEach var="ord" items="${requestScope.newListOfOrds}">
 
+            <tr>
+            <td><c:out value="${ord.id}"/></td>
+            <td><c:out value="${ord.date}"/></td>
+                <td><c:out value="${ord.date}"/></td>
+                <td><c:out value="${ord.date}"/></td>
+                <td><c:out value="${ord.date}"/></td>
+            <td><c:out value="${ord.ordStatus}"/></td>
+                <td>
+                    <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a>
+                    <a></a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">удалить</a>
+                    <a></a>
+                </td>
         </tr>
-        <tr>
-            <td><input type="radio" name="ord-id"/></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
+        </c:forEach>
         </tbody>
     </table>
 
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <a href="/add-ord">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
-    <input name="Update" type="button" value="Редактировать"/>&nbsp; &nbsp; &nbsp;
-    <input name="Delete" type="button" value="Удалить"/>
-
+    </div>
+</div>
 
 </form>
-
-<p>&nbsp;</p>
-
-<p style="text-align: left;"><span style="font-size:14px">
-    <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;">
-        <span style="font-family:comic sans ms,cursive"><strong>Выйти</strong></span></a></span></p>
 </body>
 </html>

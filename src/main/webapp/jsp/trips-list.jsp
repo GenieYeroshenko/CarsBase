@@ -21,30 +21,24 @@
         </div>
 
 
-
         <div class="collapse navbar-collapse">
+
+
             <ul class="nav navbar-nav">
-                <a class="active" class="navbar-brand" href="#">Журнал рейсов</a>
+                <li class="active"><a href="#">Журнал рейсов</a></li>
             </ul>
+
+            <a class="navbar-brand" href="/list-car">Журнал машин</a>
+
             <ul class="nav navbar-nav">
-                <a class="navbar-brand" href="/jsp/add-car.jsp">Добавить машину</a>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#En|Ru">En|Ru</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="https://ya.ru/">Выход</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#En|Ru">En|Ru</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/list-car">Журнал машин</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://ya.ru/">Выход</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#En|Ru">En|Ru</a></li>
             </ul>
         </div>
 
@@ -71,36 +65,42 @@
                 <th scope="col">Марка машины</th>
                 <th scope="col">Номер машины</th>
                 <th scope="col">Статус</th>
-
+                <th scope="col"></th>
             </tr>
             </thead>
+
             <tbody>
             <c:forEach var="trip" items="${requestScope.newListOfTrips}">
-                <tr>
-                    <td>
-                        <c:choose>
-                            <c:when test="${trip.tripStatus}">
-                                выполнен
-                            </c:when>
-                            <c:otherwise>
-                                в пути
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td><c:out value="${trip.date}"/></td>
-                    <td><c:out value="${trip.rout}"/></td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${trip.tripStatus}">
-                                <a class="btn btn-default" href="/change-trip-status?id=${trip.id}">выполнен</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="btn btn-info" href="/change-trip-status?id=${trip.id}">в пути</a>
-                            </c:otherwise>
-                        </c:choose>
-                        <a></a>
-                    </td>
-                </tr>
+            <tr>
+                <td><c:out value="${trip.id}"/></td>
+                <td><c:out value="${trip.date}"/></td>
+                <td><c:out value="${trip.rout}"/></td>
+                <td><c:out value="${trip.rout}"/></td>
+                <td><c:out value="${trip.rout}"/></td>
+                <td><c:out value="${trip.rout}"/></td>
+                <td>
+                <c:choose>
+                <c:when test="${trip.tripStatus}">
+                выполнен
+            </c:when>
+                <c:otherwise>
+                в пути
+            </c:otherwise>
+            </c:choose>
+                </td>
+
+                <td>
+                    <c:choose>
+                        <c:when test="${trip.tripStatus}">
+                            <a class="btn btn-default" href="/change-trip-status?id=${trip.id}">в пути</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="btn btn-info" href="/change-trip-status?id=${trip.id}">выполнен</a>
+                        </c:otherwise>
+                    </c:choose>
+                    <a></a>
+                </td>
+            </tr>
             </c:forEach>
             </tbody>
         </table>

@@ -44,7 +44,8 @@
     <div class="text-center">
         <h1>Редактирование машины</h1>
 
-        <form action="/list-car" method="get">
+        <form action="/update-car" method="post">
+
             <div>
 
 

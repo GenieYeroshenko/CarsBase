@@ -18,7 +18,7 @@ public class Trip {
 
     @Column(name="date")
     private Date date;
-
+//todo Ord
     @Column(name = "rout")
     private String rout;
 

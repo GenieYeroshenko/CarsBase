@@ -21,22 +21,28 @@
         </div>
 
 
-        <a class="navbar-brand" href="/jsp/trips-list.jsp">Журнал рейсов</a>
-
         <div class="collapse navbar-collapse">
+            <a class="navbar-brand" href="/list-trip">Журнал рейсов</a>
+
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Журнал машин</a></li>
             </ul>
+
             <ul class="nav navbar-nav">
                 <a class="navbar-brand" href="/jsp/add-car.jsp">Добавить машину</a>
+            </ul>
+
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#En|Ru">En|Ru</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="https://ya.ru/">Выход</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#En|Ru">En|Ru</a></li>
-            </ul>
+
         </div>
 
 
@@ -47,6 +53,13 @@
 
 
     <div class="text-center">
+
+
+
+
+
+
+
 
 
         <h1>Журнал машин</h1>
@@ -61,8 +74,10 @@
                 <th scope="col"></th>
             </tr>
             </thead>
+
             <tbody>
             <c:forEach var="car" items="${requestScope.newListOfCars}">
+
                 <tr>
                     <td>
                         <c:choose>
@@ -104,14 +119,14 @@
                     </td>
                     <td>
                         <a class="btn btn-danger" href="/delete-car?id=${car.id}">удалить</a>
-                        <a></a></td>
+                        <a></a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
 
     </div>
-
 </div>
 
 </body>
