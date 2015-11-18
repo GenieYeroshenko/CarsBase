@@ -80,7 +80,6 @@ public class TripDaoTest {
         trip1.setDate(date);
         Ord ord = new Ord();
         trip1.setOrd(ord);
-        trip1.setRout("spb");
         tripDao.add(trip1);
 
 
@@ -93,7 +92,6 @@ public class TripDaoTest {
         trip2.setDate(date2);
         Ord ord2 = new Ord();
         trip2.setOrd(ord2);
-        trip2.setRout("msk");
         tripDao.add(trip2);
 
         List<Trip> trips = tripDao.findAll();

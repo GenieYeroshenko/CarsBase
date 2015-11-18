@@ -18,9 +18,6 @@ public class Trip {
 
     @Column(name="date")
     private Date date;
-//todo Ord
-    @Column(name = "rout")
-    private String rout;
 
     @Column(name = "carTypeLorry")
     private Boolean carTypeLorry;
@@ -28,7 +25,7 @@ public class Trip {
     @Column(name = "tripStatus")
     private Boolean tripStatus;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH}, fetch = FetchType.EAGER)
     private Ord ord;
 
     public Trip() {
@@ -44,14 +41,6 @@ public class Trip {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public String getRout() {
-        return rout;
-    }
-
-    public void setRout(String rout) {
-        this.rout = rout;
     }
 
     public Boolean getCarTypeLorry() {

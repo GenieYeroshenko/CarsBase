@@ -76,12 +76,15 @@
                 </c:choose>
             </div>
 
-            <p>Машина</p>
-            <select name="carId">
-                <c:forEach var="car" items="${requestScope.newListOfOrds}">
-                    <option value="${car.id}">${car.licencePlate} - ${car.cabDriver.name}</option>
-                </c:forEach>
-            </select>
+
+
+            <div>
+                <label style="line-height:1.6">Водитель</label>
+                <input name="rout" size="15" type="text" value="${requestScope.updatedOrd.car}"/>
+            </div>
+
+
+
 
 
             <label style="line-height:1.6">Статус заявки</label>

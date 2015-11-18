@@ -74,10 +74,10 @@
             <tr>
                 <td><c:out value="${trip.id}"/></td>
                 <td><c:out value="${trip.date}"/></td>
-                <td><c:out value="${trip.rout}"/></td>
-                <td><c:out value="${trip.rout}"/></td>
-                <td><c:out value="${trip.rout}"/></td>
-                <td><c:out value="${trip.rout}"/></td>
+                <td><c:out value="${trip}"/></td>
+                <td><c:out value="${trip.ord.car.model}"/></td>
+                <td><c:out value="${trip}"/></td>
+                <td><c:out value="${trip}"/></td>
                 <td>
                 <c:choose>
                 <c:when test="${trip.tripStatus}">
