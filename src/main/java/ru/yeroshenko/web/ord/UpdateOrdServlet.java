@@ -68,7 +68,9 @@ public class UpdateOrdServlet extends HttpServlet {
         updatedOrd.setDate(date);
 
         ordDao.updateOrd(updatedOrd, carId);
-        request.getRequestDispatcher("/list-ord").forward(request, response);
+
+        response.sendRedirect("/list-ord");
+//        request.getRequestDispatcher("/list-ord").forward(request, response);
 
     }
 }

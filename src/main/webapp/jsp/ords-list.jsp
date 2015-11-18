@@ -36,8 +36,6 @@
             </ul>
 
 
-
-
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#En|Ru">En|Ru</a></li>
             </ul>
@@ -63,38 +61,39 @@
         <table class="table" style="width:500px">
             <thead>
             <tr>
-            <th scope="col">Номер заявки</th>
-            <th scope="col">Дата</th>
-            <th scope="col">Маршрут</th>
-            <th scope="col">Тип машины</th>
-            <th scope="col">Номер машины</th>
-            <th scope="col">Водитель</th>
-            <th scope="col">Статус заявки</th>
-        </tr>
-        </thead>
+                <th scope="col">Номер заявки</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Маршрут</th>
+                <th scope="col">Тип машины</th>
+                <th scope="col">Номер машины</th>
+                <th scope="col">Водитель</th>
+                <th scope="col">Статус заявки</th>
+            </tr>
+            </thead>
 
-        <tbody>
-        <c:forEach var="ord" items="${requestScope.newListOfOrds}">
+            <tbody>
+            <c:forEach var="ord" items="${requestScope.newListOfOrds}">
 
-            <tr>
-            <td><c:out value="${ord.id}"/></td>
-            <td><c:out value="${ord.date}"/></td>
-                <td><c:out value="${ord.date}"/></td>
-                <td><c:out value="${ord.date}"/></td>
-                <td><c:out value="${ord.date}"/></td>
-            <td><c:out value="${ord.ordStatus}"/></td>
-                <td>
-                    <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a>
-                    <a></a>
-                </td>
-                <td>
-                    <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">удалить</a>
-                    <a></a>
-                </td>
-        </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+                <tr>
+                    <td><c:out value="${ord.id}"/></td>
+                    <td><c:out value="${ord.date}"/></td>
+                    <td><c:out value="${ord.rout}"/></td>
+                    <td><c:out value="${ord.carTypeLorry}"/></td>
+                    <td><c:out value="${ord.car.licencePlate}"/></td>
+                    <td><c:out value="${ord.car.cabDriver.name}"/></td>
+                    <td><c:out value="${ord.ordStatus}"/></td>
+                    <td>
+                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a>
+                        <a></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">удалить</a>
+                        <a></a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
 
     </div>
 </div>

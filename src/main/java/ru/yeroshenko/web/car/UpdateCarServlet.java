@@ -55,7 +55,6 @@ public class UpdateCarServlet extends HttpServlet {
 
         carDao.update(updatedCar);
 
-        //request.getRequestDispatcher("/jsp/cars-list.jsp").forward(request, response);
         request.getRequestDispatcher("/list-car").forward(request, response);
 
     }
