@@ -2,8 +2,6 @@ package ru.yeroshenko.service;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import ru.yeroshenko.dao.CarDao;
-import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.util.HibernateUtil;
@@ -13,13 +11,6 @@ import ru.yeroshenko.util.HibernateUtil;
  */
 public class OrdService {
 
-    private CarDao carDao;
-    private OrdDao ordDao;
-
-    public OrdService(CarDao carDao, OrdDao ordDao) {
-        this.carDao = carDao;
-        this.ordDao = ordDao;
-    }
 
     public void createOrd(Ord ord, long carId) {
         Session session = HibernateUtil.getSessionFactory().openSession();

@@ -25,12 +25,12 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Журнал машин</a></li>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://ya.ru/">Выход</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#En|Ru">En|Ru</a></li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://ya.ru/">Выход</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#En|Ru">En|Ru</a></li>
+                </ul>
         </div>
     </div>
 
@@ -50,10 +50,6 @@
                 <label style="line-height:1.6">Маршрут</label>
                 <input name="rout" size="15" type="text" value="${requestScope.updatedOrd.rout}"/>
             </div>
-
-
-
-
 
 
             <div>
@@ -77,14 +73,23 @@
             </div>
 
 
-
             <div>
-                <label style="line-height:1.6">Водитель</label>
-                <input name="rout" size="15" type="text" value="${requestScope.updatedOrd.car}"/>
+                <p>Машина</p>
+                <select name="carId">
+                    <c:forEach var="car" items="${requestScope.newListOfCars}">
+                        <c:choose>
+                            <c:when test="${car.id == requestScope.updatedOrd.car.id}">
+                                <option selected="selected" value="${car.id}">${car.licencePlate}
+                                    - ${car.cabDriver.name}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option selected="selected" value="${car.id}">${car.licencePlate}
+                                    - ${car.cabDriver.name}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
             </div>
-
-
-
 
 
             <label style="line-height:1.6">Статус заявки</label>
@@ -92,18 +97,18 @@
 
             <c:choose>
 
-                <c:when test="${requestScope.updatedOrd.ordStatus == 'ASSIGNED'}">
+            <c:when test="${requestScope.updatedOrd.ordStatus == 'ASSIGNED'}">
             <select name="ordStatus">
-                <option selected="ASSIGNED"value="true">назначена</option>
+                <option selected="selected" value="ASSIGNED">назначена</option>
                 <option value="IN_QUEUE">не назначена</option>
                 <option value="IN_TRANSIT">в пути</option>
                 <option value="DONE">выполнена</option>
             </select>
             </c:when>
-                <c:when test="${requestScope.updatedOrd.ordStatus == 'IN_QUEUE'}">
+            <c:when test="${requestScope.updatedOrd.ordStatus == 'IN_QUEUE'}">
             <select name="ordStatus">
                 <option value="ASSIGNED">назначена</option>
-                <option selected="IN_QUEUE" value="true">не назначена</option>
+                <option selected="selected" value="IN_QUEUE">не назначена</option>
                 <option value="IN_TRANSIT">в пути</option>
                 <option value="DONE">выполнена</option>
             </select>
@@ -112,7 +117,7 @@
             <select name="ordStatus">
                 <option value="ASSIGNED">назначена</option>
                 <option value="IN_QUEUE">не назначена</option>
-                <option selected="IN_TRANSIT" value="true">в пути</option>
+                <option selected="selected" value="IN_TRANSIT">в пути</option>
                 <option value="DONE">выполнена</option>
             </select>
             </c:when>
@@ -122,11 +127,11 @@
                 <option value="ASSIGNED">назначена</option>
                 <option value="IN_QUEUE">не назначена</option>
                 <option value="IN_TRANSIT">в пути</option>
-                <option selected="DONE" value="true">выполнена</option>
+                <option selected="selected" value="DONE">выполнена</option>
             </select>
             </c:when>
 
-        </c:choose>
+            </c:choose>
     </div>
     <p>&nbsp;</p>
     <input value="${requestScope.updatedOrd.id}" type="hidden" name="id">

@@ -1,8 +1,8 @@
 package ru.yeroshenko.web.ord;
 
-import org.hibernate.SessionFactory;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
+import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.service.OrdService;
 import ru.yeroshenko.util.HibernateUtil;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by evgeniya on 15/11/15.
@@ -31,6 +32,11 @@ public class UpdateOrdServlet extends HttpServlet {
         Ord ord = ordDao.findById(id);
 
         request.setAttribute("updatedOrd", ord);
+
+        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        List<Car> cars = carDao.findAll();
+
+        request.setAttribute("newListOfCars", cars);
         request.getRequestDispatcher("/jsp/update-ord.jsp").forward(request, response);
 
     }
@@ -54,17 +60,7 @@ public class UpdateOrdServlet extends HttpServlet {
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
         long carId = Integer.parseInt(carIdFromForm);
 
-
-        Ord ord = new Ord();
-        ord.setCarTypeLorry(carTypeLorry);
-        ord.setRout(rout);
-        ord.setOrdStatus(ordStatus);
-        ord.setDate(date);
-
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        OrdService service = new OrdService(new CarDao(sessionFactory), new OrdDao(sessionFactory));
-
-
+        OrdService service = new OrdService();
 
         OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
 
@@ -75,9 +71,6 @@ public class UpdateOrdServlet extends HttpServlet {
         updatedOrd.setDate(date);
 
         service.updateOrd(updatedOrd, carId);
-        //ordDao.update(updatedOrd);
-
-        //request.getRequestDispatcher("/jsp/cars-list.jsp").forward(request, response);
         request.getRequestDispatcher("/list-ord").forward(request, response);
 
     }

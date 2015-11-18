@@ -29,7 +29,7 @@
             </ul>
 
             <ul class="nav navbar-nav">
-                <a class="navbar-brand" href="/jsp/add-car.jsp">Добавить машину</a>
+                <a class="navbar-brand" href="/add-car">Добавить машину</a>
             </ul>
 
 
