@@ -83,7 +83,7 @@
                                     - ${car.cabDriver.name}</option>
                             </c:when>
                             <c:otherwise>
-                                <option selected="selected" value="${car.id}">${car.licencePlate}
+                                <option value="${car.id}">${car.licencePlate}
                                     - ${car.cabDriver.name}</option>
                             </c:otherwise>
                         </c:choose>
