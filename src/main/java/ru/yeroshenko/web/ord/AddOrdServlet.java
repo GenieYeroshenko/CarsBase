@@ -2,9 +2,9 @@ package ru.yeroshenko.web.ord;
 
 import org.hibernate.SessionFactory;
 import ru.yeroshenko.dao.CarDao;
+import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.service.OrdService;
 import ru.yeroshenko.util.HibernateUtil;
 
 import javax.servlet.ServletException;
@@ -58,8 +58,8 @@ public class AddOrdServlet extends HttpServlet {
         long carId = Integer.parseInt(carFromForm);
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        OrdService service = new OrdService();
-        service.createOrd(ord, carId);
+        OrdDao dao = new OrdDao(sessionFactory);
+        dao.createOrd(ord, carId);
         request.getRequestDispatcher("/list-ord").forward(request, response);
     }
 

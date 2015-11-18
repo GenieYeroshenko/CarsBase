@@ -4,7 +4,6 @@ import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.service.OrdService;
 import ru.yeroshenko.util.HibernateUtil;
 
 import javax.servlet.ServletException;
@@ -60,8 +59,6 @@ public class UpdateOrdServlet extends HttpServlet {
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
         long carId = Integer.parseInt(carIdFromForm);
 
-        OrdService service = new OrdService();
-
         OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
 
         Ord updatedOrd = ordDao.findById(id);
@@ -70,7 +67,7 @@ public class UpdateOrdServlet extends HttpServlet {
         updatedOrd.setOrdStatus(ordStatus);
         updatedOrd.setDate(date);
 
-        service.updateOrd(updatedOrd, carId);
+        ordDao.updateOrd(updatedOrd, carId);
         request.getRequestDispatcher("/list-ord").forward(request, response);
 
     }
