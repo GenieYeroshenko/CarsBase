@@ -23,8 +23,13 @@
             <a class="navbar-brand" href="/list-trip">Журнал рейсов</a>
             <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал машин</a></li></ul>
             <ul class="nav navbar-nav"><a class="navbar-brand" href="/add-car">Добавить машину</a></ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>${sessionScope.authorizedUser.login}</li>
+            </ul>
             <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
-            <ul class="nav navbar-nav navbar-right"><li><a href="/">Выход</a></li></ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">Выход</a></li>
+            </ul>
         </div>
     </div>
 </div>

@@ -112,4 +112,6 @@ public class CarDaoTest {
         assertEquals(carFromDb.getCabDriver().getName(), cabDriver.getName());
         carDao.delete(car);
     }
+
+    //todo findAllCarsByCabDriver
 }
