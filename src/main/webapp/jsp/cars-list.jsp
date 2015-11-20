@@ -19,51 +19,20 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-
-
         <div class="collapse navbar-collapse">
             <a class="navbar-brand" href="/list-trip">Журнал рейсов</a>
-
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Журнал машин</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav">
-                <a class="navbar-brand" href="/add-car">Добавить машину</a>
-            </ul>
-
-
-
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#En|Ru">En|Ru</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Выход</a></li>
-            </ul>
-
+            <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал машин</a></li></ul>
+            <ul class="nav navbar-nav"><a class="navbar-brand" href="/add-car">Добавить машину</a></ul>
+            <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
+            <ul class="nav navbar-nav navbar-right"><li><a href="/">Выход</a></li></ul>
         </div>
-
-
     </div>
 </div>
-
 <div class="container">
-
-
     <div class="text-center">
 
 
-
-
-
-
-
-
-
         <h1>Журнал машин</h1>
-
         <table class="table" style="width:500px">
             <thead>
             <tr>
@@ -77,7 +46,6 @@
 
             <tbody>
             <c:forEach var="car" items="${requestScope.newListOfCars}">
-
                 <tr>
                     <td>
                         <c:choose>
@@ -113,22 +81,17 @@
                         <a></a>
                     </td>
                     <td>
-                        <a class="btn btn-warning" href="/update-car?id=${car.id}">редактировать</a>
-
-                        <a></a>
+                        <a class="btn btn-warning" href="/update-car?id=${car.id}">редактировать</a><a></a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="/delete-car?id=${car.id}">удалить</a>
-                        <a></a>
+                        <a class="btn btn-danger" href="/delete-car?id=${car.id}">удалить</a><a></a>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-
     </div>
 </div>
-
 </body>
 </html>
 

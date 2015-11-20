@@ -72,12 +72,22 @@
             <tbody>
             <c:forEach var="trip" items="${requestScope.newListOfTrips}">
             <tr>
-                <td><c:out value="${trip.id}"/></td>
+                <td><c:out value="${trip.ord.id}"/></td>
                 <td><c:out value="${trip.date}"/></td>
-                <td><c:out value="${trip}"/></td>
+                <td><c:out value="${trip.ord.rout}"/></td>
+                <td><c:out value="${trip.ord.car.carTypeLorry}"/></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${car.carTypeLorry}">
+                            грузовая
+                        </c:when>
+                        <c:otherwise>
+                            легковая
+                        </c:otherwise>
+                    </c:choose>
+                </td>
                 <td><c:out value="${trip.ord.car.model}"/></td>
-                <td><c:out value="${trip}"/></td>
-                <td><c:out value="${trip}"/></td>
+                <td><c:out value="${trip.ord.car.licencePlate}"/></td>
                 <td>
                 <c:choose>
                 <c:when test="${trip.tripStatus}">

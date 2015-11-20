@@ -28,7 +28,9 @@ public class ChangeCarStatusServlet extends HttpServlet {
 
         carDao.update(car);
 
-        request.getRequestDispatcher("/list-car").forward(request, response);
+        //request.getRequestDispatcher("/list-car").forward(request, response);
+        response.sendRedirect("/list-car");
+
     }
 
 

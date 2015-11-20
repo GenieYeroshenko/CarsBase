@@ -1,80 +1,73 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Журнал заявок (только назначенные)</title>
+    <title>Журнал заявок</title>
+    <jsp:include page="header.jsp"/>
 </head>
 
 <body>
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="collapse navbar-collapse">
 
+            <a class="navbar-brand" href="/list-ord">Журнал заявок</a>
 
-<form>
+            <a class="navbar-brand" href="/add-ord">Добавить заявку</a>
 
-    <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px"><strong>Журнал заявок (только назначенные)</strong></span></span>
-    </p>
+            <ul class="nav navbar-nav"><li class="active"><a href="#">Назначенные</a></li></ul>
+            <a class="navbar-brand" href="/list-ord-in-transit">В пути</a>
+            <a class="navbar-brand" href="/list-ord-done">Выполненные</a>
+            <a class="navbar-brand" href="/list-ord-in-queue">Не назначенные</a>
 
-    <a href="/jsp/ords-list.jsp">Все</a>&nbsp; &nbsp; &nbsp;
-    <label>Назначенные</label>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-transit.jsp">В пути</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-done.jsp">Выполненные</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-queue.jsp">Не назначенные</a>&nbsp; &nbsp; &nbsp;
-    <p>&nbsp;</p>
+            <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
+            <ul class="nav navbar-nav navbar-right"><li><a href="/">Выход</a></li></ul>
+        </div>
+    </div>
+</div>
 
-    <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:500px">
-        <thead>
-        <tr>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">Номер заявки</th>
-            <th scope="col">Дата</th>
-            <th scope="col">Маршрут</th>
-            <th scope="col">Тип машины</th>
-            <th scope="col">Номер машины</th>
-            <th scope="col">Водитель</th>
-            <th scope="col">Статус заявки</th>
-        </tr>
-        </thead>
+<div class="container">
+    <div class="text-center">
+        <h1>Журнал заявок</h1>
+        <h1></h1>
 
-        <tbody>
-        <tr>
-            <td><input type="radio" name="ord-id"/></td>
-            <td>${requestScope.newListOfOrdsAssigned}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <table class="table" style="width:900px">
+            <thead>
+            <tr>
+                <th scope="col">Номер заявки</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Маршрут</th>
+                <th scope="col">Тип машины</th>
+                <th scope="col">Номер машины</th>
+                <th scope="col">Водитель</th>
+                <th scope="col">Статус заявки</th>
+            </tr>
+            </thead>
 
-        </tr>
-        <tr>
-            <td><input type="radio" name="ord-id"/></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        </tbody>
-    </table>
-
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <a href="/jsp/add-ord.jsp">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
-    <input name="Update" type="button" value="Редактировать"/>&nbsp; &nbsp; &nbsp;
-    <input name="Delete" type="button" value="Удалить"/>
-
-
+            <tbody>
+            <c:forEach var="ord" items="${requestScope.newListOfOrds}">
+                <tr>
+                    <td><c:out value="${ord.id}"/></td>
+                    <td><c:out value="${ord.date}"/></td>
+                    <td><c:out value="${ord.rout}"/></td>
+                    <td><c:out value="${ord.carTypeLorry}"/></td>
+                    <td><c:out value="${ord.car.licencePlate}"/></td>
+                    <td><c:out value="${ord.car.cabDriver.name}"/></td>
+                    <td><c:out value="${ord.ordStatus}"/></td>
+                    <td>
+                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a><a></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">удалить</a><a></a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 </form>
-
-<p>&nbsp;</p>
-
-<p style="text-align: left;"><span style="font-size:14px">
-    <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;">
-        <span style="font-family:comic sans ms,cursive"><strong>Выйти</strong></span></a></span></p>
 </body>
 </html>
