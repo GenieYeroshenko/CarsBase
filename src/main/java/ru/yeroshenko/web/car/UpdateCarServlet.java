@@ -28,7 +28,7 @@ public class UpdateCarServlet extends HttpServlet {
 
         request.setAttribute("updatedCar", car);
 
-        request.getRequestDispatcher("/jsp/update-car.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/car/update-car.jsp").forward(request, response);
 
 
 

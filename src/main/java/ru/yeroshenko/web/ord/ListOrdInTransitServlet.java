@@ -23,7 +23,7 @@ public class ListOrdInTransitServlet extends HttpServlet {
         List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.IN_TRANSIT);
 
         request.setAttribute("newListOfOrdsInTransit", ords);
-        request.getRequestDispatcher("/jsp/ords-list-in-transit.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/ords-list-in-transit.jsp").forward(request, response);
 
 
     }

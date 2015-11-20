@@ -23,7 +23,7 @@ public class ListOrdServlet extends HttpServlet {
         List<Ord> ords = ordDao.findAll();
 
         request.setAttribute("newListOfOrds", ords);
-        request.getRequestDispatcher("/jsp/ords-list.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/ords-list.jsp").forward(request, response);
     }
 
 }

@@ -45,7 +45,7 @@ public class AddCarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        request.getRequestDispatcher("/jsp/add-car.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/car/add-car.jsp").forward(request, response);
 
         //response.sendRedirect("/list-car");
     }

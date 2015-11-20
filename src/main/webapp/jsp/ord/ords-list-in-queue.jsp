@@ -14,10 +14,10 @@
     <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px"><strong>Журнал заявок (только не назначенные)</strong></span></span>
     </p>
 
-    <a href="/jsp/ords-list.jsp">Все</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-assigned.jsp">Назначенные</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-transit.jsp">В пути</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-done.jsp">Выполненные</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list.jsp">Все</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list-assigned.jsp">Назначенные</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list-in-transit.jsp.jsp">В пути</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list-done.jsp">Выполненные</a>&nbsp; &nbsp; &nbsp;
     <label>Не назначенные</label>&nbsp; &nbsp; &nbsp;
     <p>&nbsp;</p>
 
@@ -64,7 +64,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <a href="/jsp/add-ord.jsp">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/add-ord.jsp">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
     <input name="Update" type="button" value="Редактировать"/>&nbsp; &nbsp; &nbsp;
     <input name="Delete" type="button" value="Удалить"/>
 

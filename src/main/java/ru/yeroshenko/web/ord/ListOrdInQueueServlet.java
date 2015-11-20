@@ -23,7 +23,7 @@ public class ListOrdInQueueServlet extends HttpServlet {
         List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.IN_QUEUE);
 
         request.setAttribute("newListOfOrdsInQueue", ords);
-        request.getRequestDispatcher("/jsp/ords-list-in-queue.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/ords-list-in-queue.jsp").forward(request, response);
 
     }
 

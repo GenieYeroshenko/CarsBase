@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Журнал рейсов</title>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../header.jsp"/>
 </head>
 
 <body>

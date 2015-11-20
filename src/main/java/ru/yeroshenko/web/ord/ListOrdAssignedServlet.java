@@ -23,7 +23,7 @@ public class ListOrdAssignedServlet extends HttpServlet {
         List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.ASSIGNED);
 
         request.setAttribute("newListOfOrdsAssigned", ords);
-        request.getRequestDispatcher("/jsp/ords-list-assigned.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/ords-list-assigned.jsp").forward(request, response);
 
     }
 

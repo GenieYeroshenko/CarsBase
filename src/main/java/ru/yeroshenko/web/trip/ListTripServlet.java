@@ -23,7 +23,7 @@ public class ListTripServlet extends HttpServlet {
         List<Trip> trips = tripDao.findAll();
 
         request.setAttribute("newListOfTrips", trips);
-        request.getRequestDispatcher("/jsp/trips-list.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/trip/trips-list.jsp").forward(request, response);
     }
 
 }

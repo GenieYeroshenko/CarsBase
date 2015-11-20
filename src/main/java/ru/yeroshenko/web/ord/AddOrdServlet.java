@@ -59,7 +59,7 @@ public class AddOrdServlet extends HttpServlet {
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
-        request.getRequestDispatcher("/jsp/add-ord.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/add-ord.jsp").forward(request, response);
 
 
     }

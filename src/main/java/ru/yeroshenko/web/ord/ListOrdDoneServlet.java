@@ -23,7 +23,7 @@ public class ListOrdDoneServlet extends HttpServlet {
         List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.DONE);
 
         request.setAttribute("newListOfOrdsDone", ords);
-        request.getRequestDispatcher("/jsp/ords-list-done.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/ords-list-done.jsp").forward(request, response);
 
     }
 

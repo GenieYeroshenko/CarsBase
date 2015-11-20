@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Журнал заявок (только выполненные)</title>
+    <title>Журнал заявок (только в пути)</title>
 </head>
 
 <body>
@@ -11,14 +11,14 @@
 
 <form>
 
-    <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px"><strong>Журнал заявок (только выполненные)</strong></span></span>
+    <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px"><strong>Журнал заявок (только в пути)</strong></span></span>
     </p>
 
-    <a href="/jsp/ords-list.jsp">Все</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-assigned.jsp">Назначенные</a>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-transit.jsp">В пути</a>&nbsp; &nbsp; &nbsp;
-    <label>Выполненные</label>&nbsp; &nbsp; &nbsp;
-    <a href="/jsp/ords-list-in-queue.jsp">Не назначенные</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list.jsp">Все</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list-assigned.jsp">Назначенные</a>&nbsp; &nbsp; &nbsp;
+    <label>В пути</label>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list-done.jsp">Выполненные</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/ords-list-in-queue.jsp">Не назначенные</a>&nbsp; &nbsp; &nbsp;
     <p>&nbsp;</p>
 
     <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:500px">
@@ -38,7 +38,7 @@
         <tbody>
         <tr>
             <td><input type="radio" name="ord-id"/></td>
-            <td>${requestScope.newListOfOrdsDone}</td>
+            <td>${requestScope.newListOfOrdsInTransit}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -64,7 +64,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <a href="/jsp/add-ord.jsp">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
+    <a href="/jsp/ord/add-ord.jsp">Добавить заявку</a>&nbsp; &nbsp; &nbsp;
     <input name="Update" type="button" value="Редактировать"/>&nbsp; &nbsp; &nbsp;
     <input name="Delete" type="button" value="Удалить"/>
 

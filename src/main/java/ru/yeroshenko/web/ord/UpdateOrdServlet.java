@@ -36,7 +36,7 @@ public class UpdateOrdServlet extends HttpServlet {
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
-        request.getRequestDispatcher("/jsp/update-ord.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ord/update-ord.jsp").forward(request, response);
 
     }
 

@@ -23,7 +23,7 @@ public class ListCarServlet extends HttpServlet {
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
-        request.getRequestDispatcher("/jsp/cars-list.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/car/cars-list.jsp").forward(request, response);
 
     }
 
