@@ -24,7 +24,8 @@ public class ListOrdServlet extends HttpServlet {
 
         request.setAttribute("newListOfOrds", ords);
         request.getRequestDispatcher("/jsp/ords-list.jsp").forward(request, response);
-
     }
 
 }
+
+

@@ -22,19 +22,6 @@ import java.util.List;
 public class AddOrdServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("text/html");
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
-        List<Car> cars = carDao.findAll();
-
-        request.setAttribute("newListOfCars", cars);
-        request.getRequestDispatcher("/jsp/add-ord.jsp").forward(request, response);
-
-    }
-
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         //String dateFromForm = request.getParameter("date");
@@ -49,7 +36,6 @@ public class AddOrdServlet extends HttpServlet {
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
 
 
-
         Ord ord = new Ord();
         ord.setCarTypeLorry(carTypeLorry);
         ord.setRout(rout);
@@ -60,7 +46,21 @@ public class AddOrdServlet extends HttpServlet {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         OrdDao dao = new OrdDao(sessionFactory);
         dao.createOrd(ord, carId);
-        request.getRequestDispatcher("/list-ord").forward(request, response);
+        response.sendRedirect("/list-ord");
+
     }
 
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        List<Car> cars = carDao.findAll();
+
+        request.setAttribute("newListOfCars", cars);
+        request.getRequestDispatcher("/jsp/add-ord.jsp").forward(request, response);
+
+
+    }
 }

@@ -24,7 +24,6 @@ public class ListTripServlet extends HttpServlet {
 
         request.setAttribute("newListOfTrips", trips);
         request.getRequestDispatcher("/jsp/trips-list.jsp").forward(request, response);
-
     }
 
     @Override

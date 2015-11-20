@@ -29,6 +29,8 @@ public class UpdateCarServlet extends HttpServlet {
         request.setAttribute("updatedCar", car);
         request.getRequestDispatcher("/jsp/update-car.jsp").forward(request, response);
 
+
+
     }
 
     @Override
@@ -56,6 +58,7 @@ public class UpdateCarServlet extends HttpServlet {
         carDao.update(updatedCar);
 
         request.getRequestDispatcher("/list-car").forward(request, response);
+
 
     }
 }

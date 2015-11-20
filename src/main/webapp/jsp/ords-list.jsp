@@ -22,10 +22,10 @@
 
 
         <div class="collapse navbar-collapse">
-            <a class="navbar-brand" href="/jsp/ords-list-assigned.jsp">Назначенные</a>
-            <a class="navbar-brand" href="/jsp/ords-list-in-transit.jsp">В пути</a>
-            <a class="navbar-brand" href="/jsp/ords-list-done.jsp">Выполненные</a>
-            <a class="navbar-brand" href="/jsp/ords-list-in-queue.jsp">Не назначенные</a>
+            <a class="navbar-brand" href="/list-ord-assigned">Назначенные</a>
+            <a class="navbar-brand" href="/list-ord-in-transit">В пути</a>
+            <a class="navbar-brand" href="/list-ord-done">Выполненные</a>
+            <a class="navbar-brand" href="/list-ord-in-queue">Не назначенные</a>
 
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Журнал заявок</a></li>

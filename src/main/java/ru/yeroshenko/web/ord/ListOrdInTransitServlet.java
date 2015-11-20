@@ -25,6 +25,7 @@ public class ListOrdInTransitServlet extends HttpServlet {
         request.setAttribute("newListOfOrdsInTransit", ords);
         request.getRequestDispatcher("/jsp/ords-list-in-transit.jsp").forward(request, response);
 
+
     }
 
     @Override

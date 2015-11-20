@@ -37,13 +37,17 @@ public class AddCarServlet extends HttpServlet {
         CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         carDao.add(car);
 
-        request.getRequestDispatcher("/list-car").forward(request, response);
+        //request.getRequestDispatcher("/list-car").forward(request, response);
+        response.sendRedirect("/list-car");
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         request.getRequestDispatcher("/jsp/add-car.jsp").forward(request, response);
+
+        //response.sendRedirect("/list-car");
     }
 
 }
