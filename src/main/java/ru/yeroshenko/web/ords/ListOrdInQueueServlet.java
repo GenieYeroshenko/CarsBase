@@ -1,4 +1,4 @@
-package ru.yeroshenko.web.ord;
+package ru.yeroshenko.web.ords;
 
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Ord;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by evgeniya on 15/11/15.
  */
-public class ListOrdServlet extends HttpServlet {
+public class ListOrdInQueueServlet extends HttpServlet {
 
 
     @Override
@@ -25,12 +25,15 @@ public class ListOrdServlet extends HttpServlet {
         }
 
         OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
-        List<Ord> ords = ordDao.findAll();
+        List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.IN_QUEUE);
 
-        request.setAttribute("newListOfOrds", ords);
-        request.getRequestDispatcher("/jsp/ord/ords-list.jsp").forward(request, response);
+        request.setAttribute("newListOfOrdsInQueue", ords);
+        request.getRequestDispatcher("/jsp/ords/ords-list-in-queue.jsp").forward(request, response);
+
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
 }
-
-

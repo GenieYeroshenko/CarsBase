@@ -1,4 +1,4 @@
-package ru.yeroshenko.web.ord;
+package ru.yeroshenko.web.ords;
 
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Ord;
@@ -28,7 +28,7 @@ public class ListOrdAssignedServlet extends HttpServlet {
         List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.ASSIGNED);
 
         request.setAttribute("newListOfOrdsAssigned", ords);
-        request.getRequestDispatcher("/jsp/ord/ords-list-assigned.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/ords/ords-list-assigned.jsp").forward(request, response);
 
     }
 

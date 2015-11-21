@@ -3,6 +3,7 @@ package ru.yeroshenko.dao;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
+import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.domain.Ord.OrdStatus;
 import ru.yeroshenko.util.HibernateUtil;
@@ -17,13 +18,16 @@ import static org.junit.Assert.*;
 public class OrdDaoTest {
 
     OrdDao ordDao;
+    CarDao carDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         ordDao = new OrdDao(sessionFactory);
+        carDao = new CarDao(sessionFactory);
     }
 
+    //todo =updateOrd?
     @Test
     public void testUpdate() throws Exception {
         Ord ord = new Ord();
@@ -38,6 +42,35 @@ public class OrdDaoTest {
         ordDao.delete(ordFromDb);
     }
 
+    //todo check
+    @Test
+    public void testUpdateOrd() throws Exception {
+        Car car = new Car();
+        car.setLicencePlate("33 eee");
+        carDao.add(car);
+        long idCar = car.getId();
+        Car carFromDb = carDao.findById(idCar);
+
+        Ord ord = new Ord();
+        ord.setRout("SPb");
+        ord.setCar(carFromDb);
+        ordDao.add(ord);
+        long idOrd = ord.getId();
+        Ord ordFromDb = ordDao.findById(idOrd);
+
+        ordFromDb.setRout("MSK");
+        carFromDb.setLicencePlate("44 aaa");
+        ordFromDb.setCar(carFromDb);
+
+        ordDao.update(ordFromDb);
+        Ord ordFromDb2 = ordDao.findById(idOrd);
+        assertEquals("44 aaa", ordFromDb2.getCar().getLicencePlate());
+//        ordDao.delete(ord);
+//        carDao.delete(car);
+    }
+
+
+    //todo add=create?
     @Test
     public void testAdd() throws Exception {
         Ord ord = new Ord();
@@ -45,7 +78,6 @@ public class OrdDaoTest {
         ordDao.add(ord);
         assertTrue(ord.getId() > 0);
         ordDao.delete(ord);
-
     }
 
     @Test
@@ -68,7 +100,6 @@ public class OrdDaoTest {
         Ord ordFromDb = ordDao.findById(id);
         assertEquals(ordFromDb.getRout(), ord.getRout());
         ordDao.delete(ord);
-
     }
 
     @Test
@@ -83,7 +114,6 @@ public class OrdDaoTest {
         assertEquals(ords.size(), 2);
         ordDao.delete(ord1);
         ordDao.delete(ord2);
-
     }
 
     @Test
@@ -102,5 +132,28 @@ public class OrdDaoTest {
         ordDao.delete(ord1);
         ordDao.delete(ord2);
         ordDao.delete(ord3);
+    }
+
+    //todo check
+    @Test
+    public void testCreate() throws Exception {
+        Car car = new Car();
+        car.setLicencePlate("EN 2222");
+        car.setModel("bmw");
+        carDao.add(car);
+        long idCar = car.getId();
+        Car carFromDb = carDao.findById(idCar);
+
+        Ord ord = new Ord();
+        ord.setRout("SPb");
+        ord.setCar(carFromDb);
+
+        ordDao.add(ord);
+        long idOrd = ord.getId();
+        Ord ordFromDb = ordDao.findById(idOrd);
+
+        assertEquals(ordFromDb.getCar().getLicencePlate(), car.getLicencePlate());
+        //ordDao.delete(ord);
+        //carDao.delete(car);
     }
 }

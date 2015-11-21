@@ -19,12 +19,9 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <a class="navbar-brand" href="/list-trip">Журнал рейсов</a>
+        <a class="navbar-brand" href="/list-ord-manager">Журнал заявок</a>
 
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Журнал машин</a></li>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout">Выход</a></li>
                 </ul>
@@ -96,41 +93,18 @@
 
 
             <c:choose>
-
             <c:when test="${requestScope.updatedOrd.ordStatus == 'ASSIGNED'}">
             <select name="ordStatus">
                 <option selected="selected" value="ASSIGNED">назначена</option>
                 <option value="IN_QUEUE">не назначена</option>
-                <option value="IN_TRANSIT">в пути</option>
-                <option value="DONE">выполнена</option>
             </select>
             </c:when>
             <c:when test="${requestScope.updatedOrd.ordStatus == 'IN_QUEUE'}">
             <select name="ordStatus">
                 <option value="ASSIGNED">назначена</option>
                 <option selected="selected" value="IN_QUEUE">не назначена</option>
-                <option value="IN_TRANSIT">в пути</option>
-                <option value="DONE">выполнена</option>
             </select>
             </c:when>
-            <c:when test="${requestScope.updatedOrd.ordStatus == 'IN_TRANSIT'}">
-            <select name="ordStatus">
-                <option value="ASSIGNED">назначена</option>
-                <option value="IN_QUEUE">не назначена</option>
-                <option selected="selected" value="IN_TRANSIT">в пути</option>
-                <option value="DONE">выполнена</option>
-            </select>
-            </c:when>
-
-            <c:when test="${requestScope.updatedOrd.ordStatus == 'DONE'}">
-            <select name="ordStatus">
-                <option value="ASSIGNED">назначена</option>
-                <option value="IN_QUEUE">не назначена</option>
-                <option value="IN_TRANSIT">в пути</option>
-                <option selected="selected" value="DONE">выполнена</option>
-            </select>
-            </c:when>
-
             </c:choose>
     </div>
     <p>&nbsp;</p>

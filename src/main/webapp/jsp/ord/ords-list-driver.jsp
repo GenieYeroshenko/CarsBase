@@ -13,16 +13,16 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал заявок</a></li></ul>
-
-            <a class="navbar-brand" href="/add-ord">Добавить заявку</a>
-            <a class="navbar-brand" href="/list-ord-assigned">Назначенные</a>
-            <a class="navbar-brand" href="/list-ord-in-transit">В пути</a>
-            <a class="navbar-brand" href="/list-ord-done">Выполненные</a>
-            <a class="navbar-brand" href="/list-ord-in-queue">Не назначенные</a>
-
-            <li>${sessionScope.authorizedUser.login}</li>
-            <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
-            <li><a href="/logout">Выход</a></li>
+            <ul class="nav navbar-nav">
+                <li><a href="/list-car">Журнал машин</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">Выход</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">En|Ru</a></li>
+            </ul>
+            <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
     </div>
 </div>
@@ -47,6 +47,7 @@
 
             <tbody>
             <c:forEach var="ord" items="${requestScope.newListOfOrds}">
+
                 <tr>
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>
@@ -54,12 +55,8 @@
                     <td><c:out value="${ord.carTypeLorry}"/></td>
                     <td><c:out value="${ord.car.licencePlate}"/></td>
                     <td><c:out value="${ord.car.cabDriver.name}"/></td>
-                    <td><c:out value="${ord.ordStatus}"/></td>
-                    <td>
-                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a><a></a>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">удалить</a><a></a>
+                    <td><c:out value="${ord.car.carStatus}"/></td>
+                    <a class="btn btn-warning" href="/update-ord?id=${ord.id}">сменить статус</a><a></a>
                     </td>
                 </tr>
             </c:forEach>

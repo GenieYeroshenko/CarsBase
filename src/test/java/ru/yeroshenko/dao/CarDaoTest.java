@@ -81,7 +81,7 @@ public class CarDaoTest {
         car1.setCarTypeLorry(true);
         car1.setCarStatus(true);
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setName("Kolya");
+        cabDriver.setLogin("Kolya");
         car1.setCabDriver(cabDriver);
 
         carDao.add(car1);
@@ -91,7 +91,7 @@ public class CarDaoTest {
         car2.setCarTypeLorry(false);
         car2.setCarStatus(false);
         CabDriver cabDriver2 = new CabDriver();
-        cabDriver2.setName("Vasya");
+        cabDriver2.setLogin("Vasya");
         car2.setCabDriver(cabDriver2);
 
         carDao.add(car2);
@@ -104,14 +104,42 @@ public class CarDaoTest {
         Car car = new Car();
         CabDriver cabDriver = new CabDriver();
         car.setModel("kia");
-        cabDriver.setName("Tom");
+        cabDriver.setLogin("Tom");
         car.setCabDriver(cabDriver);
         carDao.add(car);
         Car carFromDb = carDao.findById(car.getId());
         assertEquals(carFromDb.getModel(), car.getModel());
-        assertEquals(carFromDb.getCabDriver().getName(), cabDriver.getName());
+        assertEquals(carFromDb.getCabDriver().getLogin(), cabDriver.getLogin());
         carDao.delete(car);
     }
 
     //todo findAllCarsByCabDriver
+    public void testFindAllByDriver() throws Exception {
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+
+        car1.setLicencePlate("EN 2222");
+        car1.setLicencePlate("EN 3333");
+        car1.setLicencePlate("EN 4444");
+
+        CabDriver cabDriver1 = new CabDriver();
+        CabDriver cabDriver2 = new CabDriver();
+        cabDriver1.setLogin("Vasya");
+        cabDriver2.setLogin("Kolya");
+
+        car1.setCabDriver(cabDriver1);
+        car2.setCabDriver(cabDriver1);
+        car3.setCabDriver(cabDriver2);
+        carDao.add(car1);
+        carDao.add(car2);
+        carDao.add(car2);
+
+        List<Car> cars = carDao.findAllByDriver(cabDriver1);
+        assertEquals(cars.size(), 0);
+
+        carDao.delete(car1);
+        carDao.delete(car2);
+        carDao.delete(car3);
+    }
 }

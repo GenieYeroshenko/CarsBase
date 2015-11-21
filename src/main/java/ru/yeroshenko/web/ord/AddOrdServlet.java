@@ -3,9 +3,12 @@ package ru.yeroshenko.web.ord;
 import org.hibernate.SessionFactory;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
+import ru.yeroshenko.domain.Account;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.util.HibernateUtil;
+import ru.yeroshenko.web.user.LogInServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,9 +56,13 @@ public class AddOrdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("authorizedUser") == null) {
+        Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
+        if (account == null) {
             response.sendRedirect("/login");
             return;
+        } else if (account instanceof CabDriver) {
+            response.sendRedirect("/list-ord-driver");
+
         }
 
         response.setContentType("text/html");

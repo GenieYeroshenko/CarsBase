@@ -81,6 +81,6 @@ public class Ord {
 
     public enum OrdStatus {
 
-        ASSIGNED, IN_QUEUE, IN_TRANSIT, DONE;
+        IN_QUEUE, ASSIGNED, IN_TRANSIT, DONE;
     }
 }

@@ -18,7 +18,7 @@ public class AccountDao {
         this.sessionFactory = sessionFactory;
     }
 
-    public List<Account> findByLogin(String login) {
+    public List<Account> findAllUsersByLogin(String login) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Account account where account.login = ?");
         query.setParameter(0, login);
@@ -26,6 +26,16 @@ public class AccountDao {
         session.close();
         return list;
     }
-
+//
+//    public Account findAuthorizedUser(String login, String password) {
+//        Session session = sessionFactory.openSession();
+//        Query query = session.createQuery("from Account account where account.login = ? and account.password = ?");
+//        query.setParameter(0, login);
+//        query.setParameter(1, password);
+//        session.close();
+//        Account authorizedUser = query.getNamedParameters(login, password);
+//
+//        return authorizedUser;
+//    }
 
 }

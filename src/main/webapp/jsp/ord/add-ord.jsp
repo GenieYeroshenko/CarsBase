@@ -8,7 +8,6 @@
 </head>
 <body>
 <form action="/add-ord" method="post">
-    <li>${sessionScope.authorizedUser.login}</li>
 
     <h1>Добавление заявки</h1>
 
@@ -49,8 +48,8 @@
             <option value="">не установлен</option>
             <option value="ASSIGNED">назначена</option>
             <option value="IN_QUEUE">не назначена</option>
-            <option value="IN_TRANSIT">в пути</option>
-            <option value="DONE">выполнена</option>
+            <!--option value="IN_TRANSIT">в пути</option>
+            <option value="DONE">выполнена</option-->
 
         </select>
     </div>

@@ -39,18 +39,20 @@ public class RegistrationServlet extends HttpServlet {
             CabDriver cabDriver = new CabDriver();
             cabDriver.setLogin(login);
             cabDriver.setPassword(password);
+
             CabDriverDao cabDriverDao = new CabDriverDao(HibernateUtil.getSessionFactory());
             cabDriverDao.add(cabDriver);
-            request.getSession().setAttribute("authorizedUser", cabDriver);
-            response.sendRedirect("/list-trip");
+            request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, cabDriver);
+            response.sendRedirect("/list-ord-driver");
+
         } else if (role.equals("carManager")) {
             CarManager carManager = new CarManager();
             carManager.setLogin(login);
             carManager.setPassword(password);
             CarManagerDao carManagerDao = new CarManagerDao(HibernateUtil.getSessionFactory());
             carManagerDao.add(carManager);
-            request.getSession().setAttribute("authorizedUser", carManager);
-            response.sendRedirect("/list-ord");
+            request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, carManager);
+            response.sendRedirect("/list-ord-manager");
         }
         //todo else
 

@@ -21,7 +21,7 @@ public class UpdateOrdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("authorizedUser") == null) {
+        if (request.getSession().getAttribute("authorizedManager") == null) {
             response.sendRedirect("/login");
             return;
         }

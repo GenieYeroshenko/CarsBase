@@ -4,6 +4,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.util.HibernateUtil;
@@ -21,12 +22,12 @@ public class OrdDao {
         this.sessionFactory = sessionFactory;
     }
 
-    public void update(Ord ord) {
+    public void add(Ord ord) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.update(ord);
+            session.persist(ord);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -36,12 +37,12 @@ public class OrdDao {
         }
     }
 
-    public void add(Ord ord) {
+    public void update(Ord ord) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.persist(ord);
+            session.update(ord);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -86,6 +87,16 @@ public class OrdDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.ordStatus = ?");
         query.setParameter(0, ordStatus);
+        List list = query.list();
+        session.close();
+        return list;
+    }
+
+
+    public List<Ord> findAllByDriver(CabDriver cabDriver) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Ord ord where ord.car.cabDriver = ?");
+        query.setParameter(0, cabDriver);
         List list = query.list();
         session.close();
         return list;

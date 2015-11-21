@@ -84,7 +84,7 @@
 
     <servlet>
         <servlet-name>ListOrdAssignedServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ord.ListOrdAssignedServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ords.ListOrdAssignedServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListOrdAssignedServlet</servlet-name>
@@ -94,7 +94,7 @@
 
     <servlet>
         <servlet-name>ListOrdDoneServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ord.ListOrdDoneServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ords.ListOrdDoneServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListOrdDoneServlet</servlet-name>
@@ -104,7 +104,7 @@
 
     <servlet>
         <servlet-name>ListOrdInQueueServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ord.ListOrdInQueueServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ords.ListOrdInQueueServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListOrdInQueueServlet</servlet-name>
@@ -114,7 +114,7 @@
 
     <servlet>
         <servlet-name>ListOrdInTransitServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ord.ListOrdInTransitServlet</servlet-class>
+        <servlet-class>ru.yeroshenko.web.ords.ListOrdInTransitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListOrdInTransitServlet</servlet-name>
@@ -123,12 +123,21 @@
 
 
     <servlet>
-        <servlet-name>ListOrdServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ord.ListOrdServlet</servlet-class>
+        <servlet-name>ListOrdCabDriverServlet</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdCabDriverServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ListOrdServlet</servlet-name>
-        <url-pattern>/list-ord</url-pattern>
+        <servlet-name>ListOrdCabDriverServlet</servlet-name>
+        <url-pattern>/list-ord-driver</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListOrdCarManagerServlet</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ord.ListOrdCarManagerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListOrdCarManagerServlet</servlet-name>
+        <url-pattern>/list-ord-manager</url-pattern>
     </servlet-mapping>
 
 
@@ -141,25 +150,6 @@
         <url-pattern>/update-ord</url-pattern>
     </servlet-mapping>
 
-
-    <servlet>
-        <servlet-name>ChangeTripStatusServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.trip.ChangeTripStatusServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ChangeTripStatusServlet</servlet-name>
-        <url-pattern>/change-trip-status</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>ListTripServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.trip.ListTripServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ListTripServlet</servlet-name>
-        <url-pattern>/list-trip</url-pattern>
-    </servlet-mapping>
 
 
     <servlet>

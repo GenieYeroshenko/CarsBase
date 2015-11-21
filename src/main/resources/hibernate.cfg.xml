@@ -19,7 +19,6 @@
         <mapping class="ru.yeroshenko.domain.CabDriver"/>
         <mapping class="ru.yeroshenko.domain.Car"/>
         <mapping class="ru.yeroshenko.domain.Ord" />
-        <mapping class="ru.yeroshenko.domain.Trip" />
         <mapping class="ru.yeroshenko.domain.Account" />
         <mapping class="ru.yeroshenko.domain.CarManager" />
 

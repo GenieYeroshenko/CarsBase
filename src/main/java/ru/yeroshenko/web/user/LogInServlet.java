@@ -21,6 +21,8 @@ import java.util.List;
 public class LogInServlet extends HttpServlet {
 
 
+    public static final String AUTHORIZED_USER = "authorizedUser";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
@@ -36,7 +38,7 @@ public class LogInServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         AccountDao accountDao = new AccountDao(HibernateUtil.getSessionFactory());
-        List<Account> accounts = accountDao.findByLogin(login);
+        List<Account> accounts = accountDao.findAllUsersByLogin(login);
         if (accounts.size() > 1) {
             request.setAttribute("error", "ошибка логин");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
@@ -51,12 +53,14 @@ public class LogInServlet extends HttpServlet {
 
         if (password.equals(account.getPassword())) {
 
-            request.getSession().setAttribute("authorizedUser", account);
+            request.getSession().setAttribute(AUTHORIZED_USER, account);
 
             if (account instanceof CabDriver) {
-                response.sendRedirect("/list-car");
+                response.sendRedirect("/list-ord-driver");
+
             } else if (account instanceof CarManager) {
-                response.sendRedirect("/list-ord");
+                response.sendRedirect("/list-ord-manager");
+
             }
 
         } else {

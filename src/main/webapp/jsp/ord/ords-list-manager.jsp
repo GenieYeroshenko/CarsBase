@@ -12,15 +12,9 @@
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="collapse navbar-collapse">
-
-            <a class="navbar-brand" href="/list-ord">Журнал заявок</a>
+            <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал заявок</a></li></ul>
 
             <a class="navbar-brand" href="/add-ord">Добавить заявку</a>
-
-            <ul class="nav navbar-nav"><li class="active"><a href="#">Назначенные</a></li></ul>
-            <a class="navbar-brand" href="/list-ord-in-transit">В пути</a>
-            <a class="navbar-brand" href="/list-ord-done">Выполненные</a>
-            <a class="navbar-brand" href="/list-ord-in-queue">Не назначенные</a>
 
             <li>${sessionScope.authorizedUser.login}</li>
             <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
@@ -49,6 +43,7 @@
 
             <tbody>
             <c:forEach var="ord" items="${requestScope.newListOfOrds}">
+
                 <tr>
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>
