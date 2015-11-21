@@ -35,7 +35,7 @@
     <p>Машина</p>
     <select name="carId">
         <c:forEach var="car" items="${requestScope.newListOfCars}">
-            <option value="${car.id}">${car.licencePlate} - ${car.cabDriver.name}</option>
+            <option value="${car.id}">${car.licencePlate} - ${car.cabDriver.login}</option>
         </c:forEach>
     </select>
 
@@ -48,8 +48,6 @@
             <option value="">не установлен</option>
             <option value="ASSIGNED">назначена</option>
             <option value="IN_QUEUE">не назначена</option>
-            <!--option value="IN_TRANSIT">в пути</option>
-            <option value="DONE">выполнена</option-->
 
         </select>
     </div>

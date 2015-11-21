@@ -9,10 +9,6 @@
     </welcome-file-list>
 
 
-
-
-
-
     <servlet>
         <servlet-name>AddCarServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.car.AddCarServlet</servlet-class>
@@ -52,7 +48,6 @@
     </servlet-mapping>
 
 
-
     <servlet>
         <servlet-name>UpdateCarServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.car.UpdateCarServlet</servlet-class>
@@ -79,46 +74,6 @@
     <servlet-mapping>
         <servlet-name>DeleteOrdServlet</servlet-name>
         <url-pattern>/delete-ord</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>ListOrdAssignedServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ords.ListOrdAssignedServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ListOrdAssignedServlet</servlet-name>
-        <url-pattern>/list-ord-assigned</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>ListOrdDoneServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ords.ListOrdDoneServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ListOrdDoneServlet</servlet-name>
-        <url-pattern>/list-ord-done</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>ListOrdInQueueServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ords.ListOrdInQueueServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ListOrdInQueueServlet</servlet-name>
-        <url-pattern>/list-ord-in-queue</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>ListOrdInTransitServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ords.ListOrdInTransitServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ListOrdInTransitServlet</servlet-name>
-        <url-pattern>/list-ord-in-transit</url-pattern>
     </servlet-mapping>
 
 
@@ -151,7 +106,6 @@
     </servlet-mapping>
 
 
-
     <servlet>
         <servlet-name>LogInServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.user.LogInServlet</servlet-class>
@@ -179,12 +133,6 @@
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
-
-
-
-
-
-
 
 
     <session-config>
