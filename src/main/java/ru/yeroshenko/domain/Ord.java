@@ -26,7 +26,7 @@ public class Ord {
     @Column(name = "rout")
     private String rout;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = true, fetch = FetchType.EAGER)
     private Car car;
 
     @Enumerated(EnumType.STRING)

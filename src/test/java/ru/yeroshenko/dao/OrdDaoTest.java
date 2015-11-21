@@ -10,7 +10,8 @@ import ru.yeroshenko.util.HibernateUtil;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by Genie Yeroshenko on 10/11/15.
@@ -27,58 +28,25 @@ public class OrdDaoTest {
         carDao = new CarDao(sessionFactory);
     }
 
-    //todo =updateOrd?
-    @Test
-    public void testUpdate() throws Exception {
-        Ord ord = new Ord();
-        ord.setRout("SPb");
-        ordDao.add(ord);
-        long id = ord.getId();
-        Ord ordFromDb = ordDao.findById(id);
-        ordFromDb.setRout("MSK");
-        ordDao.update(ordFromDb);
-        Ord ordFromDb2 = ordDao.findById(id);
-        assertEquals("MSK", ordFromDb2.getRout());
-        ordDao.delete(ordFromDb);
-    }
-
-    //todo check
     @Test
     public void testUpdateOrd() throws Exception {
-        Car car = new Car();
-        car.setLicencePlate("33 eee");
-        carDao.add(car);
-        long idCar = car.getId();
-        Car carFromDb = carDao.findById(idCar);
+        Car car = getCar();
 
         Ord ord = new Ord();
         ord.setRout("SPb");
-        ord.setCar(carFromDb);
-        ordDao.add(ord);
+        ordDao.createOrd(ord, car.getId());
         long idOrd = ord.getId();
         Ord ordFromDb = ordDao.findById(idOrd);
 
         ordFromDb.setRout("MSK");
-        carFromDb.setLicencePlate("44 aaa");
-        ordFromDb.setCar(carFromDb);
 
         ordDao.update(ordFromDb);
         Ord ordFromDb2 = ordDao.findById(idOrd);
-        assertEquals("44 aaa", ordFromDb2.getCar().getLicencePlate());
-//        ordDao.delete(ord);
-//        carDao.delete(car);
+        assertEquals("MSK", ordFromDb2.getRout());
+        ordDao.delete(ordFromDb2);
+        carDao.delete(car);
     }
 
-
-    //todo add=create?
-    @Test
-    public void testAdd() throws Exception {
-        Ord ord = new Ord();
-        ord.setRout("SPb");
-        ordDao.add(ord);
-        assertTrue(ord.getId() > 0);
-        ordDao.delete(ord);
-    }
 
     @Test
     public void testDelete() throws Exception {
@@ -104,16 +72,23 @@ public class OrdDaoTest {
 
     @Test
     public void testFindAll() {
+        Car car = getCar();
+
         Ord ord1 = new Ord();
         ord1.setRout("NY");
-        ordDao.add(ord1);
+        ordDao.createOrd(ord1, car.getId());
+
+
         Ord ord2 = new Ord();
         ord2.setRout("NY");
-        ordDao.add(ord2);
+        ordDao.createOrd(ord2, car.getId());
         List<Ord> ords = ordDao.findAll();
-        assertEquals(ords.size(), 2);
+
+        assertEquals(2, ords.size());
+
         ordDao.delete(ord1);
         ordDao.delete(ord2);
+        carDao.delete(car);
     }
 
     @Test
@@ -134,26 +109,27 @@ public class OrdDaoTest {
         ordDao.delete(ord3);
     }
 
-    //todo check
     @Test
     public void testCreate() throws Exception {
-        Car car = new Car();
-        car.setLicencePlate("EN 2222");
-        car.setModel("bmw");
-        carDao.add(car);
-        long idCar = car.getId();
-        Car carFromDb = carDao.findById(idCar);
+        Car carFromDb = getCar();
 
         Ord ord = new Ord();
         ord.setRout("SPb");
         ord.setCar(carFromDb);
 
-        ordDao.add(ord);
+        ordDao.createOrd(ord, carFromDb.getId());
         long idOrd = ord.getId();
         Ord ordFromDb = ordDao.findById(idOrd);
 
-        assertEquals(ordFromDb.getCar().getLicencePlate(), car.getLicencePlate());
-        //ordDao.delete(ord);
-        //carDao.delete(car);
+        assertEquals(ordFromDb.getRout(), ordFromDb.getRout());
+        ordDao.delete(ord);
+        carDao.delete(carFromDb);
+    }
+
+    private Car getCar() {
+        Car car = new Car();
+        car.setLicencePlate("33 eee");
+        carDao.add(car);
+        return car;
     }
 }
