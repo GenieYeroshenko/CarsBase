@@ -2,8 +2,8 @@ package ru.yeroshenko.web.car;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Car;
-import ru.yeroshenko.util.HibernateUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +23,14 @@ public class ListCarServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
+        ServletContext context = request.getSession().getServletContext();
+        CarDao carDao = (CarDao) context.getAttribute("carDao");
 
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
         request.getRequestDispatcher("/jsp/car/cars-list.jsp").forward(request, response);
+
 
     }
 }
