@@ -4,8 +4,8 @@ import ru.yeroshenko.dao.AccountDao;
 import ru.yeroshenko.domain.Account;
 import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.CarManager;
-import ru.yeroshenko.util.HibernateUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +37,9 @@ public class LogInServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        AccountDao accountDao = new AccountDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        AccountDao accountDao = (AccountDao) context.getAttribute("accountDao");
+        //AccountDao accountDao = new AccountDao(HibernateUtil.getSessionFactory());
         List<Account> accounts = accountDao.findAllUsersByLogin(login);
         if (accounts.size() > 1) {
             request.setAttribute("error", "ошибка логин");

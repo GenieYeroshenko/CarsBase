@@ -2,8 +2,8 @@ package ru.yeroshenko.web.ord;
 
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.util.HibernateUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,9 @@ public class DeleteOrdServlet extends HttpServlet {
 
         long id = Long.parseLong(idFromForm);
 
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
+        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         Ord ord = ordDao.findById(id);
         ordDao.delete(ord);
 

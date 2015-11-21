@@ -4,8 +4,8 @@ import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.util.HibernateUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,12 +31,15 @@ public class UpdateOrdServlet extends HttpServlet {
 
         long id = Long.parseLong(idFromFormToUpdate);
 
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
+        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         Ord ord = ordDao.findById(id);
 
         request.setAttribute("updatedOrd", ord);
 
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        CarDao carDao = (CarDao) context.getAttribute("ordDao");
+        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
@@ -63,7 +66,9 @@ public class UpdateOrdServlet extends HttpServlet {
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
         long carId = Integer.parseInt(carIdFromForm);
 
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
+        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
 
         Ord updatedOrd = ordDao.findById(id);
         updatedOrd.setCarTypeLorry(carTypeLorry);

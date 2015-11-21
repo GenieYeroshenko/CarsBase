@@ -5,9 +5,9 @@ import ru.yeroshenko.domain.Account;
 import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.CarManager;
 import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.util.HibernateUtil;
 import ru.yeroshenko.web.user.LogInServlet;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +34,9 @@ public class ListOrdCabDriverServlet extends HttpServlet {
         }
         CabDriver cabDriver = (CabDriver) account;
 
-        OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
+        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         List<Ord> ords = ordDao.findAllByDriver(cabDriver);
 
         request.setAttribute("newListOfOrdsByDriver", ords);

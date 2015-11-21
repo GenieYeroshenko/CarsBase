@@ -2,8 +2,8 @@ package ru.yeroshenko.web.car;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Car;
-import ru.yeroshenko.util.HibernateUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,10 @@ public class ChangeCarStatusServlet extends HttpServlet {
 
         long id = Long.parseLong(idFromForm);
 
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        CarDao carDao = (CarDao) context.getAttribute("carDao");
+
+        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         Car car = carDao.findById(id);
         car.setCarStatus(!car.getCarStatus());
 

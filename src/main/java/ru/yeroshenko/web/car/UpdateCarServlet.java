@@ -2,8 +2,8 @@ package ru.yeroshenko.web.car;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Car;
-import ru.yeroshenko.util.HibernateUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,7 @@ import java.io.IOException;
  * Created by evgeniya on 15/11/15.
  */
 public class UpdateCarServlet extends HttpServlet {
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +28,9 @@ public class UpdateCarServlet extends HttpServlet {
 
         long id = Long.parseLong(idFromFormToUpdate);
 
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        CarDao carDao = (CarDao) context.getAttribute("carDao");
+        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         Car car = carDao.findById(id);
 
         request.setAttribute("updatedCar", car);
@@ -53,7 +56,10 @@ public class UpdateCarServlet extends HttpServlet {
         Boolean carStatus = Boolean.parseBoolean(carStatusFromForm);
         Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
 
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+        ServletContext context = request.getSession().getServletContext();
+        CarDao carDao = (CarDao) context.getAttribute("carDao");
+
+        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         Car updatedCar = carDao.findById(id);
 
         updatedCar.setModel(model);

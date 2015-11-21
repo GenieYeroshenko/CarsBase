@@ -10,6 +10,7 @@ import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.util.HibernateUtil;
 import ru.yeroshenko.web.user.LogInServlet;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +48,12 @@ public class AddOrdServlet extends HttpServlet {
         long carId = Integer.parseInt(carFromForm);
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        OrdDao dao = new OrdDao(sessionFactory);
-        dao.createOrd(ord, carId);
+
+        ServletContext context = request.getSession().getServletContext();
+        OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
+
+        //OrdDao dao = new OrdDao(sessionFactory);
+        ordDao.createOrd(ord, carId);
         response.sendRedirect("/list-ord");
 
     }
@@ -66,7 +71,10 @@ public class AddOrdServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
+
+        ServletContext context = request.getSession().getServletContext();
+        CarDao carDao = (CarDao) context.getAttribute("carDao");
+        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
