@@ -1,5 +1,6 @@
 package ru.yeroshenko.web.car;
 
+import com.sun.xml.internal.ws.handler.HandlerException;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.util.HibernateUtil;
@@ -29,7 +30,14 @@ public class DeleteCarServlet extends HttpServlet {
 
         CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         Car car = carDao.findById(id);
-        carDao.delete(car);
+        try {
+
+            carDao.delete(car);
+            //TODO check exception type
+        } catch (HandlerException e) {
+            // todo see at login servlet
+            request.setAttribute("error", "");
+        }
 
         request.getRequestDispatcher("/list-car").forward(request, response);
     }
