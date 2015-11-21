@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Журнал заявок (только выполненные)</title>
+    <li>${sessionScope.authorizedUser.login}</li>
+
 </head>
 
 <body>
@@ -75,6 +77,6 @@
 
 <p style="text-align: left;"><span style="font-size:14px">
     <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;">
-        <span style="font-family:comic sans ms,cursive"><strong>Выйти</strong></span></a></span></p>
+        <li><a href="/logout">Выход</a></li>
 </body>
 </html>

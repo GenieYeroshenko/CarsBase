@@ -19,6 +19,12 @@ public class ListTripServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("authorizedUser") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
+
+
         TripDao tripDao = new TripDao(HibernateUtil.getSessionFactory());
         List<Trip> trips = tripDao.findAll();
 

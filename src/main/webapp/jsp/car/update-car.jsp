@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <li>${sessionScope.authorizedUser.login}</li>
     <title>Редактирование машины</title>
     <jsp:include page="../header.jsp"/>
 </head>
@@ -30,7 +31,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Выход</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#En|Ru">En|Ru</a></li>

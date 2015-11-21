@@ -17,6 +17,11 @@ public class ChangeCarStatusServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("authorizedUser") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
+
         response.setContentType("text/html");
         String idFromForm = request.getParameter("id");
 

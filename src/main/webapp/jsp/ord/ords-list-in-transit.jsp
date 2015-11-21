@@ -13,7 +13,7 @@
 
     <p><span style="font-family:comic sans ms,cursive"><span style="font-size:20px"><strong>Журнал заявок (только в пути)</strong></span></span>
     </p>
-
+    <li>${sessionScope.authorizedUser.login}</li>
     <a href="/jsp/ord/ords-list.jsp">Все</a>&nbsp; &nbsp; &nbsp;
     <a href="/jsp/ord/ords-list-assigned.jsp">Назначенные</a>&nbsp; &nbsp; &nbsp;
     <label>В пути</label>&nbsp; &nbsp; &nbsp;
@@ -75,6 +75,6 @@
 
 <p style="text-align: left;"><span style="font-size:14px">
     <a href="http://ya.ru" style="line-height: 20.8px; text-align: right;">
-        <span style="font-family:comic sans ms,cursive"><strong>Выйти</strong></span></a></span></p>
+        <li><a href="/logout">Выход</a></li>
 </body>
 </html>

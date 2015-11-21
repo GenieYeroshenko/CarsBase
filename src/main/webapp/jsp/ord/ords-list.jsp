@@ -20,8 +20,9 @@
             <a class="navbar-brand" href="/list-ord-done">Выполненные</a>
             <a class="navbar-brand" href="/list-ord-in-queue">Не назначенные</a>
 
+            <li>${sessionScope.authorizedUser.login}</li>
             <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
-            <ul class="nav navbar-nav navbar-right"><li><a href="/">Выход</a></li></ul>
+            <li><a href="/logout">Выход</a></li>
         </div>
     </div>
 </div>

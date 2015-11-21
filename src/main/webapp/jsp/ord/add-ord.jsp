@@ -8,6 +8,8 @@
 </head>
 <body>
 <form action="/add-ord" method="post">
+    <li>${sessionScope.authorizedUser.login}</li>
+
     <h1>Добавление заявки</h1>
 
     <div>
@@ -56,6 +58,8 @@
 
 
     <input name="Save" type="submit" value="Сохранить"/>
+    <li><a href="/logout">Выход</a></li>
+
 </form>
 </body>
 </html>

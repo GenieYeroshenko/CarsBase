@@ -44,6 +44,11 @@ public class AddCarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("authorizedUser") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
+
         response.setContentType("text/html");
         request.getRequestDispatcher("/jsp/car/add-car.jsp").forward(request, response);
 

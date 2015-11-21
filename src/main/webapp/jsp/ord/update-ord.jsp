@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+<li>${sessionScope.authorizedUser.login}</li>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -26,7 +26,7 @@
                 <li class="active"><a href="#">Журнал машин</a></li>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Выход</a></li>
+                    <li><a href="/logout">Выход</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#En|Ru">En|Ru</a></li>

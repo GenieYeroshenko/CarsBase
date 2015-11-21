@@ -19,6 +19,11 @@ public class ListOrdAssignedServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("authorizedUser") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
+
         OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         List<Ord> ords = ordDao.findAllByStatus(Ord.OrdStatus.ASSIGNED);
 

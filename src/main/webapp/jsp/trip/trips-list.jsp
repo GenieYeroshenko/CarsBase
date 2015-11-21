@@ -11,7 +11,7 @@
 <body>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
-
+        <li>${sessionScope.authorizedUser.login}</li>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>

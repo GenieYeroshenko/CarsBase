@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <li>${sessionScope.authorizedUser.login}</li>
     <title>Добавление машины</title>
 </head>
 <body>
@@ -36,6 +36,8 @@
     </div>
     <p>&nbsp;</p>
     <input name="Save" type="submit" value="Сохранить"/>
+    <li><a href="/logout">Выход</a></li>
+
 </form>
 </body>
 </html>
