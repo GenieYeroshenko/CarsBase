@@ -40,8 +40,8 @@ public class DeleteCarServlet extends HttpServlet {
             carDao.delete(car);
             //TODO check exception type
         } catch (HandlerException e) {
-            // todo see at login servlet
-            request.setAttribute("error", "");
+            // todo
+            request.setAttribute("error", "у удаляемого элемента есть связи");
         }
 
         request.getRequestDispatcher("/list-car").forward(request, response);

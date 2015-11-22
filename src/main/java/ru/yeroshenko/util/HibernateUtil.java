@@ -1,44 +1,20 @@
 package ru.yeroshenko.util;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
-//import org.hibernate.cfg.AnnotationConfiguration;
-//import org.hibernate.*;
-
+//todo deprecated?
 public class HibernateUtil {
-    private static SessionFactory sessionFactory = null;
-
-    static {
-        try {
-            // todo rework deprecated
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-
-
-        //    sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-         } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            Configuration configuration = new Configuration().configure();
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        }
         return sessionFactory;
     }
-
-
-//    private static final SessionFactory sessionFactory;
-//    static {
-//        try {
-//            sessionFactory = new AnnotationConfiguration()
-//                    .configure().buildSessionFactory();
-//        } catch (Throwable ex) {
-//            // Log exception!
-//            throw new ExceptionInInitializerError(ex);
-//        }
-//    }
-//
-//    public static Session getSession()
-//            throws HibernateException {
-//        return sessionFactory.openSession();
-//    }
 }
