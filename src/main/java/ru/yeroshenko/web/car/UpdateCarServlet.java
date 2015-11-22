@@ -27,8 +27,8 @@ public class UpdateCarServlet extends HttpServlet {
             return;
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
+            return;
         }
-
         response.setContentType("text/html");
         long id = Long.parseLong(request.getParameter("id"));
 

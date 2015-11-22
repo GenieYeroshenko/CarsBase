@@ -29,6 +29,7 @@ public class ListCarServlet extends HttpServlet {
             return;
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
+            return;
         }
         CabDriver cabDriver = (CabDriver) account;
 

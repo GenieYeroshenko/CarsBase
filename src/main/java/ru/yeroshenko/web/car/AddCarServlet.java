@@ -40,7 +40,6 @@ public class AddCarServlet extends HttpServlet {
         CarDao carDao = (CarDao) context.getAttribute("carDao");
         carDao.add(car, cabDriver.getId());
         response.sendRedirect("/list-car");
-
     }
 
     @Override
@@ -51,6 +50,7 @@ public class AddCarServlet extends HttpServlet {
             return;
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
+            return;
         }
         response.setContentType("text/html");
         request.getRequestDispatcher("/jsp/car/add-car.jsp").forward(request, response);

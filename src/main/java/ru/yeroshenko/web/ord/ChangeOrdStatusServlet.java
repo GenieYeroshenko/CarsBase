@@ -26,15 +26,16 @@ public class ChangeOrdStatusServlet extends HttpServlet {
             return;
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
+            return;
         }
 
         response.setContentType("text/html");
-
         long id = Long.parseLong(request.getParameter("id"));
         Ord.OrdStatus status = Ord.OrdStatus.valueOf(request.getParameter("status"));
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
+
         Ord ord = ordDao.findById(id);
         ord.setOrdStatus(status);
 

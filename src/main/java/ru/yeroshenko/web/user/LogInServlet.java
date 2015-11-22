@@ -54,6 +54,7 @@ public class LogInServlet extends HttpServlet {
             request.getSession().setAttribute(AUTHORIZED_USER, account);
             if (account instanceof CabDriver) {
                 response.sendRedirect("/list-ord-driver");
+
             } else if (account instanceof CarManager) {
                 response.sendRedirect("/list-ord-manager");
             }

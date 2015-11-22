@@ -27,6 +27,7 @@ public class DeleteCarServlet extends HttpServlet {
             return;
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
+            return;
         }
 
         response.setContentType("text/html");

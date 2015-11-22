@@ -27,11 +27,11 @@ public class AddOrdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        long carId = Integer.parseInt(request.getParameter("carId"));
         LocalDate date = LocalDate.now();
         String rout = request.getParameter("rout");
         Boolean carTypeLorry = Boolean.parseBoolean(request.getParameter("carTypeLorry"));
         Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(request.getParameter("ordStatus"));
+        long carId = Integer.parseInt(request.getParameter("carId"));
 
         Ord ord = new Ord();
         ord.setCarTypeLorry(carTypeLorry);
@@ -54,6 +54,7 @@ public class AddOrdServlet extends HttpServlet {
             return;
         } else if (account instanceof CabDriver) {
             response.sendRedirect("/list-ord-driver");
+            return;
         }
 
         response.setContentType("text/html");

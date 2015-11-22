@@ -26,15 +26,17 @@ public class ChangeCarStatusServlet extends HttpServlet {
             return;
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
+            return;
         }
-        response.setContentType("text/html");
 
+        response.setContentType("text/html");
         long id = Long.parseLong(request.getParameter("id"));
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
         Car car = carDao.findById(id);
         car.setCarStatus(!car.getCarStatus());
+
         carDao.update(car);
         response.sendRedirect("/list-car");
     }

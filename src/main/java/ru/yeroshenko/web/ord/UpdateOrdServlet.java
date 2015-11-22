@@ -55,17 +55,20 @@ public class UpdateOrdServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        long ordId = Long.parseLong(request.getParameter("ordId"));
+        String carIdFromForm = request.getParameter("carId");
+        String ordStatusFromForm = request.getParameter("ordStatus");
+
+        long id = Long.parseLong(request.getParameter("id"));
         LocalDate date = LocalDate.now();
         String rout = request.getParameter("rout");
         Boolean carTypeLorry = Boolean.parseBoolean(request.getParameter("carTypeLorry"));
-        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(request.getParameter("ordStatus"));
-        long carId = Integer.parseInt(request.getParameter("carId"));
+        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
+        long carId = Integer.parseInt(carIdFromForm);
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
 
-        Ord updatedOrd = ordDao.findById(ordId);
+        Ord updatedOrd = ordDao.findById(id);
         updatedOrd.setCarTypeLorry(carTypeLorry);
         updatedOrd.setRout(rout);
         updatedOrd.setOrdStatus(ordStatus);

@@ -27,7 +27,7 @@ public class Car {
     @Column(name = "carStatus")
     private Boolean carStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private CabDriver cabDriver;
 
     public Car() {
@@ -52,7 +52,6 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-
 
     public String getLicencePlate() {
         return licencePlate;

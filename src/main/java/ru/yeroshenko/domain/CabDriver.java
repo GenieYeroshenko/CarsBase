@@ -9,6 +9,5 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CabDriver")
 public class CabDriver extends Account {
-
 }
 

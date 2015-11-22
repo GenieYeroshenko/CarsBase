@@ -31,12 +31,8 @@ public class Listener implements ServletContextListener {
 
         OrdDao ordDao = new OrdDao(sessionFactory);
         servletContext.setAttribute("ordDao", ordDao);
-
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
-
     }
-
-
 }
