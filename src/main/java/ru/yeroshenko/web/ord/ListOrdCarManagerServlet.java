@@ -43,7 +43,6 @@ public class ListOrdCarManagerServlet extends HttpServlet {
             ords = ordDao.findAllByStatus(ordStatus);
         }
 
-
         request.setAttribute("newListOfOrds", ords);
         request.getRequestDispatcher("/jsp/ord/ords-list-manager.jsp").forward(request, response);
     }

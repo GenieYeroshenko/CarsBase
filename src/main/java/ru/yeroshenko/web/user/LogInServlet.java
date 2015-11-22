@@ -40,8 +40,7 @@ public class LogInServlet extends HttpServlet {
         AccountDao accountDao = (AccountDao) context.getAttribute("accountDao");
         List<Account> accounts = accountDao.findAllUsersByLogin(login);
         if (accounts.size() > 1) {
-            //todo change error messages
-            request.setAttribute("error", "ошибка в логине");
+            request.setAttribute("error", "некорректный логин");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
         }
 
@@ -59,7 +58,7 @@ public class LogInServlet extends HttpServlet {
                 response.sendRedirect("/list-ord-manager");
             }
         } else {
-            request.setAttribute("error", "ошибка в пароле");
+            request.setAttribute("error", "некорректный пароль");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
         }
     }

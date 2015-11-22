@@ -29,14 +29,12 @@ public class ChangeOrdStatusServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        String idFromForm = request.getParameter("id");
-        String statusFromForm = request.getParameter("status");
-        long id = Long.parseLong(idFromForm);
-        Ord.OrdStatus status = Ord.OrdStatus.valueOf(statusFromForm);
+
+        long id = Long.parseLong(request.getParameter("id"));
+        Ord.OrdStatus status = Ord.OrdStatus.valueOf(request.getParameter("status"));
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-
         Ord ord = ordDao.findById(id);
         ord.setOrdStatus(status);
 

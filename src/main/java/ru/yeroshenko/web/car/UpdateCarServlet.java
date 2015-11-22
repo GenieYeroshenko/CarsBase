@@ -30,8 +30,7 @@ public class UpdateCarServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        String idFromFormToUpdate = request.getParameter("id");
-        long id = Long.parseLong(idFromFormToUpdate);
+        long id = Long.parseLong(request.getParameter("id"));
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
@@ -43,17 +42,11 @@ public class UpdateCarServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String modelFromForm = request.getParameter("model");
-        String licencePlateFromForm = request.getParameter("licencePlate");
-        String carStatusFromForm = request.getParameter("carStatus");
-        String carTypeLorryFromForm = request.getParameter("carTypeLorry");
-        String idFromForm = request.getParameter("id");
-
-        long id = Long.parseLong(idFromForm);
-        String model = modelFromForm;
-        String licencePlate = licencePlateFromForm;
-        Boolean carStatus = Boolean.parseBoolean(carStatusFromForm);
-        Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
+        long id = Long.parseLong(request.getParameter("id"));
+        String model = request.getParameter("model");
+        String licencePlate = request.getParameter("licencePlate");
+        Boolean carStatus = Boolean.parseBoolean(request.getParameter("carStatus"));
+        Boolean carTypeLorry = Boolean.parseBoolean(request.getParameter("carTypeLorry"));
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");

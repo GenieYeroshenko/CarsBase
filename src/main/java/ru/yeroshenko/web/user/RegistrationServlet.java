@@ -23,7 +23,6 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/jsp/registration.jsp").forward(request, response);
-
     }
 
     @Override
@@ -35,11 +34,8 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        //todo login exist, rework findByLogin
-
         ServletContext context = request.getSession().getServletContext();
         AccountDao accountDao = (AccountDao) context.getAttribute("accountDao");
-
 
         if ((accountDao.numberOfAccountsWithLogin(login)) > 0) {
             request.setAttribute("error", "пользователь с такм логином уже существует");

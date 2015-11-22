@@ -26,24 +26,18 @@ public class AddOrdServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        //String dateFromForm = request.getParameter("date");
-        String routFromForm = request.getParameter("rout");
-        String carTypeLorryFromForm = request.getParameter("carTypeLorry");
-        String carFromForm = request.getParameter("carId");
-        String ordStatusFromForm = request.getParameter("ordStatus");
 
+        long carId = Integer.parseInt(request.getParameter("carId"));
         LocalDate date = LocalDate.now();
-        String rout = routFromForm;
-        Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
-        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
-
+        String rout = request.getParameter("rout");
+        Boolean carTypeLorry = Boolean.parseBoolean(request.getParameter("carTypeLorry"));
+        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(request.getParameter("ordStatus"));
 
         Ord ord = new Ord();
         ord.setCarTypeLorry(carTypeLorry);
         ord.setRout(rout);
         ord.setOrdStatus(ordStatus);
         ord.setDate(date);
-        long carId = Integer.parseInt(carFromForm);
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");

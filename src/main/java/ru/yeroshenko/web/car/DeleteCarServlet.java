@@ -30,8 +30,7 @@ public class DeleteCarServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        String idFromForm = request.getParameter("id");
-        long id = Long.parseLong(idFromForm);
+        long id = Long.parseLong(request.getParameter("id"));
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
@@ -39,7 +38,7 @@ public class DeleteCarServlet extends HttpServlet {
         try {
             carDao.delete(car);
         } catch (ConstraintViolationException e) {
-            request.setAttribute("error", "у удаляемой машины есть заявка, удаление не возможно");
+            request.setAttribute("error", "на удаляемую машину есть заявка, удаление не возможно");
             request.getRequestDispatcher("/jsp/car/cars-delete.jsp").forward(request, response);
             return;
         }

@@ -34,8 +34,7 @@ public class UpdateOrdServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        String idFromFormToUpdate = request.getParameter("id");
-        long id = Long.parseLong(idFromFormToUpdate);
+        long id = Long.parseLong(request.getParameter("id"));
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
@@ -55,25 +54,18 @@ public class UpdateOrdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
-        String idFromForm = request.getParameter("id");
-        String routFromForm = request.getParameter("rout");
-        String carTypeLorryFromForm = request.getParameter("carTypeLorry");
 
-        String carIdFromForm = request.getParameter("carId");
-        String ordStatusFromForm = request.getParameter("ordStatus");
-
-
-        long id = Long.parseLong(idFromForm);
+        long ordId = Long.parseLong(request.getParameter("ordId"));
         LocalDate date = LocalDate.now();
-        String rout = routFromForm;
-        Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
-        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(ordStatusFromForm);
-        long carId = Integer.parseInt(carIdFromForm);
+        String rout = request.getParameter("rout");
+        Boolean carTypeLorry = Boolean.parseBoolean(request.getParameter("carTypeLorry"));
+        Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(request.getParameter("ordStatus"));
+        long carId = Integer.parseInt(request.getParameter("carId"));
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
 
-        Ord updatedOrd = ordDao.findById(id);
+        Ord updatedOrd = ordDao.findById(ordId);
         updatedOrd.setCarTypeLorry(carTypeLorry);
         updatedOrd.setRout(rout);
         updatedOrd.setOrdStatus(ordStatus);

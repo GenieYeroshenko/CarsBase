@@ -29,8 +29,7 @@ public class DeleteOrdServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        String idFromForm = request.getParameter("id");
-        long id = Long.parseLong(idFromForm);
+        long id = Long.parseLong(request.getParameter("id"));
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");

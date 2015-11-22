@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class ListOrdCabDriverServlet extends HttpServlet {
 
-    //todo check
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
@@ -35,9 +34,7 @@ public class ListOrdCabDriverServlet extends HttpServlet {
         CabDriver cabDriver = (CabDriver) account;
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-
         Ord.OrdStatus[] availableStatuses = {Ord.OrdStatus.ASSIGNED, Ord.OrdStatus.IN_TRANSIT, Ord.OrdStatus.DONE};
-
         List<Ord> ords = ordDao.findAllByDriverAndStatuses(cabDriver, availableStatuses);
 
         request.setAttribute("newListOfOrdsByDriver", ords);

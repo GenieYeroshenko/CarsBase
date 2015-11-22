@@ -22,15 +22,11 @@ public class AddCarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        String modelFromForm = request.getParameter("model");
-        String licencePlateFromForm = request.getParameter("licencePlate");
-        String carStatusFromForm = request.getParameter("carStatus");
-        String carTypeLorryFromForm = request.getParameter("carTypeLorry");
 
-        String model = modelFromForm;
-        String licencePlate = licencePlateFromForm;
-        Boolean carStatus = Boolean.parseBoolean(carStatusFromForm);
-        Boolean carTypeLorry = Boolean.parseBoolean(carTypeLorryFromForm);
+        String model = request.getParameter("model");
+        String licencePlate = request.getParameter("licencePlate");
+        Boolean carStatus = Boolean.parseBoolean(request.getParameter("carStatus"));
+        Boolean carTypeLorry = Boolean.parseBoolean(request.getParameter("carTypeLorry"));
 
         Car car = new Car();
         car.setModel(model);
@@ -56,7 +52,6 @@ public class AddCarServlet extends HttpServlet {
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
         }
-
         response.setContentType("text/html");
         request.getRequestDispatcher("/jsp/car/add-car.jsp").forward(request, response);
     }
