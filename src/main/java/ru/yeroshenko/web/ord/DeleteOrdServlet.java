@@ -1,7 +1,10 @@
 package ru.yeroshenko.web.ord;
 
 import ru.yeroshenko.dao.OrdDao;
+import ru.yeroshenko.domain.Account;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Ord;
+import ru.yeroshenko.web.user.LogInServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,9 +20,12 @@ public class DeleteOrdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("authorizedManager") == null) {
+        Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
+        if (account == null) {
             response.sendRedirect("/login");
             return;
+        } else if (account instanceof CabDriver) {
+            response.sendRedirect("/list-ord-driver");
         }
 
         response.setContentType("text/html");

@@ -7,31 +7,32 @@
     <title>Журнал заявок</title>
     <jsp:include page="../header.jsp"/>
 </head>
-
 <body>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал заявок</a></li></ul>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Журнал заявок</a></li>
+            </ul>
             <ul class="nav navbar-nav">
                 <li><a href="/list-car">Журнал машин</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Выход</a></li>
+            <ul class="nav navbar-nav">
+                <li><a href="/add-car">Добавить машину</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">En|Ru</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
             <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="text-center">
         <h1>Журнал заявок</h1>
-        <h1></h1>
 
+
+        <h1></h1>
         <table class="table" style="width:900px">
             <thead>
             <tr>
@@ -44,10 +45,8 @@
                 <th scope="col">Статус заявки</th>
             </tr>
             </thead>
-
             <tbody>
             <c:forEach var="ord" items="${requestScope.newListOfOrds}">
-
                 <tr>
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>
@@ -56,7 +55,11 @@
                     <td><c:out value="${ord.car.licencePlate}"/></td>
                     <td><c:out value="${ord.car.cabDriver.name}"/></td>
                     <td><c:out value="${ord.car.carStatus}"/></td>
-                    <a class="btn btn-warning" href="/update-ord?id=${ord.id}">сменить статус</a><a></a>
+                    <td>
+                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">установить "в пути"</a><a></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="/update-ord?id=${ord.id}">установить "выполнена"</a><a></a>
                     </td>
                 </tr>
             </c:forEach>

@@ -7,27 +7,25 @@
     <title>Журнал заявок</title>
     <jsp:include page="../header.jsp"/>
 </head>
-
 <body>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал заявок</a></li></ul>
-
-            <a class="navbar-brand" href="/add-ord">Добавить заявку</a>
-
-            <li>${sessionScope.authorizedUser.login}</li>
-            <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
-            <li><a href="/logout">Выход</a></li>
+            <ul class="nav navbar-nav">
+                <li><a href="/add-ord">Добавить заявку</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">Выход</a></li>
+            </ul>
+            <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="text-center">
         <h1>Журнал заявок</h1>
         <h1></h1>
-
         <table class="table" style="width:900px">
             <thead>
             <tr>
@@ -40,10 +38,8 @@
                 <th scope="col">Статус заявки</th>
             </tr>
             </thead>
-
             <tbody>
             <c:forEach var="ord" items="${requestScope.newListOfOrds}">
-
                 <tr>
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>

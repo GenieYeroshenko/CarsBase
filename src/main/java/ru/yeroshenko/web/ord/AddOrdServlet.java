@@ -54,7 +54,7 @@ public class AddOrdServlet extends HttpServlet {
 
         //OrdDao dao = new OrdDao(sessionFactory);
         ordDao.createOrd(ord, carId);
-        response.sendRedirect("/list-ord");
+        response.sendRedirect("/list-ord-manager");
 
     }
 

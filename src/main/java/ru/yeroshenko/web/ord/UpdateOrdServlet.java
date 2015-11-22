@@ -2,8 +2,11 @@ package ru.yeroshenko.web.ord;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
+import ru.yeroshenko.domain.Account;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
+import ru.yeroshenko.web.user.LogInServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,9 +24,12 @@ public class UpdateOrdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("authorizedManager") == null) {
+        Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
+        if (account == null) {
             response.sendRedirect("/login");
             return;
+        } else if (account instanceof CabDriver) {
+            response.sendRedirect("/list-ord-driver");
         }
 
         response.setContentType("text/html");
@@ -38,7 +44,7 @@ public class UpdateOrdServlet extends HttpServlet {
 
         request.setAttribute("updatedOrd", ord);
 
-        CarDao carDao = (CarDao) context.getAttribute("ordDao");
+        CarDao carDao = (CarDao) context.getAttribute("carDao");
         //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         List<Car> cars = carDao.findAll();
 

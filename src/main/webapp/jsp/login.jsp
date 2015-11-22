@@ -10,9 +10,24 @@
 </head>
 <body>
 <form action="/login" method="post">
+
+    <body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="container">
+                <div class="text-center">
     <h1>Страница авторизации</h1>
 
-    <c:choose>
+
+                    <c:choose>
         <c:when test="${requestScope.error != null}">
             <div class="alert alert-danger" role="alert">
                 <c:out value="${requestScope.error}"/>
@@ -24,26 +39,17 @@
         <label style="line-height:1.6">Логин</label>
         <input name="login" size="15" type="text"/>
     </div>
-    <div>
+
+                    <div>
         <label style="line-height:1.6">Пароль</label>
         <input name="password" size="15" type="password"/>
     </div>
     <p>&nbsp;</p>
-
     <input name="LogIn" type="submit" value="Войти"/>
     <a href="/registration">Регистрация</a>
 
     <p>&nbsp;</p>
-
     <p>&nbsp;</p>
-
-    <!-- TODO remove links -->
-
-    <a href="/list-ord">Журнал заявок</a>
-    <a href="/list-trip">Журнал рейсов</a>
-    <a href="/list-car">Журнал машин</a>
-
-
 </form>
 </body>
 </html>

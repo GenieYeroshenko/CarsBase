@@ -5,31 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Журнал машин</title>
+
     <jsp:include page="../header.jsp"/>
 </head>
-
 <body>
+
+
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
         <div class="collapse navbar-collapse">
-            <a class="navbar-brand" href="/list-trip">Журнал рейсов</a>
-            <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал машин</a></li></ul>
-            <ul class="nav navbar-nav"><a class="navbar-brand" href="/add-car">Добавить машину</a></ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>${sessionScope.authorizedUser.login}</li>
+            <ul class="nav navbar-nav">
+                <li><a href="/list-ord-driver">Журнал заявок</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right"><li><a href="#En|Ru">En|Ru</a></li></ul>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Журнал машин</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/add-car">Добавить машину</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logout">Выход</a></li>
             </ul>
+            <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
     </div>
 </div>
@@ -38,7 +35,9 @@
 
 
         <h1>Журнал машин</h1>
-        <table class="table" style="width:500px">
+
+        <h1></h1>
+        <table class="table" style="width:900px">
             <thead>
             <tr>
                 <th scope="col">Тип машины</th>
@@ -48,7 +47,6 @@
                 <th scope="col"></th>
             </tr>
             </thead>
-
             <tbody>
             <c:forEach var="car" items="${requestScope.newListOfCars}">
                 <tr>
@@ -99,5 +97,3 @@
 </div>
 </body>
 </html>
-
-
