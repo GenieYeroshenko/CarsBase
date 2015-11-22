@@ -34,18 +34,15 @@ public class UpdateOrdServlet extends HttpServlet {
 
         response.setContentType("text/html");
         String idFromFormToUpdate = request.getParameter("id");
-
         long id = Long.parseLong(idFromFormToUpdate);
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         Ord ord = ordDao.findById(id);
 
         request.setAttribute("updatedOrd", ord);
 
         CarDao carDao = (CarDao) context.getAttribute("carDao");
-        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
@@ -74,7 +71,6 @@ public class UpdateOrdServlet extends HttpServlet {
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
 
         Ord updatedOrd = ordDao.findById(id);
         updatedOrd.setCarTypeLorry(carTypeLorry);
@@ -83,7 +79,6 @@ public class UpdateOrdServlet extends HttpServlet {
         updatedOrd.setDate(date);
 
         ordDao.updateOrd(updatedOrd, carId);
-
         response.sendRedirect("/list-ord");
     }
 }

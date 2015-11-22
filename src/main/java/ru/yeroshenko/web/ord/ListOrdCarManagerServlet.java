@@ -34,13 +34,11 @@ public class ListOrdCarManagerServlet extends HttpServlet {
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         List<Ord> ords = ordDao.findAll();
 
         request.setAttribute("newListOfOrds", ords);
         request.getRequestDispatcher("/jsp/ord/ords-list-manager.jsp").forward(request, response);
     }
-
 }
 
 

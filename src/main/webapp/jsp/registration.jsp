@@ -24,27 +24,27 @@
             </div>
             <div class="container">
                 <div class="text-center">
-    <h1>Страница регистрации</h1>
+                    <h1>Страница регистрации</h1>
 
 
                     <div>
-        <label style="line-height:1.6">Логин</label>
-        <input name="login" size="15" type="text"/>
-    </div>
-
-    <div>
-        <label style="line-height:1.6">Пароль</label>
-        <input name="password" size="15" type="password"/>
-    </div>
+                        <label style="line-height:1.6">Логин</label>
+                        <input name="login" size="15" type="text"/>
+                    </div>
 
                     <div>
-        <label style="line-height:1.6">Роль</label>
-        <input name="role" size="15" type="radio" value="cabDriver">Водитель
-        <input name="role" size="15" type="radio" value="carManager">Диспетчер
-    </div>
-    <p>&nbsp;</p>
-    <input name="Save" type="submit" value="Сохранить"/>
-    <a href="/jsp/login.jsp">Уже есть учетная запись</a>
+                        <label style="line-height:1.6">Пароль</label>
+                        <input name="password" size="15" type="password"/>
+                    </div>
+
+                    <div>
+                        <label style="line-height:1.6">Роль</label>
+                        <input name="role" size="15" type="radio" value="cabDriver">Водитель
+                        <input name="role" size="15" type="radio" value="carManager">Диспетчер
+                    </div>
+                    <p>&nbsp;</p>
+                    <input name="Save" type="submit" value="Сохранить"/>
+                    <a href="/jsp/login.jsp">Уже есть учетная запись</a>
 
                     <p>&nbsp;</p>
 

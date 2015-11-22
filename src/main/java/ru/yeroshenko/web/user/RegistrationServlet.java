@@ -43,7 +43,6 @@ public class RegistrationServlet extends HttpServlet {
 
             ServletContext context = request.getSession().getServletContext();
             CabDriverDao cabDriverDao = (CabDriverDao) context.getAttribute("cabDriverDao");
-            //CabDriverDao cabDriverDao = new CabDriverDao(HibernateUtil.getSessionFactory());
             cabDriverDao.add(cabDriver);
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, cabDriver);
             response.sendRedirect("/list-ord-driver");

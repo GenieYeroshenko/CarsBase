@@ -33,17 +33,13 @@ public class ListOrdCabDriverServlet extends HttpServlet {
             return;
         }
         CabDriver cabDriver = (CabDriver) account;
-
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         List<Ord> ords = ordDao.findAllByDriver(cabDriver);
 
         request.setAttribute("newListOfOrdsByDriver", ords);
         request.getRequestDispatcher("/jsp/ord/ords-list-driver.jsp").forward(request, response);
-
     }
-
 }
 
 

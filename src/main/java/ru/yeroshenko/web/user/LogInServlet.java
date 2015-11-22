@@ -20,7 +20,6 @@ import java.util.List;
 //todo
 public class LogInServlet extends HttpServlet {
 
-
     public static final String AUTHORIZED_USER = "authorizedUser";
 
     @Override
@@ -39,7 +38,6 @@ public class LogInServlet extends HttpServlet {
 
         ServletContext context = request.getSession().getServletContext();
         AccountDao accountDao = (AccountDao) context.getAttribute("accountDao");
-        //AccountDao accountDao = new AccountDao(HibernateUtil.getSessionFactory());
         List<Account> accounts = accountDao.findAllUsersByLogin(login);
         if (accounts.size() > 1) {
             request.setAttribute("error", "ошибка логин");
@@ -52,19 +50,13 @@ public class LogInServlet extends HttpServlet {
         }
 
         Account account = accounts.get(0);
-
         if (password.equals(account.getPassword())) {
-
             request.getSession().setAttribute(AUTHORIZED_USER, account);
-
             if (account instanceof CabDriver) {
                 response.sendRedirect("/list-ord-driver");
-
             } else if (account instanceof CarManager) {
                 response.sendRedirect("/list-ord-manager");
-
             }
-
         } else {
             request.setAttribute("error", "ошибка пароль");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);

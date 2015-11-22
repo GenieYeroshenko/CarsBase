@@ -1,13 +1,11 @@
 package ru.yeroshenko.web.ord;
 
-import org.hibernate.SessionFactory;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Account;
 import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
-import ru.yeroshenko.util.HibernateUtil;
 import ru.yeroshenko.web.user.LogInServlet;
 
 import javax.servlet.ServletContext;
@@ -47,15 +45,10 @@ public class AddOrdServlet extends HttpServlet {
         ord.setDate(date);
         long carId = Integer.parseInt(carFromForm);
 
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-
-        //OrdDao dao = new OrdDao(sessionFactory);
         ordDao.createOrd(ord, carId);
         response.sendRedirect("/list-ord-manager");
-
     }
 
 
@@ -67,19 +60,15 @@ public class AddOrdServlet extends HttpServlet {
             return;
         } else if (account instanceof CabDriver) {
             response.sendRedirect("/list-ord-driver");
-
         }
 
         response.setContentType("text/html");
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
-        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         List<Car> cars = carDao.findAll();
 
         request.setAttribute("newListOfCars", cars);
         request.getRequestDispatcher("/jsp/ord/add-ord.jsp").forward(request, response);
-
-
     }
 }

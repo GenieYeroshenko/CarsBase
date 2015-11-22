@@ -11,7 +11,9 @@
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav"><li class="active"><a href="#">Журнал заявок</a></li></ul>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Журнал заявок</a></li>
+            </ul>
             <ul class="nav navbar-nav">
                 <li><a href="/add-ord">Добавить заявку</a></li>
             </ul>
@@ -25,6 +27,7 @@
 <div class="container">
     <div class="text-center">
         <h1>Журнал заявок</h1>
+
         <h1></h1>
         <table class="table" style="width:900px">
             <thead>

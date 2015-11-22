@@ -1,5 +1,7 @@
 package ru.yeroshenko.web.user;
 
+import ru.yeroshenko.domain.Account;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +18,10 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().removeAttribute("authorizedUser");
-        request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+        Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
+        if (account == null) {
+            response.sendRedirect("/login");
+            return;
+        }
     }
-
 }

@@ -30,17 +30,13 @@ public class DeleteOrdServlet extends HttpServlet {
 
         response.setContentType("text/html");
         String idFromForm = request.getParameter("id");
-
         long id = Long.parseLong(idFromForm);
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-        //OrdDao ordDao = new OrdDao(HibernateUtil.getSessionFactory());
         Ord ord = ordDao.findById(id);
         ordDao.delete(ord);
 
         request.getRequestDispatcher("/list-ord").forward(request, response);
     }
-
-
 }

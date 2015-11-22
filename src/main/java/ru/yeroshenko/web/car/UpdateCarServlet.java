@@ -1,7 +1,10 @@
 package ru.yeroshenko.web.car;
 
 import ru.yeroshenko.dao.CarDao;
+import ru.yeroshenko.domain.Account;
 import ru.yeroshenko.domain.Car;
+import ru.yeroshenko.domain.CarManager;
+import ru.yeroshenko.web.user.LogInServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,28 +21,24 @@ public class UpdateCarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("authorizedUser") == null) {
+        Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
+        if (account == null) {
             response.sendRedirect("/login");
             return;
+        } else if (account instanceof CarManager) {
+            response.sendRedirect("/list-ord-manager");
         }
 
         response.setContentType("text/html");
         String idFromFormToUpdate = request.getParameter("id");
-
         long id = Long.parseLong(idFromFormToUpdate);
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
-        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         Car car = carDao.findById(id);
 
         request.setAttribute("updatedCar", car);
-
         request.getRequestDispatcher("/jsp/car/update-car.jsp").forward(request, response);
-
-
-
-
     }
 
     @Override
@@ -58,8 +57,6 @@ public class UpdateCarServlet extends HttpServlet {
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
-
-        //CarDao carDao = new CarDao(HibernateUtil.getSessionFactory());
         Car updatedCar = carDao.findById(id);
 
         updatedCar.setModel(model);
@@ -68,7 +65,6 @@ public class UpdateCarServlet extends HttpServlet {
         updatedCar.setCarTypeLorry(carTypeLorry);
 
         carDao.update(updatedCar);
-
         response.sendRedirect("/list-car");
     }
 }
