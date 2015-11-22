@@ -2,6 +2,7 @@ package ru.yeroshenko.web.car;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Account;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.CarManager;
 import ru.yeroshenko.web.user.LogInServlet;
@@ -29,10 +30,11 @@ public class ListCarServlet extends HttpServlet {
         } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
         }
+        CabDriver cabDriver = (CabDriver) account;
 
         ServletContext context = request.getSession().getServletContext();
         CarDao carDao = (CarDao) context.getAttribute("carDao");
-        List<Car> cars = carDao.findAll();
+        List<Car> cars = carDao.findAllByDriver(cabDriver);
 
         request.setAttribute("newListOfCars", cars);
         request.getRequestDispatcher("/jsp/car/cars-list.jsp").forward(request, response);

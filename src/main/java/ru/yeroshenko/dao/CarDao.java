@@ -103,7 +103,7 @@ public class CarDao {
     public List<Car> findAllByDriver(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Car car where car.cabDriver = ?");
-        query.setParameter(1, cabDriver);
+        query.setParameter(0, cabDriver);
         List list = query.list();
         session.close();
         return list;
