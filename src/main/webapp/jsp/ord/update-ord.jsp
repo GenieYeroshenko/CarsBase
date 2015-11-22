@@ -89,6 +89,12 @@
                     <option selected="selected" value="IN_QUEUE">не назначена</option>
                 </select>
                 </c:when>
+                <c:otherwise>
+                <select name="ordStatus">
+                    <option value="ASSIGNED">назначена</option>
+                    <option value="IN_QUEUE">не назначена</option>
+                </select>
+                </c:otherwise>
                 </c:choose>
         </div>
         <p>&nbsp;</p>

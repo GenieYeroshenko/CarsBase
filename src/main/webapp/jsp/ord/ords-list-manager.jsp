@@ -28,7 +28,8 @@
     <div class="text-center">
         <h1>Журнал заявок</h1>
 
-        <h1></h1>
+        <a href="/list-ord-manager?ordStatus=ASSIGNED" class="btn btn-default">Назначенные</a>
+        <a href="/list-ord-manager" class="btn btn-default">Все</a>
         <table class="table" style="width:900px">
             <thead>
             <tr>

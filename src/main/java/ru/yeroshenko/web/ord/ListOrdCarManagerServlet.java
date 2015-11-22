@@ -34,7 +34,15 @@ public class ListOrdCarManagerServlet extends HttpServlet {
 
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
-        List<Ord> ords = ordDao.findAll();
+        String statusFromForm = request.getParameter("ordStatus");
+        List<Ord> ords;
+        if (statusFromForm == null) {
+            ords = ordDao.findAll();
+        } else {
+            Ord.OrdStatus ordStatus = Ord.OrdStatus.valueOf(statusFromForm);
+            ords = ordDao.findAllByStatus(ordStatus);
+        }
+
 
         request.setAttribute("newListOfOrds", ords);
         request.getRequestDispatcher("/jsp/ord/ords-list-manager.jsp").forward(request, response);
