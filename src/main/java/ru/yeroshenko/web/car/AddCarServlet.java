@@ -2,6 +2,7 @@ package ru.yeroshenko.web.car;
 
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Account;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.CarManager;
 import ru.yeroshenko.web.user.LogInServlet;
@@ -38,8 +39,10 @@ public class AddCarServlet extends HttpServlet {
         car.setCarTypeLorry(carTypeLorry);
 
         ServletContext context = request.getSession().getServletContext();
+
+        CabDriver cabDriver = (CabDriver) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
         CarDao carDao = (CarDao) context.getAttribute("carDao");
-        carDao.add(car);
+        carDao.add(car, cabDriver.getId());
         response.sendRedirect("/list-car");
 
     }

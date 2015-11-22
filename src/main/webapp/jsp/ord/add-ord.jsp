@@ -39,7 +39,6 @@
             <div>
                 <label style="line-height:1.6">Тип машины</label>
                 <select name="carTypeLorry">
-                    <option value="">не выбран</option>
                     <option value="false">легковая</option>
                     <option value="true">грузовая</option>
                 </select>
@@ -54,7 +53,6 @@
             <div>
                 <label style="line-height:1.6">Статус заявки</label>
                 <select name="ordStatus">
-                    <option value="">не установлен</option>
                     <option value="ASSIGNED">назначена</option>
                     <option value="IN_QUEUE">не назначена</option>
                 </select>

@@ -49,7 +49,7 @@
                     <td><c:out value="${ord.rout}"/></td>
                     <td><c:out value="${ord.carTypeLorry}"/></td>
                     <td><c:out value="${ord.car.licencePlate}"/></td>
-                    <td><c:out value="${ord.car.cabDriver.name}"/></td>
+                    <td><c:out value="${ord.car.cabDriver.login}"/></td>
                     <td><c:out value="${ord.ordStatus}"/></td>
                     <td>
                         <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a><a></a>

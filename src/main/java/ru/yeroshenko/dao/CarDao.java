@@ -52,6 +52,23 @@ public class CarDao {
         }
     }
 
+    public void add(Car car, long id) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            CabDriver cabDriver = (CabDriver) session.get(CabDriver.class, id);
+            car.setCabDriver(cabDriver);
+            session.persist(car);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
     public void delete(Car car) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;

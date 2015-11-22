@@ -39,7 +39,6 @@
             <div>
                 <label style="line-height:1.6">Тип машины</label>
                 <select name="carTypeLorry">
-                    <option value="">не выбран</option>
                     <option value="false">легковая</option>
                     <option value="true">грузовая</option>
                 </select>
@@ -54,7 +53,6 @@
             </div>
             <label style="line-height:1.6">Состояние машины</label>
             <select name="carStatus">
-                <option value="">не установлено</option>
                 <option value="true">кондиционная</option>
                 <option value="false">не кондиционная</option>
             </select>

@@ -42,14 +42,12 @@
                     <c:choose>
                         <c:when test="${requestScope.updatedCar.carTypeLorry}">
                             <select name="carTypeLorry">
-                                <option value="">не выбран</option>
                                 <option value="false">легковая</option>
                                 <option selected="selected" value="true">грузовая</option>
                             </select>
                         </c:when>
                         <c:otherwise>
                             <select name="carTypeLorry">
-                                <option value="">не выбран</option>
                                 <option selected="selected" value="false">легковая</option>
                                 <option value="true">грузовая</option>
                             </select>
@@ -72,14 +70,12 @@
                 <c:choose>
                 <c:when test="${requestScope.updatedCar.carStatus}">
                 <select name="carStatus">
-                    <option value="">не выбран</option>
                     <option value="false">не кондиционная</option>
                     <option selected="selected" value="true">кондиционная</option>
                 </select>
                 </c:when>
                 <c:otherwise>
                 <select name="carStatus">
-                    <option value="">не выбран</option>
                     <option selected="selected" value="false">не кондиционная</option>
                     <option value="true">кондиционная</option>
                 </select>

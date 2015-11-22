@@ -53,7 +53,7 @@
                     <td><c:out value="${ord.rout}"/></td>
                     <td><c:out value="${ord.carTypeLorry}"/></td>
                     <td><c:out value="${ord.car.licencePlate}"/></td>
-                    <td><c:out value="${ord.car.cabDriver.name}"/></td>
+                    <td><c:out value="${ord.car.cabDriver.login}"/></td>
                     <td><c:out value="${ord.car.carStatus}"/></td>
                     <td>
                         <a class="btn btn-warning" href="/update-ord?id=${ord.id}">установить "в пути"</a><a></a>
