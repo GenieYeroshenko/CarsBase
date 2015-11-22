@@ -1,5 +1,6 @@
 package ru.yeroshenko.web.user;
 
+import ru.yeroshenko.dao.AccountDao;
 import ru.yeroshenko.dao.CabDriverDao;
 import ru.yeroshenko.dao.CarManagerDao;
 import ru.yeroshenko.domain.CabDriver;
@@ -16,7 +17,6 @@ import java.io.IOException;
 /**
  * Created by evgeniya on 15/11/15.
  */
-//todo
 public class RegistrationServlet extends HttpServlet {
 
 
@@ -34,19 +34,24 @@ public class RegistrationServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
-        //todo login exist
 
-        if (role.equals("cabDriver")) {
+        //todo login exist, rework findByLogin
+
+        ServletContext context = request.getSession().getServletContext();
+        AccountDao accountDao = (AccountDao) context.getAttribute("accountDao");
+
+
+        if ((accountDao.numberOfAccountsWithLogin(login)) > 0) {
+            request.setAttribute("error", "пользователь с такм логином уже существует");
+            request.getRequestDispatcher("/jsp/registration.jsp").forward(request, response);
+        } else if (role.equals("cabDriver")) {
             CabDriver cabDriver = new CabDriver();
             cabDriver.setLogin(login);
             cabDriver.setPassword(password);
-
-            ServletContext context = request.getSession().getServletContext();
             CabDriverDao cabDriverDao = (CabDriverDao) context.getAttribute("cabDriverDao");
             cabDriverDao.add(cabDriver);
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, cabDriver);
             response.sendRedirect("/list-ord-driver");
-
         } else if (role.equals("carManager")) {
             CarManager carManager = new CarManager();
             carManager.setLogin(login);
@@ -56,7 +61,5 @@ public class RegistrationServlet extends HttpServlet {
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, carManager);
             response.sendRedirect("/list-ord-manager");
         }
-        //todo else
-
     }
 }

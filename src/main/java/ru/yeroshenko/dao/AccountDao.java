@@ -26,7 +26,8 @@ public class AccountDao {
         session.close();
         return list;
     }
-//
+
+//    //todo rework
 //    public Account findAuthorizedUser(String login, String password) {
 //        Session session = sessionFactory.openSession();
 //        Query query = session.createQuery("from Account account where account.login = ? and account.password = ?");
@@ -37,5 +38,15 @@ public class AccountDao {
 //
 //        return authorizedUser;
 //    }
+
+    //todo rework
+    public long numberOfAccountsWithLogin(String login) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count(*) from Account account where account.login = ?");
+        query.setParameter(0, login);
+        Long count = (Long) query.uniqueResult();
+        session.close();
+        return count;
+    }
 
 }

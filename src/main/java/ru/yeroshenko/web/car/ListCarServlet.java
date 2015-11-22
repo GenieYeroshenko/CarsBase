@@ -37,4 +37,6 @@ public class ListCarServlet extends HttpServlet {
         request.setAttribute("newListOfCars", cars);
         request.getRequestDispatcher("/jsp/car/cars-list.jsp").forward(request, response);
     }
+
+
 }

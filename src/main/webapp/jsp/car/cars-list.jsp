@@ -36,7 +36,14 @@
 
         <h1>Журнал машин</h1>
 
-        <h1></h1>
+        <c:choose>
+            <c:when test="${requestScope.error != null}">
+                <div class="alert alert-danger" role="alert">
+                    <c:out value="${requestScope.error}"/>
+                </div>
+            </c:when>
+        </c:choose>
+
         <table class="table" style="width:900px">
             <thead>
             <tr>

@@ -37,6 +37,6 @@ public class DeleteOrdServlet extends HttpServlet {
         Ord ord = ordDao.findById(id);
         ordDao.delete(ord);
 
-        request.getRequestDispatcher("/list-ord").forward(request, response);
+        request.getRequestDispatcher("/list-ord-manager").forward(request, response);
     }
 }

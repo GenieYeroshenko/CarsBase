@@ -17,7 +17,7 @@ import java.util.List;
  * Created by evgeniya on 15/11/15.
  */
 
-//todo
+
 public class LogInServlet extends HttpServlet {
 
     public static final String AUTHORIZED_USER = "authorizedUser";

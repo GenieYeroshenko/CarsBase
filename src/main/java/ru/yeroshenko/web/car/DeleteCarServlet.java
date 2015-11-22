@@ -1,6 +1,6 @@
 package ru.yeroshenko.web.car;
 
-import com.sun.xml.internal.ws.handler.HandlerException;
+import org.hibernate.exception.ConstraintViolationException;
 import ru.yeroshenko.dao.CarDao;
 import ru.yeroshenko.domain.Account;
 import ru.yeroshenko.domain.Car;
@@ -38,12 +38,11 @@ public class DeleteCarServlet extends HttpServlet {
         Car car = carDao.findById(id);
         try {
             carDao.delete(car);
-            //TODO check exception type
-        } catch (HandlerException e) {
-            // todo
-            request.setAttribute("error", "у удаляемого элемента есть связи");
+        } catch (ConstraintViolationException e) {
+            request.setAttribute("error", "у удаляемой машины есть заявка, удаление не возможно");
+            request.getRequestDispatcher("/jsp/car/cars-delete.jsp").forward(request, response);
+            return;
         }
-
-        request.getRequestDispatcher("/list-car").forward(request, response);
+        response.sendRedirect("/list-car");
     }
 }

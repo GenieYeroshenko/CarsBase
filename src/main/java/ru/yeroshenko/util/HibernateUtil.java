@@ -5,7 +5,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-//todo deprecated?
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
 

@@ -26,7 +26,13 @@
                 <div class="text-center">
                     <h1>Страница регистрации</h1>
 
-
+                    <c:choose>
+                    <c:when test="${requestScope.error != null}">
+                    <div class="alert alert-danger" role="alert">
+                        <c:out value="${requestScope.error}"/>
+                    </div>
+                    </c:when>
+                    </c:choose>
                     <div>
                         <label style="line-height:1.6">Логин</label>
                         <input name="login" size="15" type="text"/>
@@ -44,7 +50,7 @@
                     </div>
                     <p>&nbsp;</p>
                     <input name="Save" type="submit" value="Сохранить"/>
-                    <a href="/jsp/login.jsp">Уже есть учетная запись</a>
+                    <a href="/login">Уже есть учетная запись</a>
 
                     <p>&nbsp;</p>
 
