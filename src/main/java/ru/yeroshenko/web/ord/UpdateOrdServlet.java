@@ -30,6 +30,7 @@ public class UpdateOrdServlet extends HttpServlet {
             return;
         } else if (account instanceof CabDriver) {
             response.sendRedirect("/list-ord-driver");
+            return;
         }
 
         response.setContentType("text/html");

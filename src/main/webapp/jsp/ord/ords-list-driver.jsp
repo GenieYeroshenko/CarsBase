@@ -46,7 +46,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="ord" items="${requestScope.newListOfOrds}">
+            <c:forEach var="ord" items="${requestScope.newListOfOrdsByDriver}">
                 <tr>
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>
@@ -54,12 +54,14 @@
                     <td><c:out value="${ord.carTypeLorry}"/></td>
                     <td><c:out value="${ord.car.licencePlate}"/></td>
                     <td><c:out value="${ord.car.cabDriver.login}"/></td>
-                    <td><c:out value="${ord.car.carStatus}"/></td>
+                    <td><c:out value="${ord.ordStatus}"/></td>
                     <td>
-                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">установить "в пути"</a><a></a>
+                        <a class="btn btn-warning" href="/change-ord-status?id=${ord.id}&status=IN_TRANSIT">установить
+                            "в пути"</a><a></a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="/update-ord?id=${ord.id}">установить "выполнена"</a><a></a>
+                        <a class="btn btn-danger" href="/change-ord-status?id=${ord.id}&status=DONE">установить
+                            "выполнена"</a><a></a>
                     </td>
                 </tr>
             </c:forEach>

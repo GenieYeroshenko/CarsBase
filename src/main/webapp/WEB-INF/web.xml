@@ -105,6 +105,15 @@
         <url-pattern>/update-ord</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ChangeOrdStatusServlet</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ord.ChangeOrdStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeOrdStatusServlet</servlet-name>
+        <url-pattern>/change-ord-status</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>LogInServlet</servlet-name>

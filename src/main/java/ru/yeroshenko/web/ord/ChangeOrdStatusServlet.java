@@ -2,7 +2,6 @@ package ru.yeroshenko.web.ord;
 
 import ru.yeroshenko.dao.OrdDao;
 import ru.yeroshenko.domain.Account;
-import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.CarManager;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.web.user.LogInServlet;
@@ -13,36 +12,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by evgeniya on 15/11/15.
  */
-public class ListOrdCabDriverServlet extends HttpServlet {
+public class ChangeOrdStatusServlet extends HttpServlet {
 
-    //todo check
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
         if (account == null) {
             response.sendRedirect("/login");
             return;
-        }
-        if (account instanceof CarManager) {
+        } else if (account instanceof CarManager) {
             response.sendRedirect("/list-ord-manager");
-            return;
         }
-        CabDriver cabDriver = (CabDriver) account;
+
+        response.setContentType("text/html");
+        String idFromForm = request.getParameter("id");
+        String statusFromForm = request.getParameter("status");
+        long id = Long.parseLong(idFromForm);
+        Ord.OrdStatus status = Ord.OrdStatus.valueOf(statusFromForm);
+
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
 
-        Ord.OrdStatus[] availableStatuses = {Ord.OrdStatus.ASSIGNED, Ord.OrdStatus.IN_TRANSIT, Ord.OrdStatus.DONE};
+        Ord ord = ordDao.findById(id);
+        ord.setOrdStatus(status);
 
-        List<Ord> ords = ordDao.findAllByDriverAndStatuses(cabDriver, availableStatuses);
-
-        request.setAttribute("newListOfOrdsByDriver", ords);
-        request.getRequestDispatcher("/jsp/ord/ords-list-driver.jsp").forward(request, response);
+        ordDao.update(ord);
+        response.sendRedirect("/list-ord-driver");
     }
 }
-
-
