@@ -5,11 +5,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import ru.yeroshenko.domain.CarManager;
 
+import java.util.List;
+
 
 /**
  * Created by Genie Yeroshenko on 10/11/15.
  */
 public class CarManagerDao {
+
 
     private SessionFactory sessionFactory;
 
@@ -31,4 +34,54 @@ public class CarManagerDao {
             session.close();
         }
     }
+
+    public void delete(CarManager carManager) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(carManager);
+            session.flush();
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+    public CarManager findById(long id) {
+        Session session = sessionFactory.openSession();
+        CarManager carManager = (CarManager) session.get(CarManager.class, id);
+        session.close();
+        return carManager;
+    }
+
+
+    public List<CarManager> findAll() {
+        Session session = sessionFactory.openSession();
+        List list = session.createQuery("from CarManager ").list();
+        session.close();
+        return list;
+    }
+
+
+    public void update(CarManager carManager) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(carManager);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+
+
 }

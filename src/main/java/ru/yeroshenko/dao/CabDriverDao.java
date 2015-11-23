@@ -62,7 +62,6 @@ public class CabDriverDao {
             tx = session.beginTransaction();
             session.delete(cabDriver);
             session.flush();
-            System.out.println("CabDriver deleted");
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
