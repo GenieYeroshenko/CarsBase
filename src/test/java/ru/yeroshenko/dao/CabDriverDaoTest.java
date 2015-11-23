@@ -6,8 +6,6 @@ import org.junit.Test;
 import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.util.HibernateUtil;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 /**
@@ -80,19 +78,4 @@ public class CabDriverDaoTest {
         cabDriverDao.delete(cabDriver);
     }
 
-    @Test
-    public void testFindAll() throws Exception {
-        CabDriver cabDriver1 = new CabDriver();
-        cabDriver1.setLogin("Vasya5");
-        cabDriverDao.add(cabDriver1);
-        CabDriver cabDriver2 = new CabDriver();
-        cabDriver2.setLogin("Kolya2");
-        cabDriverDao.add(cabDriver2);
-        List<CabDriver> drivers = cabDriverDao.findAll();
-
-        cabDriverDao.delete(cabDriver1);
-        cabDriverDao.delete(cabDriver2);
-
-        assertEquals(drivers.size(), 2);
-    }
 }

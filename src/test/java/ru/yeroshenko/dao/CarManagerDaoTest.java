@@ -6,8 +6,6 @@ import org.junit.Test;
 import ru.yeroshenko.domain.CarManager;
 import ru.yeroshenko.util.HibernateUtil;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 /**
@@ -51,28 +49,6 @@ public class CarManagerDaoTest {
         assertNull(carManagerFromDb);
     }
 
-
-    @Test
-    public void testUpdate() throws Exception {
-        CarManager carManager = new CarManager();
-        carManager.setLogin("Vasya2");
-        carManagerDao.add(carManager);
-
-        long idD = carManager.getId();
-        CarManager carManagerFromDb = carManagerDao.findById(idD);
-        carManager.setLogin("Sveta");
-        carManagerDao.update(carManager);
-
-        long idD2 = carManager.getId();
-        CarManager carManagerFromDb2 = carManagerDao.findById(idD2);
-
-        carManagerDao.delete(carManager);
-
-        assertEquals("Vasya2", carManagerFromDb.getLogin());
-        assertEquals("Sveta", carManagerFromDb2.getLogin());
-    }
-
-
     @Test
     public void testFindById() throws Exception {
         CarManager carManager = new CarManager();
@@ -84,24 +60,6 @@ public class CarManagerDaoTest {
         carManagerDao.delete(carManager);
 
         assertEquals(carManagerFromDb.getLogin(), carManager.getLogin());
-    }
-
-    @Test
-    public void testFindAll() throws Exception {
-        CarManager carManager1 = new CarManager();
-        carManager1.setLogin("Vasya5");
-        carManagerDao.add(carManager1);
-
-        CarManager carManager2 = new CarManager();
-        carManager2.setLogin("Kolya2");
-        carManagerDao.add(carManager2);
-
-        List<CarManager> carManagers = carManagerDao.findAll();
-
-        carManagerDao.delete(carManager1);
-        carManagerDao.delete(carManager2);
-
-        assertEquals(carManagers.size(), 2);
     }
 
 }

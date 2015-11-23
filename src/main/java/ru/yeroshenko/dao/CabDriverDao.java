@@ -5,8 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import ru.yeroshenko.domain.CabDriver;
 
-import java.util.List;
-
 /**
  * Created by Genie Yeroshenko on 10/11/15.
  */
@@ -71,10 +69,4 @@ public class CabDriverDao {
         }
     }
 
-    public List<CabDriver> findAll() {
-        Session session = sessionFactory.openSession();
-        List list = session.createQuery("from CabDriver").list();
-        session.close();
-        return list;
-    }
 }
