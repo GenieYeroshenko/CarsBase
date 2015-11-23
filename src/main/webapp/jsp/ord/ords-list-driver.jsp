@@ -33,7 +33,7 @@
 
 
         <h1></h1>
-        <table class="table" style="width:900px">
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Номер заявки</th>
@@ -96,6 +96,5 @@
         </table>
     </div>
 </div>
-</form>
 </body>
 </html>

@@ -44,7 +44,7 @@
             </c:when>
         </c:choose>
 
-        <table class="table" style="width:900px">
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Тип машины</th>

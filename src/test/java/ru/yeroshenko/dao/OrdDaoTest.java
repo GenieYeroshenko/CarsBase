@@ -19,17 +19,15 @@ import static org.junit.Assert.assertNull;
  */
 public class OrdDaoTest {
 
-    OrdDao ordDao;
-    CarDao carDao;
-    CabDriverDao cabDriverDao;
-    AccountDao accountDao;
+    private OrdDao ordDao;
+    private CarDao carDao;
+    private AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         ordDao = new OrdDao(sessionFactory);
         carDao = new CarDao(sessionFactory);
-        cabDriverDao = new CabDriverDao(sessionFactory);
         accountDao = new AccountDao(sessionFactory);
     }
 

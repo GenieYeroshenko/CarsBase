@@ -3,6 +3,8 @@ package ru.yeroshenko.domain;
 import javax.persistence.*;
 
 /**
+ *
+ *
  * Created by evgeniya on 20/11/15.
  */
 @Entity
@@ -24,10 +26,6 @@ public abstract class Account {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getLogin() {

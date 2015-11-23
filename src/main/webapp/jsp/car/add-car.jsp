@@ -60,9 +60,7 @@
             <p>&nbsp;</p>
             <input name="Save" type="submit" value="Сохранить"/>
         </div>
-        </table>
 
-    </div>
     </div>
 </form>
 </body>

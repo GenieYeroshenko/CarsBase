@@ -13,8 +13,8 @@ import static org.junit.Assert.*;
  */
 public class CabDriverDaoTest {
 
-    CabDriverDao cabDriverDao;
-    AccountDao accountDao;
+    private CabDriverDao cabDriverDao;
+    private AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {

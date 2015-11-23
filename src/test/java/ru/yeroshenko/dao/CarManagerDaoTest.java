@@ -13,16 +13,14 @@ import static org.junit.Assert.*;
  */
 public class CarManagerDaoTest {
 
-    CarManagerDao carManagerDao;
-    CarDao carDao;
-    AccountDao accountDao;
+    private CarManagerDao carManagerDao;
+    private AccountDao accountDao;
 
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         carManagerDao = new CarManagerDao(sessionFactory);
-        carDao = new CarDao(sessionFactory);
         accountDao = new AccountDao(sessionFactory);
     }
 

@@ -28,16 +28,16 @@
     <div class="text-center">
         <h1>Журнал заявок</h1>
 
-        <p>&nbsp;</p>
+        <div style="margin-bottom: 20px; margin-top: 5px;">
+            <a href="/list-ord-manager" class="btn btn-default">Все</a>
+            <a href="/list-ord-manager?ordStatus=ASSIGNED" class="btn btn-default">Назначенные</a>
+            <a href="/list-ord-manager?ordStatus=IN_QUEUE" class="btn btn-default">Не назначенные</a>
+            <a href="/list-ord-manager?ordStatus=IN_TRANSIT" class="btn btn-default">В пути</a>
+            <a href="/list-ord-manager?ordStatus=DONE" class="btn btn-default">Выполненные</a>
 
-        <a href="/list-ord-manager" class="btn btn-default">Все</a>
-        <a href="/list-ord-manager?ordStatus=ASSIGNED" class="btn btn-default">Назначенные</a>
-        <a href="/list-ord-manager?ordStatus=IN_QUEUE" class="btn btn-default">Не назначенные</a>
-        <a href="/list-ord-manager?ordStatus=IN_TRANSIT" class="btn btn-default">В пути</a>
-        <a href="/list-ord-manager?ordStatus=DONE" class="btn btn-default">Выполненные</a>
+        </div>
 
-        <p>&nbsp;</p>
-        <table class="table" style="width:900px">
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Номер заявки</th>
@@ -94,6 +94,5 @@
         </table>
     </div>
 </div>
-</form>
 </body>
 </html>

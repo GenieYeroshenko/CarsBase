@@ -87,10 +87,7 @@
         <input name="Save" type="submit" value="Сохранить"/>
     </div>
 </div>
-</div>
 
-
-</form>
 </body>
 </html>
 
