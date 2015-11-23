@@ -132,4 +132,20 @@ public class OrdDaoTest {
         carDao.add(car);
         return car;
     }
+
+
+//    public List<Ord> testFindAllByDriverAndStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
+//    }
+//
+//    public List<Ord> testFindAllByDriver(CabDriver cabDriver) {
+//    }
+//
+//    public void testCreateOrd(Ord ord, long carId) {
+//    }
+//
+//    public void testAdd(Ord ord) {
+//    }
+
+
+
 }

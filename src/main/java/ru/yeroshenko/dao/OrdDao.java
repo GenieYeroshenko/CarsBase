@@ -22,20 +22,6 @@ public class OrdDao {
         this.sessionFactory = sessionFactory;
     }
 
-    public void add(Ord ord) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.persist(ord);
-            tx.commit();
-        } catch (RuntimeException e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
 
     public void update(Ord ord) {
         Session session = sessionFactory.openSession();
@@ -93,6 +79,33 @@ public class OrdDao {
     }
 
 
+    public void updateOrd(Ord ord, long carId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Car carFromDB = (Car) session.get(Car.class, carId);
+            ord.setCar(carFromDB);
+            session.update(ord);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+
+    public List<Ord> findAllByDriverAndStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Ord ord where ord.car.cabDriver = :driver and ord.ordStatus in :statuses");
+        query.setParameter("driver", cabDriver);
+        query.setParameterList("statuses", statuses);
+        List list = query.list();
+        session.close();
+        return list;
+    }
     public List<Ord> findAllByDriver(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.car.cabDriver = ?");
@@ -119,14 +132,12 @@ public class OrdDao {
         }
     }
 
-    public void updateOrd(Ord ord, long carId) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    public void add(Ord ord) {
+        Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            Car carFromDB = (Car) session.get(Car.class, carId);
-            ord.setCar(carFromDB);
-            session.update(ord);
+            session.persist(ord);
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
@@ -134,15 +145,5 @@ public class OrdDao {
         } finally {
             session.close();
         }
-    }
-
-    public List<Ord> findAllByDriverAndStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Ord ord where ord.car.cabDriver = :driver and ord.ordStatus in :statuses");
-        query.setParameter("driver", cabDriver);
-        query.setParameterList("statuses", statuses);
-        List list = query.list();
-        session.close();
-        return list;
     }
 }

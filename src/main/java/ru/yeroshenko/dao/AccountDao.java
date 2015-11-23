@@ -27,7 +27,7 @@ public class AccountDao {
         return list;
     }
 
-    public long numberOfAccountsWithLogin(String login) {
+    public long countAccountsWithLogin(String login) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select count(*) from Account account where account.login = ?");
         query.setParameter(0, login);

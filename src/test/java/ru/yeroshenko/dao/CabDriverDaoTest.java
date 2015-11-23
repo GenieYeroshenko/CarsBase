@@ -29,7 +29,7 @@ public class CabDriverDaoTest {
     @Test
     public void testAdd() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya");
+        cabDriver.setLogin("Vasya1");
         cabDriverDao.add(cabDriver);
         assertTrue(cabDriver.getId() > 0);
         cabDriverDao.delete(cabDriver);
@@ -38,7 +38,7 @@ public class CabDriverDaoTest {
     @Test
     public void testUpdate() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya");
+        cabDriver.setLogin("Vasya2");
         cabDriverDao.add(cabDriver);
         long idD = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(idD);
@@ -46,7 +46,7 @@ public class CabDriverDaoTest {
         cabDriverDao.update(cabDriver);
         long idD2 = cabDriver.getId();
         CabDriver cabDriverFromDb2 = cabDriverDao.findById(idD2);
-        assertEquals("Vasya", cabDriverFromDb.getLogin());
+        assertEquals("Vasya2", cabDriverFromDb.getLogin());
         assertEquals("Sveta", cabDriverFromDb2.getLogin());
         cabDriverDao.delete(cabDriver);
     }
@@ -54,7 +54,7 @@ public class CabDriverDaoTest {
     @Test
     public void testDelete() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya");
+        cabDriver.setLogin("Vasya3");
         cabDriverDao.add(cabDriver);
         long id = cabDriver.getId();
         cabDriverDao.delete(cabDriver);
@@ -65,7 +65,7 @@ public class CabDriverDaoTest {
     @Test
     public void testFindById() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya");
+        cabDriver.setLogin("Vasya4");
         cabDriverDao.add(cabDriver);
         long id = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);
@@ -76,10 +76,10 @@ public class CabDriverDaoTest {
     @Test
     public void testFindAll() throws Exception {
         CabDriver cabDriver1 = new CabDriver();
-        cabDriver1.setLogin("Vasya");
+        cabDriver1.setLogin("Vasya5");
         cabDriverDao.add(cabDriver1);
         CabDriver cabDriver2 = new CabDriver();
-        cabDriver2.setLogin("Kolya");
+        cabDriver2.setLogin("Kolya2");
         cabDriverDao.add(cabDriver2);
         List<CabDriver> drivers = cabDriverDao.findAll();
         assertEquals(drivers.size(), 2);

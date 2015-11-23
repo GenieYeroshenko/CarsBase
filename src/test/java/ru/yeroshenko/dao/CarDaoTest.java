@@ -81,7 +81,7 @@ public class CarDaoTest {
         car1.setCarTypeLorry(true);
         car1.setCarStatus(true);
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Kolya");
+        cabDriver.setLogin("Kolya10");
         car1.setCabDriver(cabDriver);
 
         carDao.add(car1);
@@ -91,7 +91,7 @@ public class CarDaoTest {
         car2.setCarTypeLorry(false);
         car2.setCarStatus(false);
         CabDriver cabDriver2 = new CabDriver();
-        cabDriver2.setLogin("Vasya");
+        cabDriver2.setLogin("Vasya10");
         car2.setCabDriver(cabDriver2);
 
         carDao.add(car2);
@@ -113,20 +113,18 @@ public class CarDaoTest {
         carDao.delete(car);
     }
 
-    //todo findAllCarsByCabDriver
-    public void testFindAllByDriver() throws Exception {
+    public void testFindAllCarsByDriver() throws Exception {
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();
-
         car1.setLicencePlate("EN 2222");
         car1.setLicencePlate("EN 3333");
         car1.setLicencePlate("EN 4444");
 
         CabDriver cabDriver1 = new CabDriver();
         CabDriver cabDriver2 = new CabDriver();
-        cabDriver1.setLogin("Vasya");
-        cabDriver2.setLogin("Kolya");
+        cabDriver1.setLogin("Vasya11");
+        cabDriver2.setLogin("Kolya12");
 
         car1.setCabDriver(cabDriver1);
         car2.setCabDriver(cabDriver1);
@@ -142,4 +140,18 @@ public class CarDaoTest {
         carDao.delete(car2);
         carDao.delete(car3);
     }
+
+
+//    public Car findById(long id) {
+//    }
+//
+//    public List<Car> findAll() {
+//    }
+//
+//    public List<Car> findAllByDriver(CabDriver cabDriver) {
+//    }
+
+
+    // public List<Car> findAllByType(Boolean carTypeLorry) {
+    //public List<Car> findAllByStatus(Boolean carStatus) {
 }

@@ -58,6 +58,7 @@
                 </select>
 
                 <p>&nbsp;</p>
+
                 <input name="Save" type="submit" value="Сохранить"/>
             </div>
         </div>
