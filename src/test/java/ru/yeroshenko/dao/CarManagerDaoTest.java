@@ -31,9 +31,11 @@ public class CarManagerDaoTest {
     public void testAdd() throws Exception {
         CarManager carManager = new CarManager();
         carManager.setLogin("Vasya1");
+
         carManagerDao.add(carManager);
-        assertTrue(carManager.getId() > 0);
         carManagerDao.delete(carManager);
+
+        assertTrue(carManager.getId() > 0);
     }
 
     @Test
@@ -43,7 +45,9 @@ public class CarManagerDaoTest {
         carManagerDao.add(carManager);
         long id = carManager.getId();
         carManagerDao.delete(carManager);
+
         CarManager carManagerFromDb = carManagerDao.findById(id);
+
         assertNull(carManagerFromDb);
     }
 
@@ -53,15 +57,19 @@ public class CarManagerDaoTest {
         CarManager carManager = new CarManager();
         carManager.setLogin("Vasya2");
         carManagerDao.add(carManager);
+
         long idD = carManager.getId();
         CarManager carManagerFromDb = carManagerDao.findById(idD);
         carManager.setLogin("Sveta");
         carManagerDao.update(carManager);
+
         long idD2 = carManager.getId();
         CarManager carManagerFromDb2 = carManagerDao.findById(idD2);
+
+        carManagerDao.delete(carManager);
+
         assertEquals("Vasya2", carManagerFromDb.getLogin());
         assertEquals("Sveta", carManagerFromDb2.getLogin());
-        carManagerDao.delete(carManager);
     }
 
 
@@ -72,8 +80,10 @@ public class CarManagerDaoTest {
         carManagerDao.add(carManager);
         long id = carManager.getId();
         CarManager carManagerFromDb = carManagerDao.findById(id);
-        assertEquals(carManagerFromDb.getLogin(), carManager.getLogin());
+
         carManagerDao.delete(carManager);
+
+        assertEquals(carManagerFromDb.getLogin(), carManager.getLogin());
     }
 
     @Test
@@ -81,13 +91,17 @@ public class CarManagerDaoTest {
         CarManager carManager1 = new CarManager();
         carManager1.setLogin("Vasya5");
         carManagerDao.add(carManager1);
+
         CarManager carManager2 = new CarManager();
         carManager2.setLogin("Kolya2");
         carManagerDao.add(carManager2);
+
         List<CarManager> carManagers = carManagerDao.findAll();
-        assertEquals(carManagers.size(), 2);
+
         carManagerDao.delete(carManager1);
         carManagerDao.delete(carManager2);
+
+        assertEquals(carManagers.size(), 2);
     }
 
 }

@@ -112,7 +112,7 @@ public class CarDao {
     public List<Car> findAllByType(Boolean carTypeLorry) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Car car where car.carTypeLorry = ?");
-        query.setParameter(1, carTypeLorry);
+        query.setParameter(0, carTypeLorry);
         List list = query.list();
         session.close();
         return list;
@@ -122,7 +122,7 @@ public class CarDao {
     public List<Car> findAllByStatus(Boolean carStatus) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Car car where car.carStatus = ?");
-        query.setParameter(1, carStatus);
+        query.setParameter(0, carStatus);
         List list = query.list();
         session.close();
         return list;

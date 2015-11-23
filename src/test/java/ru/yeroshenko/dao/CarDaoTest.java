@@ -17,11 +17,15 @@ import static org.junit.Assert.*;
 public class CarDaoTest {
 
     CarDao carDao;
+    CabDriverDao cabDriverDao;
+    //AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         carDao = new CarDao(sessionFactory);
+        cabDriverDao = new CabDriverDao(sessionFactory);
+
     }
 
     @Test
@@ -30,8 +34,8 @@ public class CarDaoTest {
         car.setLicencePlate("EN 2222");
         car.setModel("bmw");
         carDao.add(car);
-        assertTrue(car.getId() > 0);
         carDao.delete(car);
+        assertTrue(car.getId() > 0);
     }
 
     @Test
@@ -40,12 +44,16 @@ public class CarDaoTest {
         car.setLicencePlate("EN 2222");
         car.setModel("bmw");
         carDao.add(car);
+
         long id = car.getId();
         Car carFromDb = carDao.findById(id);
         carFromDb.setModel("mercedes");
         carDao.update(carFromDb);
+
         Car carFromDb2 = carDao.findById(id);
+
         assertEquals("mercedes", carFromDb2.getModel());
+
         carDao.delete(carFromDb);
     }
 
@@ -55,9 +63,12 @@ public class CarDaoTest {
         car.setLicencePlate("EN 1111");
         car.setModel("bmw");
         carDao.add(car);
+
         long id = car.getId();
         carDao.delete(car);
+
         Car carFromDb = carDao.findById(id);
+
         assertNull(carFromDb);
     }
 
@@ -74,45 +85,6 @@ public class CarDaoTest {
     }
 
     @Test
-    public void testFindAll() throws Exception {
-        Car car1 = new Car();
-        car1.setLicencePlate("EN 2222");
-        car1.setModel("bmw");
-        car1.setCarTypeLorry(true);
-        car1.setCarStatus(true);
-        CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Kolya10");
-        car1.setCabDriver(cabDriver);
-
-        carDao.add(car1);
-        Car car2 = new Car();
-        car2.setLicencePlate("EN 333");
-        car2.setModel("kia");
-        car2.setCarTypeLorry(false);
-        car2.setCarStatus(false);
-        CabDriver cabDriver2 = new CabDriver();
-        cabDriver2.setLogin("Vasya10");
-        car2.setCabDriver(cabDriver2);
-
-        carDao.add(car2);
-        List<Car> cars = carDao.findAll();
-        assertEquals(cars.size(), 2);
-    }
-
-    @Test
-    public void testSetAndSaveCabDriverToCar() throws Exception {
-        Car car = new Car();
-        CabDriver cabDriver = new CabDriver();
-        car.setModel("kia");
-        cabDriver.setLogin("Tom");
-        car.setCabDriver(cabDriver);
-        carDao.add(car);
-        Car carFromDb = carDao.findById(car.getId());
-        assertEquals(carFromDb.getModel(), car.getModel());
-        assertEquals(carFromDb.getCabDriver().getLogin(), cabDriver.getLogin());
-        carDao.delete(car);
-    }
-
     public void testFindAllCarsByDriver() throws Exception {
         Car car1 = new Car();
         Car car2 = new Car();
@@ -126,32 +98,109 @@ public class CarDaoTest {
         cabDriver1.setLogin("Vasya11");
         cabDriver2.setLogin("Kolya12");
 
-        car1.setCabDriver(cabDriver1);
-        car2.setCabDriver(cabDriver1);
-        car3.setCabDriver(cabDriver2);
-        carDao.add(car1);
-        carDao.add(car2);
-        carDao.add(car2);
+        carDao.add(car1, cabDriver1.getId());
+        carDao.add(car2, cabDriver1.getId());
+        carDao.add(car3, cabDriver2.getId());
+
+        cabDriver1 = cabDriverDao.findById(cabDriver1.getId());
 
         List<Car> cars = carDao.findAllByDriver(cabDriver1);
-        assertEquals(cars.size(), 0);
 
         carDao.delete(car1);
         carDao.delete(car2);
         carDao.delete(car3);
+
+        assertEquals(cars.size(), 0);
+    }
+
+    @Test
+    public void testFindAllByType() throws Exception {
+        Car car1 = new Car();
+        car1.setCarTypeLorry(true);
+        Car car2 = new Car();
+        car2.setCarTypeLorry(true);
+        Car car3 = new Car();
+        car3.setCarTypeLorry(false);
+        carDao.add(car1);
+        carDao.add(car2);
+        carDao.add(car3);
+
+        List<Car> cars = carDao.findAllByType(true);
+        carDao.delete(car1);
+        carDao.delete(car2);
+        carDao.delete(car3);
+
+        assertEquals(cars.size(), 2);
+    }
+
+    @Test
+    public void testFindAllByStatus() throws Exception {
+        Car car1 = new Car();
+        car1.setCarStatus(true);
+        Car car2 = new Car();
+        car2.setCarStatus(true);
+        Car car3 = new Car();
+        car3.setCarStatus(false);
+        carDao.add(car1);
+        carDao.add(car2);
+        carDao.add(car3);
+
+        List<Car> cars = carDao.findAllByStatus(true);
+        carDao.delete(car1);
+        carDao.delete(car2);
+        carDao.delete(car3);
+
+        assertEquals(cars.size(), 2);
     }
 
 
-//    public Car findById(long id) {
-//    }
-//
-//    public List<Car> findAll() {
-//    }
-//
-//    public List<Car> findAllByDriver(CabDriver cabDriver) {
-//    }
+    @Test
+    public void testFindAll() throws Exception {
+        Car car1 = new Car();
+        car1.setLicencePlate("EN 2222");
+        car1.setModel("bmw");
+        car1.setCarTypeLorry(true);
+        car1.setCarStatus(true);
+        CabDriver cabDriver = new CabDriver();
+        cabDriver.setLogin("Kolya10");
+        carDao.add(car1, cabDriver.getId());
 
+        Car car2 = new Car();
+        car2.setLicencePlate("EN 333");
+        car2.setModel("kia");
+        car2.setCarTypeLorry(false);
+        car2.setCarStatus(false);
+        CabDriver cabDriver2 = new CabDriver();
+        cabDriver2.setLogin("Vasya10");
+        carDao.add(car2, cabDriver2.getId());
 
-    // public List<Car> findAllByType(Boolean carTypeLorry) {
-    //public List<Car> findAllByStatus(Boolean carStatus) {
+        List<Car> cars = carDao.findAll();
+
+        carDao.delete(car1);
+        carDao.delete(car2);
+
+        cabDriverDao.delete(cabDriver);
+        cabDriverDao.delete(cabDriver2);
+
+        assertEquals(cars.size(), 2);
+    }
+
+    @Test
+    public void testSetAndSaveCabDriverToCar() throws Exception {
+        Car car = new Car();
+        CabDriver cabDriver = new CabDriver();
+        car.setModel("kia");
+        cabDriver.setLogin("Tom");
+
+        cabDriverDao.add(cabDriver);
+
+        carDao.add(car, cabDriver.getId());
+
+        Car carFromDb = carDao.findById(car.getId());
+        carDao.delete(car);
+        cabDriverDao.delete(cabDriver);
+
+        assertEquals(carFromDb.getCabDriver().getLogin(), cabDriver.getLogin());
+        assertEquals(carFromDb.getModel(), car.getModel());
+    }
 }

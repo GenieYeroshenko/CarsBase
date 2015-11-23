@@ -16,14 +16,11 @@ import static org.junit.Assert.*;
 public class CabDriverDaoTest {
 
     CabDriverDao cabDriverDao;
-    CarDao carDao;
-
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         cabDriverDao = new CabDriverDao(sessionFactory);
-        carDao = new CarDao(sessionFactory);
     }
 
     @Test
@@ -31,8 +28,10 @@ public class CabDriverDaoTest {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setLogin("Vasya1");
         cabDriverDao.add(cabDriver);
-        assertTrue(cabDriver.getId() > 0);
+
         cabDriverDao.delete(cabDriver);
+
+        assertTrue(cabDriver.getId() > 0);
     }
 
     @Test
@@ -40,15 +39,19 @@ public class CabDriverDaoTest {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setLogin("Vasya2");
         cabDriverDao.add(cabDriver);
+
         long idD = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(idD);
         cabDriver.setLogin("Sveta");
         cabDriverDao.update(cabDriver);
+
         long idD2 = cabDriver.getId();
         CabDriver cabDriverFromDb2 = cabDriverDao.findById(idD2);
+
+        cabDriverDao.delete(cabDriver);
+
         assertEquals("Vasya2", cabDriverFromDb.getLogin());
         assertEquals("Sveta", cabDriverFromDb2.getLogin());
-        cabDriverDao.delete(cabDriver);
     }
 
     @Test
@@ -58,7 +61,9 @@ public class CabDriverDaoTest {
         cabDriverDao.add(cabDriver);
         long id = cabDriver.getId();
         cabDriverDao.delete(cabDriver);
+
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);
+
         assertNull(cabDriverFromDb);
     }
 
@@ -69,7 +74,9 @@ public class CabDriverDaoTest {
         cabDriverDao.add(cabDriver);
         long id = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);
+
         assertEquals(cabDriverFromDb.getLogin(), cabDriver.getLogin());
+
         cabDriverDao.delete(cabDriver);
     }
 
@@ -82,8 +89,10 @@ public class CabDriverDaoTest {
         cabDriver2.setLogin("Kolya2");
         cabDriverDao.add(cabDriver2);
         List<CabDriver> drivers = cabDriverDao.findAll();
-        assertEquals(drivers.size(), 2);
+
         cabDriverDao.delete(cabDriver1);
         cabDriverDao.delete(cabDriver2);
+
+        assertEquals(drivers.size(), 2);
     }
 }

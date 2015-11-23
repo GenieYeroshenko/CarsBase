@@ -40,10 +40,11 @@ public class AccountDaoTest {
         cabDriverDao.add(cabDriver3);
 
         List<Account> accounts = accountDao.findAllUsersByLogin("login1");
-        assertEquals(accounts.size(), 2);
         cabDriverDao.delete(cabDriver1);
         cabDriverDao.delete(cabDriver2);
         cabDriverDao.delete(cabDriver3);
+
+        assertEquals(accounts.size(), 2);
     }
 
     @Test
@@ -60,9 +61,10 @@ public class AccountDaoTest {
         cabDriverDao.add(cabDriver3);
 
         long numberOfAccounts = accountDao.countAccountsWithLogin("login1");
-        assertEquals(numberOfAccounts, 2);
         cabDriverDao.delete(cabDriver1);
         cabDriverDao.delete(cabDriver2);
         cabDriverDao.delete(cabDriver3);
+
+        assertEquals(numberOfAccounts, 2);
     }
 }

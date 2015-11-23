@@ -78,7 +78,6 @@ public class OrdDao {
         return list;
     }
 
-
     public void updateOrd(Ord ord, long carId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -96,8 +95,7 @@ public class OrdDao {
         }
     }
 
-
-    public List<Ord> findAllByDriverAndStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
+    public List<Ord> findAllByDriverAndOrdStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.car.cabDriver = :driver and ord.ordStatus in :statuses");
         query.setParameter("driver", cabDriver);
@@ -122,21 +120,6 @@ public class OrdDao {
             tx = session.beginTransaction();
             Car carFromDB = (Car) session.get(Car.class, carId);
             ord.setCar(carFromDB);
-            session.persist(ord);
-            tx.commit();
-        } catch (RuntimeException e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
-
-    public void add(Ord ord) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
             session.persist(ord);
             tx.commit();
         } catch (RuntimeException e) {

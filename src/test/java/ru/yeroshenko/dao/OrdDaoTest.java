@@ -3,6 +3,7 @@ package ru.yeroshenko.dao;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
+import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.Car;
 import ru.yeroshenko.domain.Ord;
 import ru.yeroshenko.domain.Ord.OrdStatus;
@@ -20,12 +21,14 @@ public class OrdDaoTest {
 
     OrdDao ordDao;
     CarDao carDao;
+    CabDriverDao cabDriverDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         ordDao = new OrdDao(sessionFactory);
         carDao = new CarDao(sessionFactory);
+        cabDriverDao = new CabDriverDao(sessionFactory);
     }
 
     @Test
@@ -47,15 +50,21 @@ public class OrdDaoTest {
         carDao.delete(car);
     }
 
-
     @Test
     public void testDelete() throws Exception {
         Ord ord = new Ord();
         ord.setRout("SPb");
-        ordDao.add(ord);
-        long id = ord.getId();
+        Car car = new Car();
+        car.setModel("kia333");
+        carDao.add(car);
+
+        ordDao.createOrd(ord, car.getId());
+        long idOrd = ord.getId();
         ordDao.delete(ord);
-        Ord ordFromDb = ordDao.findById(id);
+        Ord ordFromDb = ordDao.findById(idOrd);
+
+        carDao.delete(car);
+
         assertNull(ordFromDb);
     }
 
@@ -63,11 +72,22 @@ public class OrdDaoTest {
     public void testFindById() {
         Ord ord = new Ord();
         ord.setRout("SPb");
-        ordDao.add(ord);
-        long id = ord.getId();
-        Ord ordFromDb = ordDao.findById(id);
-        assertEquals(ordFromDb.getRout(), ord.getRout());
+        Car car = new Car();
+        car.setModel("kia222");
+        CabDriver cabDriver = new CabDriver();
+        cabDriver.setLogin("forkia222");
+        car.setCabDriver(cabDriver);
+        carDao.add(car);
+
+        ordDao.createOrd(ord, car.getId());
+        long idOrd = ord.getId();
+        Ord ordFromDb = ordDao.findById(idOrd);
+
         ordDao.delete(ord);
+        carDao.delete(car);
+        cabDriverDao.delete(ord.getCar().getCabDriver());
+
+        assertEquals(ordFromDb.getRout(), ord.getRout());
     }
 
     @Test
@@ -99,18 +119,35 @@ public class OrdDaoTest {
         ord1.setOrdStatus(OrdStatus.ASSIGNED);
         ord2.setOrdStatus(OrdStatus.DONE);
         ord3.setOrdStatus(OrdStatus.ASSIGNED);
-        ordDao.add(ord1);
-        ordDao.add(ord2);
-        ordDao.add(ord3);
+
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+
+        carDao.add(car1);
+        carDao.add(car2);
+        carDao.add(car3);
+
+        long idCar1 = car1.getId();
+        long idCar2 = car2.getId();
+        long idCar3 = car3.getId();
+
+        ordDao.createOrd(ord1, idCar1);
+        ordDao.createOrd(ord2, idCar2);
+        ordDao.createOrd(ord3, idCar3);
+
         List<Ord> ords = ordDao.findAllByStatus(OrdStatus.ASSIGNED);
         assertEquals(ords.size(), 2);
         ordDao.delete(ord1);
         ordDao.delete(ord2);
         ordDao.delete(ord3);
+        carDao.delete(car1);
+        carDao.delete(car2);
+        carDao.delete(car3);
     }
 
     @Test
-    public void testCreate() throws Exception {
+    public void testCreateOrd() throws Exception {
         Car carFromDb = getCar();
 
         Ord ord = new Ord();
@@ -134,18 +171,97 @@ public class OrdDaoTest {
     }
 
 
-//    public List<Ord> testFindAllByDriverAndStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
-//    }
-//
-//    public List<Ord> testFindAllByDriver(CabDriver cabDriver) {
-//    }
-//
-//    public void testCreateOrd(Ord ord, long carId) {
-//    }
-//
-//    public void testAdd(Ord ord) {
-//    }
+    @Test
+    public void testFindAllByDriver() {
 
+        CabDriver cabDriver1 = new CabDriver();
+        CabDriver cabDriver3 = new CabDriver();
+        cabDriverDao.add(cabDriver1);
+        cabDriverDao.add(cabDriver3);
+
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        car1.setCabDriver(cabDriver1);
+        car2.setCabDriver(cabDriver1);
+        car3.setCabDriver(cabDriver3);
+        carDao.add(car1, cabDriver1.getId());
+        carDao.add(car2, cabDriver1.getId());
+        carDao.add(car3, cabDriver3.getId());
+
+        Ord ord1 = new Ord();
+        Ord ord2 = new Ord();
+        Ord ord3 = new Ord();
+
+        long idCar1 = car1.getId();
+        long idCar2 = car2.getId();
+        long idCar3 = car3.getId();
+
+        ordDao.createOrd(ord1, idCar1);
+        ordDao.createOrd(ord2, idCar2);
+        ordDao.createOrd(ord3, idCar3);
+
+        List<Ord> ords = ordDao.findAllByDriver(cabDriver1);
+        ordDao.delete(ord1);
+        ordDao.delete(ord2);
+        ordDao.delete(ord3);
+
+        carDao.delete(car1);
+        carDao.delete(car2);
+        carDao.delete(car3);
+        cabDriverDao.delete(cabDriver1);
+        cabDriverDao.delete(cabDriver3);
+
+        assertEquals(ords.size(), 2);
+    }
+
+    @Test
+    public void testFindAllByDriverAndOrdStatuses() {
+
+        CabDriver cabDriver1 = new CabDriver();
+        CabDriver cabDriver3 = new CabDriver();
+        cabDriverDao.add(cabDriver1);
+        cabDriverDao.add(cabDriver3);
+
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+
+        carDao.add(car1, cabDriver1.getId());
+        carDao.add(car2, cabDriver1.getId());
+        carDao.add(car3, cabDriver3.getId());
+
+        Ord ord1 = new Ord();
+        Ord ord2 = new Ord();
+        Ord ord3 = new Ord();
+
+        ord1.setOrdStatus(OrdStatus.DONE);
+        ord2.setOrdStatus(OrdStatus.IN_QUEUE);
+        ord3.setOrdStatus(OrdStatus.ASSIGNED);
+
+        long idCar1 = car1.getId();
+        long idCar2 = car2.getId();
+        long idCar3 = car3.getId();
+
+        ordDao.createOrd(ord1, idCar1);
+        ordDao.createOrd(ord2, idCar2);
+        ordDao.createOrd(ord3, idCar3);
+
+        OrdStatus[] statuses = {OrdStatus.DONE};
+        List<Ord> ords = ordDao.findAllByDriverAndOrdStatuses(cabDriver1, statuses);
+
+        ordDao.delete(ord1);
+        ordDao.delete(ord2);
+        ordDao.delete(ord3);
+
+        carDao.delete(car1);
+        carDao.delete(car2);
+        carDao.delete(car3);
+        cabDriverDao.delete(cabDriver1);
+        cabDriverDao.delete(cabDriver3);
+
+        assertEquals(ords.size(), 1);
+    }
 
 
 }

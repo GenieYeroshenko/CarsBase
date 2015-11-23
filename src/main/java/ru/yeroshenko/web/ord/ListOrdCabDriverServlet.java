@@ -35,7 +35,7 @@ public class ListOrdCabDriverServlet extends HttpServlet {
         ServletContext context = request.getSession().getServletContext();
         OrdDao ordDao = (OrdDao) context.getAttribute("ordDao");
         Ord.OrdStatus[] availableStatuses = {Ord.OrdStatus.ASSIGNED, Ord.OrdStatus.IN_TRANSIT, Ord.OrdStatus.DONE};
-        List<Ord> ords = ordDao.findAllByDriverAndStatuses(cabDriver, availableStatuses);
+        List<Ord> ords = ordDao.findAllByDriverAndOrdStatuses(cabDriver, availableStatuses);
 
         request.setAttribute("newListOfOrdsByDriver", ords);
         request.getRequestDispatcher("/jsp/ord/ords-list-driver.jsp").forward(request, response);

@@ -20,7 +20,6 @@ import java.util.List;
 /**
  * Created by evgeniya on 15/11/15.
  */
-//todo
 public class AddOrdServlet extends HttpServlet {
 
     @Override
