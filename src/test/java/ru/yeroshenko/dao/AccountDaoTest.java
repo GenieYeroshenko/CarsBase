@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class AccountDaoTest {
 
-    AccountDao accountDao;
+    private AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {

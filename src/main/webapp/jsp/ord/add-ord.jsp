@@ -32,7 +32,7 @@
 
             <h1></h1>
 
-            <div>
+            <div style="margin-bottom: 20px; margin-top: 50px;">
                 <label style="line-height:1.6">Маршрут</label>
                 <input name="rout" size="15" type="text"/>
             </div>
@@ -46,7 +46,7 @@
             <label style="line-height:1.6">Машина и водитель</label>
             <select name="carId">
                 <c:forEach var="car" items="${requestScope.newListOfCars}">
-                    <option value="${car.id}">${car.licencePlate} - ${car.cabDriver.login}</option>
+                    <option value="${car.id}">${car.model} - ${car.cabDriver.login}</option>
                 </c:forEach>
             </select>
 

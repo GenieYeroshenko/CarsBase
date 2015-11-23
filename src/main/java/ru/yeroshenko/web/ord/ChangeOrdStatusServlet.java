@@ -39,9 +39,7 @@ public class ChangeOrdStatusServlet extends HttpServlet {
         Ord ord = ordDao.findById(id);
         ord.setOrdStatus(status);
 
-        ordDao.update(ord);
+        ordDao.updateOrd(ord, id);
         response.sendRedirect("/list-ord-driver");
     }
-
-
 }

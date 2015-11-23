@@ -32,9 +32,7 @@
     <div class="text-center">
         <h1>Редактирование машины</h1>
 
-        <h1></h1>
-
-        <div>
+        <div style="margin-bottom: 50px; margin-top: 50px;">
             <form action="/update-car" method="post">
 
                 <div>
@@ -82,15 +80,11 @@
                 </c:otherwise>
                 </c:choose>
         </div>
-        <p>&nbsp;</p>
         <input value="${requestScope.updatedCar.id}" type="hidden" name="id">
         <input name="Save" type="submit" value="Сохранить"/>
     </div>
 </div>
-</div>
 
-
-</form>
 </body>
 </html>
 

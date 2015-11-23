@@ -44,7 +44,8 @@
             </c:when>
         </c:choose>
 
-        <table class="table" style="width:900px">
+        <div style="margin-top: 50px;">
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Тип машины</th>
@@ -100,6 +101,7 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 </body>

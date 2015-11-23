@@ -44,7 +44,6 @@ public class RegistrationServlet extends HttpServlet {
             accountDao.add(cabDriver);
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, cabDriver);
             response.sendRedirect("/list-ord-driver");
-            return;
         } else if (role.equals("carManager")) {
             CarManager carManager = new CarManager();
             carManager.setLogin(login);
@@ -52,7 +51,6 @@ public class RegistrationServlet extends HttpServlet {
             accountDao.add(carManager);
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, carManager);
             response.sendRedirect("/list-ord-manager");
-            return;
         }
     }
 }

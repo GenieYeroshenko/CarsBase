@@ -30,13 +30,10 @@
     <div class="text-center">
         <h1>Редактирование заявки</h1>
 
-        <h1></h1>
-
-        <div>
+        <div style="margin-bottom: 20px; margin-top: 50px;">
             <form action="/update-ord" method="post">
                 <label style="line-height:1.6">Маршрут</label>
                 <input name="rout" size="15" type="text" value="${requestScope.updatedOrd.rout}"/>
-
                 <div>
                     <label style="line-height:1.6">Тип машины</label>
                     <c:choose>
@@ -54,27 +51,23 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
-
-
                 <div>
                     <label style="line-height:1.6">Машина и водитель</label>
                     <select name="carId">
                         <c:forEach var="car" items="${requestScope.newListOfCars}">
                             <c:choose>
                                 <c:when test="${car.id == requestScope.updatedOrd.car.id}">
-                                    <option selected="selected" value="${car.id}">${car.licencePlate}
+                                    <option selected="selected" value="${car.id}">${car.model}
                                         - ${car.cabDriver.login}</option>
                                 </c:when>
                                 <c:otherwise>
-                                    <option value="${car.id}">${car.licencePlate}
+                                    <option value="${car.id}">${car.model}
                                         - ${car.cabDriver.login}</option>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
                     </select>
                 </div>
-
-
                 <label style="line-height:1.6">Статус заявки</label>
                 <c:choose>
                 <c:when test="${requestScope.updatedOrd.ordStatus == 'ASSIGNED'}">
@@ -97,15 +90,10 @@
                 </c:otherwise>
                 </c:choose>
         </div>
-        <p>&nbsp;</p>
         <input value="${requestScope.updatedOrd.id}" type="hidden" name="id">
         <input name="Save" type="submit" value="Сохранить"/>
     </div>
 </div>
-</div>
-
-
-</form>
 </body>
 </html>
 

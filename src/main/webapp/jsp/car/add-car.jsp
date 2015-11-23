@@ -34,9 +34,8 @@
         <div class="text-center">
             <h1>Добавление машины</h1>
 
-            <h1></h1>
-
-            <div>
+            <div style="margin-bottom: 20px; margin-top: 50px;">
+                <div>
                 <label style="line-height:1.6">Тип машины</label>
                 <select name="carTypeLorry">
                     <option value="false">легковая</option>
@@ -56,13 +55,9 @@
                 <option value="true">кондиционная</option>
                 <option value="false">не кондиционная</option>
             </select>
-
-            <p>&nbsp;</p>
+        </div>
             <input name="Save" type="submit" value="Сохранить"/>
         </div>
-        </table>
-
-    </div>
     </div>
 </form>
 </body>

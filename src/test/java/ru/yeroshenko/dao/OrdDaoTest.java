@@ -19,17 +19,15 @@ import static org.junit.Assert.assertNull;
  */
 public class OrdDaoTest {
 
-    OrdDao ordDao;
-    CarDao carDao;
-    CabDriverDao cabDriverDao;
-    AccountDao accountDao;
+    private OrdDao ordDao;
+    private CarDao carDao;
+    private AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         ordDao = new OrdDao(sessionFactory);
         carDao = new CarDao(sessionFactory);
-        cabDriverDao = new CabDriverDao(sessionFactory);
         accountDao = new AccountDao(sessionFactory);
     }
 
@@ -45,7 +43,7 @@ public class OrdDaoTest {
 
         ordFromDb.setRout("MSK");
 
-        ordDao.update(ordFromDb);
+        ordDao.updateOrd(ordFromDb, idOrd);
         Ord ordFromDb2 = ordDao.findById(idOrd);
         assertEquals("MSK", ordFromDb2.getRout());
         ordDao.delete(ordFromDb2);
@@ -172,7 +170,6 @@ public class OrdDaoTest {
         return car;
     }
 
-
     @Test
     public void testFindAllByDriver() {
 
@@ -264,6 +261,4 @@ public class OrdDaoTest {
 
         assertEquals(ords.size(), 1);
     }
-
-
 }

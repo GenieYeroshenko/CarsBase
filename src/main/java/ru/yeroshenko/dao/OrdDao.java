@@ -22,22 +22,6 @@ public class OrdDao {
         this.sessionFactory = sessionFactory;
     }
 
-
-    public void update(Ord ord) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.update(ord);
-            tx.commit();
-        } catch (RuntimeException e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
-
     public void delete(Ord ord) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -103,6 +87,7 @@ public class OrdDao {
         session.close();
         return list;
     }
+
     public List<Ord> findAllByDriver(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.car.cabDriver = ?");

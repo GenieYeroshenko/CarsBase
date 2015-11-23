@@ -11,7 +11,6 @@
 <body>
 <form action="/registration" method="post">
 
-    <body>
     <div class="navbar navbar-default navbar-static-top">
         <div class="container">
 

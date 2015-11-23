@@ -31,16 +31,15 @@
     <div class="text-center">
         <h1>Журнал заявок</h1>
 
-
-        <h1></h1>
-        <table class="table" style="width:900px">
+        <div style="margin-top: 50px;">
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Номер заявки</th>
                 <th scope="col">Дата</th>
                 <th scope="col">Маршрут</th>
                 <th scope="col">Тип машины</th>
-                <th scope="col">Номер машины</th>
+                <th scope="col">Модель машины</th>
                 <th scope="col">Водитель</th>
                 <th scope="col">Статус заявки</th>
             </tr>
@@ -62,7 +61,7 @@
                         </c:choose>
                     </td>
 
-                    <td><c:out value="${ord.car.licencePlate}"/></td>
+                    <td><c:out value="${ord.car.model}"/></td>
                     <td><c:out value="${ord.car.cabDriver.login}"/></td>
                     <td>
                         <c:choose>
@@ -94,8 +93,8 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
-</form>
 </body>
 </html>

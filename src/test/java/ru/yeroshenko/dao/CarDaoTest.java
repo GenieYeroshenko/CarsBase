@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  */
 public class CarDaoTest {
 
-    CarDao carDao;
-    CabDriverDao cabDriverDao;
-    AccountDao accountDao;
+    private CarDao carDao;
+    private CabDriverDao cabDriverDao;
+    private AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
