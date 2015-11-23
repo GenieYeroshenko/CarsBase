@@ -51,10 +51,37 @@
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>
                     <td><c:out value="${ord.rout}"/></td>
-                    <td><c:out value="${ord.carTypeLorry}"/></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${ord.carTypeLorry}">
+                                грузовая
+                            </c:when>
+                            <c:otherwise>
+                                легковая
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+
                     <td><c:out value="${ord.car.licencePlate}"/></td>
                     <td><c:out value="${ord.car.cabDriver.login}"/></td>
-                    <td><c:out value="${ord.ordStatus}"/></td>
+                    <td>
+                        <c:choose>
+                        <c:when test="${ord.ordStatus == 'IN_QUEUE'}">
+                            <c:out value="не назначена"/>
+                        </c:when>
+                        <c:when test="${ord.ordStatus == 'ASSIGNED'}">
+                            <c:out value="назначена"/>
+                        </c:when>
+                        <c:when test="${ord.ordStatus == 'IN_TRANSIT'}">
+                            <c:out value="в пути"/>
+                        </c:when>
+                        <c:when test="${ord.ordStatus == 'DONE'}">
+                            <c:out value="выполнена"/>
+                        </c:when>
+                        </c:choose>
+                    <td>
+
+
                     <td>
                         <a class="btn btn-warning" href="/change-ord-status?id=${ord.id}&status=IN_TRANSIT">установить
                             "в пути"</a><a></a>

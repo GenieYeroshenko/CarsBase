@@ -45,7 +45,7 @@
 
                     <div>
                         <label style="line-height:1.6">Роль</label>
-                        <input name="role" size="15" type="radio" value="cabDriver">Водитель
+                        <input name="role" size="15" type="radio" value="cabDriver" checked>Водитель
                         <input name="role" size="15" type="radio" value="carManager">Диспетчер
                     </div>
                     <p>&nbsp;</p>

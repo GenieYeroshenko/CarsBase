@@ -39,6 +39,7 @@ public class ListOrdCabDriverServlet extends HttpServlet {
 
         request.setAttribute("newListOfOrdsByDriver", ords);
         request.getRequestDispatcher("/jsp/ord/ords-list-driver.jsp").forward(request, response);
+        response.sendRedirect("/list-ord-driver");
     }
 }
 

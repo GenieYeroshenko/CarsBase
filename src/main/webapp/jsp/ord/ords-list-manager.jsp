@@ -29,6 +29,9 @@
         <h1>Журнал заявок</h1>
 
         <a href="/list-ord-manager?ordStatus=ASSIGNED" class="btn btn-default">Назначенные</a>
+        <a href="/list-ord-manager?ordStatus=IN_QUEUE" class="btn btn-default">Не назначенные</a>
+        <a href="/list-ord-manager?ordStatus=IN_TRANSIT" class="btn btn-default">В пути</a>
+        <a href="/list-ord-manager?ordStatus=DONE" class="btn btn-default">Выполненные</a>
         <a href="/list-ord-manager" class="btn btn-default">Все</a>
         <table class="table" style="width:900px">
             <thead>
@@ -48,10 +51,33 @@
                     <td><c:out value="${ord.id}"/></td>
                     <td><c:out value="${ord.date}"/></td>
                     <td><c:out value="${ord.rout}"/></td>
-                    <td><c:out value="${ord.carTypeLorry}"/></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${ord.carTypeLorry}">
+                                грузовая
+                            </c:when>
+                            <c:otherwise>
+                                легковая
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td><c:out value="${ord.car.licencePlate}"/></td>
                     <td><c:out value="${ord.car.cabDriver.login}"/></td>
-                    <td><c:out value="${ord.ordStatus}"/></td>
+                    <td>
+                        <c:choose>
+                        <c:when test="${ord.ordStatus == 'IN_QUEUE'}">
+                            <c:out value="не назначена"/>
+                        </c:when>
+                        <c:when test="${ord.ordStatus == 'ASSIGNED'}">
+                            <c:out value="назначена"/>
+                        </c:when>
+                        <c:when test="${ord.ordStatus == 'IN_TRANSIT'}">
+                            <c:out value="в пути"/>
+                        </c:when>
+                        <c:when test="${ord.ordStatus == 'DONE'}">
+                            <c:out value="выполнена"/>
+                        </c:when>
+                        </c:choose>
                     <td>
                         <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a><a></a>
                     </td>
