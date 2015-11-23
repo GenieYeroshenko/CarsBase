@@ -13,7 +13,7 @@ import javax.servlet.ServletContextListener;
 public class Listener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent event) {
-        System.out.println("ServletContextListener started");
+
         ServletContext servletContext = event.getServletContext();
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 

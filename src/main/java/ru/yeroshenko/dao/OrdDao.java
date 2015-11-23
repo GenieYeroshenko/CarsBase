@@ -45,7 +45,6 @@ public class OrdDao {
             tx = session.beginTransaction();
             session.delete(ord);
             session.flush();
-            System.out.println("Ord deleted");
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();

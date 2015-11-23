@@ -76,7 +76,6 @@ public class CarDao {
             tx = session.beginTransaction();
             session.delete(car);
             session.flush();
-            System.out.println("Car deleted");
             tx.commit();
         } catch (RuntimeException e) {
             if (tx != null) tx.rollback();
