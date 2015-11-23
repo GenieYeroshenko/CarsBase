@@ -22,6 +22,7 @@ public class OrdDaoTest {
     OrdDao ordDao;
     CarDao carDao;
     CabDriverDao cabDriverDao;
+    AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
@@ -29,6 +30,7 @@ public class OrdDaoTest {
         ordDao = new OrdDao(sessionFactory);
         carDao = new CarDao(sessionFactory);
         cabDriverDao = new CabDriverDao(sessionFactory);
+        accountDao = new AccountDao(sessionFactory);
     }
 
     @Test
@@ -85,7 +87,7 @@ public class OrdDaoTest {
 
         ordDao.delete(ord);
         carDao.delete(car);
-        cabDriverDao.delete(ord.getCar().getCabDriver());
+        accountDao.delete(ord.getCar().getCabDriver());
 
         assertEquals(ordFromDb.getRout(), ord.getRout());
     }
@@ -176,8 +178,8 @@ public class OrdDaoTest {
 
         CabDriver cabDriver1 = new CabDriver();
         CabDriver cabDriver3 = new CabDriver();
-        cabDriverDao.add(cabDriver1);
-        cabDriverDao.add(cabDriver3);
+        accountDao.add(cabDriver1);
+        accountDao.add(cabDriver3);
 
         Car car1 = new Car();
         Car car2 = new Car();
@@ -209,8 +211,8 @@ public class OrdDaoTest {
         carDao.delete(car1);
         carDao.delete(car2);
         carDao.delete(car3);
-        cabDriverDao.delete(cabDriver1);
-        cabDriverDao.delete(cabDriver3);
+        accountDao.delete(cabDriver1);
+        accountDao.delete(cabDriver3);
 
         assertEquals(ords.size(), 2);
     }
@@ -220,8 +222,8 @@ public class OrdDaoTest {
 
         CabDriver cabDriver1 = new CabDriver();
         CabDriver cabDriver3 = new CabDriver();
-        cabDriverDao.add(cabDriver1);
-        cabDriverDao.add(cabDriver3);
+        accountDao.add(cabDriver1);
+        accountDao.add(cabDriver3);
 
         Car car1 = new Car();
         Car car2 = new Car();
@@ -257,8 +259,8 @@ public class OrdDaoTest {
         carDao.delete(car1);
         carDao.delete(car2);
         carDao.delete(car3);
-        cabDriverDao.delete(cabDriver1);
-        cabDriverDao.delete(cabDriver3);
+        accountDao.delete(cabDriver1);
+        accountDao.delete(cabDriver3);
 
         assertEquals(ords.size(), 1);
     }

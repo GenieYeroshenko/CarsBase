@@ -17,12 +17,10 @@ import static org.junit.Assert.assertEquals;
 public class AccountDaoTest {
 
     AccountDao accountDao;
-    CabDriverDao cabDriverDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        cabDriverDao = new CabDriverDao(sessionFactory);
         accountDao = new AccountDao(sessionFactory);
     }
 
@@ -35,14 +33,14 @@ public class AccountDaoTest {
         cabDriver2.setLogin("login1");
         cabDriver3.setLogin("login2");
 
-        cabDriverDao.add(cabDriver1);
-        cabDriverDao.add(cabDriver2);
-        cabDriverDao.add(cabDriver3);
+        accountDao.add(cabDriver1);
+        accountDao.add(cabDriver2);
+        accountDao.add(cabDriver3);
 
         List<Account> accounts = accountDao.findAllUsersByLogin("login1");
-        cabDriverDao.delete(cabDriver1);
-        cabDriverDao.delete(cabDriver2);
-        cabDriverDao.delete(cabDriver3);
+        accountDao.delete(cabDriver1);
+        accountDao.delete(cabDriver2);
+        accountDao.delete(cabDriver3);
 
         assertEquals(accounts.size(), 2);
     }
@@ -56,14 +54,14 @@ public class AccountDaoTest {
         cabDriver2.setLogin("login1");
         cabDriver3.setLogin("login2");
 
-        cabDriverDao.add(cabDriver1);
-        cabDriverDao.add(cabDriver2);
-        cabDriverDao.add(cabDriver3);
+        accountDao.add(cabDriver1);
+        accountDao.add(cabDriver2);
+        accountDao.add(cabDriver3);
 
         long numberOfAccounts = accountDao.countAccountsWithLogin("login1");
-        cabDriverDao.delete(cabDriver1);
-        cabDriverDao.delete(cabDriver2);
-        cabDriverDao.delete(cabDriver3);
+        accountDao.delete(cabDriver1);
+        accountDao.delete(cabDriver2);
+        accountDao.delete(cabDriver3);
 
         assertEquals(numberOfAccounts, 2);
     }

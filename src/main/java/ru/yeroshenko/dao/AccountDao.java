@@ -3,6 +3,7 @@ package ru.yeroshenko.dao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import ru.yeroshenko.domain.Account;
 
 import java.util.List;
@@ -34,5 +35,36 @@ public class AccountDao {
         Long count = (Long) query.uniqueResult();
         session.close();
         return count;
+    }
+
+    public void add(Account account) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.persist(account);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+    public void delete(Account account) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(account);
+            session.flush();
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
 }

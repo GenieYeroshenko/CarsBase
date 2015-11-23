@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 public class CarManagerDaoTest {
 
     CarManagerDao carManagerDao;
-
     CarDao carDao;
+    AccountDao accountDao;
 
 
     @Before
@@ -23,6 +23,7 @@ public class CarManagerDaoTest {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         carManagerDao = new CarManagerDao(sessionFactory);
         carDao = new CarDao(sessionFactory);
+        accountDao = new AccountDao(sessionFactory);
     }
 
     @Test
@@ -30,8 +31,8 @@ public class CarManagerDaoTest {
         CarManager carManager = new CarManager();
         carManager.setLogin("Vasya1");
 
-        carManagerDao.add(carManager);
-        carManagerDao.delete(carManager);
+        accountDao.add(carManager);
+        accountDao.delete(carManager);
 
         assertTrue(carManager.getId() > 0);
     }
@@ -40,9 +41,9 @@ public class CarManagerDaoTest {
     public void testDelete() throws Exception {
         CarManager carManager = new CarManager();
         carManager.setLogin("Vasya3");
-        carManagerDao.add(carManager);
+        accountDao.add(carManager);
         long id = carManager.getId();
-        carManagerDao.delete(carManager);
+        accountDao.delete(carManager);
 
         CarManager carManagerFromDb = carManagerDao.findById(id);
 
@@ -53,11 +54,11 @@ public class CarManagerDaoTest {
     public void testFindById() throws Exception {
         CarManager carManager = new CarManager();
         carManager.setLogin("Vasya4");
-        carManagerDao.add(carManager);
+        accountDao.add(carManager);
         long id = carManager.getId();
         CarManager carManagerFromDb = carManagerDao.findById(id);
 
-        carManagerDao.delete(carManager);
+        accountDao.delete(carManager);
 
         assertEquals(carManagerFromDb.getLogin(), carManager.getLogin());
     }

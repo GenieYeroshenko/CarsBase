@@ -1,11 +1,8 @@
 package ru.yeroshenko.web.user;
 
 import ru.yeroshenko.dao.AccountDao;
-import ru.yeroshenko.dao.CabDriverDao;
-import ru.yeroshenko.dao.CarManagerDao;
 import ru.yeroshenko.domain.CabDriver;
 import ru.yeroshenko.domain.CarManager;
-import ru.yeroshenko.util.HibernateUtil;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -44,8 +41,7 @@ public class RegistrationServlet extends HttpServlet {
             CabDriver cabDriver = new CabDriver();
             cabDriver.setLogin(login);
             cabDriver.setPassword(password);
-            CabDriverDao cabDriverDao = (CabDriverDao) context.getAttribute("cabDriverDao");
-            cabDriverDao.add(cabDriver);
+            accountDao.add(cabDriver);
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, cabDriver);
             response.sendRedirect("/list-ord-driver");
             return;
@@ -53,8 +49,7 @@ public class RegistrationServlet extends HttpServlet {
             CarManager carManager = new CarManager();
             carManager.setLogin(login);
             carManager.setPassword(password);
-            CarManagerDao carManagerDao = new CarManagerDao(HibernateUtil.getSessionFactory());
-            carManagerDao.add(carManager);
+            accountDao.add(carManager);
             request.getSession().setAttribute(LogInServlet.AUTHORIZED_USER, carManager);
             response.sendRedirect("/list-ord-manager");
             return;

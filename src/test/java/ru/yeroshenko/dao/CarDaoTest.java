@@ -18,14 +18,14 @@ public class CarDaoTest {
 
     CarDao carDao;
     CabDriverDao cabDriverDao;
-    //AccountDao accountDao;
+    AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         carDao = new CarDao(sessionFactory);
         cabDriverDao = new CabDriverDao(sessionFactory);
-
+        accountDao = new AccountDao(sessionFactory);
     }
 
     @Test
@@ -179,8 +179,8 @@ public class CarDaoTest {
         carDao.delete(car1);
         carDao.delete(car2);
 
-        cabDriverDao.delete(cabDriver);
-        cabDriverDao.delete(cabDriver2);
+        accountDao.delete(cabDriver);
+        accountDao.delete(cabDriver2);
 
         assertEquals(cars.size(), 2);
     }
@@ -192,13 +192,13 @@ public class CarDaoTest {
         car.setModel("kia");
         cabDriver.setLogin("Tom");
 
-        cabDriverDao.add(cabDriver);
+        accountDao.add(cabDriver);
 
         carDao.add(car, cabDriver.getId());
 
         Car carFromDb = carDao.findById(car.getId());
         carDao.delete(car);
-        cabDriverDao.delete(cabDriver);
+        accountDao.delete(cabDriver);
 
         assertEquals(carFromDb.getCabDriver().getLogin(), cabDriver.getLogin());
         assertEquals(carFromDb.getModel(), car.getModel());

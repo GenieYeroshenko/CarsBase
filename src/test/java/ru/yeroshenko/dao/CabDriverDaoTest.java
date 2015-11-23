@@ -14,20 +14,22 @@ import static org.junit.Assert.*;
 public class CabDriverDaoTest {
 
     CabDriverDao cabDriverDao;
+    AccountDao accountDao;
 
     @Before
     public void setUp() throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         cabDriverDao = new CabDriverDao(sessionFactory);
+        accountDao = new AccountDao(sessionFactory);
     }
 
     @Test
     public void testAdd() throws Exception {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setLogin("Vasya1");
-        cabDriverDao.add(cabDriver);
+        accountDao.add(cabDriver);
 
-        cabDriverDao.delete(cabDriver);
+        accountDao.delete(cabDriver);
 
         assertTrue(cabDriver.getId() > 0);
     }
@@ -36,7 +38,7 @@ public class CabDriverDaoTest {
     public void testUpdate() throws Exception {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setLogin("Vasya2");
-        cabDriverDao.add(cabDriver);
+        accountDao.add(cabDriver);
 
         long idD = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(idD);
@@ -46,7 +48,7 @@ public class CabDriverDaoTest {
         long idD2 = cabDriver.getId();
         CabDriver cabDriverFromDb2 = cabDriverDao.findById(idD2);
 
-        cabDriverDao.delete(cabDriver);
+        accountDao.delete(cabDriver);
 
         assertEquals("Vasya2", cabDriverFromDb.getLogin());
         assertEquals("Sveta", cabDriverFromDb2.getLogin());
@@ -56,9 +58,9 @@ public class CabDriverDaoTest {
     public void testDelete() throws Exception {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setLogin("Vasya3");
-        cabDriverDao.add(cabDriver);
+        accountDao.add(cabDriver);
         long id = cabDriver.getId();
-        cabDriverDao.delete(cabDriver);
+        accountDao.delete(cabDriver);
 
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);
 
@@ -69,13 +71,13 @@ public class CabDriverDaoTest {
     public void testFindById() throws Exception {
         CabDriver cabDriver = new CabDriver();
         cabDriver.setLogin("Vasya4");
-        cabDriverDao.add(cabDriver);
+        accountDao.add(cabDriver);
         long id = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);
 
         assertEquals(cabDriverFromDb.getLogin(), cabDriver.getLogin());
 
-        cabDriverDao.delete(cabDriver);
+        accountDao.delete(cabDriver);
     }
 
 }
