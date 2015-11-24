@@ -12,16 +12,24 @@ import ru.yeroshenko.util.HibernateUtil;
 import java.util.List;
 
 /**
- * Created by Genie Yeroshenko on 10/11/15.
+ * Class with basic methods that service DAO Ord
  */
 public class OrdDao {
 
     private SessionFactory sessionFactory;
 
+    /**
+     * @param sessionFactory - a factory to create new Session instances
+     */
     public OrdDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
+    /**
+     *
+     * @param ord -  order, which created by CarManager
+     * Method deletes order in one transaction
+     */
     public void delete(Ord ord) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -38,6 +46,11 @@ public class OrdDao {
         }
     }
 
+    /**
+     *
+     * @param id - personal id-number
+     * @return Order, which was found by id
+     */
     public Ord findById(long id) {
         Session session = sessionFactory.openSession();
         Ord ord = (Ord) session.get(Ord.class, id);
@@ -45,6 +58,10 @@ public class OrdDao {
         return ord;
     }
 
+    /**
+     *
+     * @return list of all orders
+     */
     public List<Ord> findAll() {
         Session session = sessionFactory.openSession();
         List list = session.createQuery("from Ord").list();
@@ -52,6 +69,11 @@ public class OrdDao {
         return list;
     }
 
+    /**
+     *
+     * @param ordStatus - status of the ord, which should be set by CabDriver or CarManager
+     * @return list of all orders with specific status
+     */
     public List<Ord> findAllByStatus(Ord.OrdStatus ordStatus) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.ordStatus = ?");
@@ -61,6 +83,11 @@ public class OrdDao {
         return list;
     }
 
+    /**
+     *
+     * @param ord - order, which created by CarManager
+     * Method changes and saves order in one transaction by id
+     */
     public void updateOrd(Ord ord, long carId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -78,6 +105,10 @@ public class OrdDao {
         }
     }
 
+    /**
+     *
+     * @param ord - order, which created by CarManager
+     */
     public void update(Ord ord) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -93,6 +124,12 @@ public class OrdDao {
         }
     }
 
+    /**
+     *
+     * @param cabDriver - User, with a personal access to specialized functions by role
+     * @param statuses - special statuses of order
+     * @return list of orders, which was filtered by Driver and order status
+     */
     public List<Ord> findAllByDriverAndOrdStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.car.cabDriver = :driver and ord.ordStatus in :statuses");
@@ -103,6 +140,11 @@ public class OrdDao {
         return list;
     }
 
+    /**
+     *
+     * @param cabDriver - User, with a personal access to specialized functions by role
+     * @return list of orders, which was filtered by Driver
+     */
     public List<Ord> findAllByDriver(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.car.cabDriver = ?");
@@ -112,6 +154,13 @@ public class OrdDao {
         return list;
     }
 
+    /**
+     *
+     * @param ord - order, which created by CarManager
+     * @param carId -  personal id-number
+     * Method creates order with car by id
+     *
+     */
     public void createOrd(Ord ord, long carId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

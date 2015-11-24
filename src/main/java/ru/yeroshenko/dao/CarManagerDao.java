@@ -6,17 +6,24 @@ import ru.yeroshenko.domain.CarManager;
 
 
 /**
- * Created by Genie Yeroshenko on 10/11/15.
+ * Class with basic methods that service DAO CarManager
  */
 public class CarManagerDao {
 
 
     private SessionFactory sessionFactory;
 
+    /**
+     * @param sessionFactory - a factory to create new Session instances
+     */
     public CarManagerDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    /**
+     *
+     * @param id - personal id-number
+     * @return CarManager, which was found by id
+     */
     public CarManager findById(long id) {
         Session session = sessionFactory.openSession();
         CarManager carManager = (CarManager) session.get(CarManager.class, id);
