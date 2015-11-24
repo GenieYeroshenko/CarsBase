@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  *
  *
- * Created by evgeniya on 20/11/15.
+ * Class, that generates methods for set and get parameters for abstract Account
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -24,14 +24,25 @@ public abstract class Account {
     @Column(name = "password")
     private String password;
 
+    /**
+     * @return id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     *
+     * @return login
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     *
+     * @param login
+     */
     public void setLogin(String login) {
         this.login = login;
     }
@@ -40,6 +51,10 @@ public abstract class Account {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }

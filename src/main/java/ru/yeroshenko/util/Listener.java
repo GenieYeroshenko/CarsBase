@@ -8,10 +8,14 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
- * Created by evgeniya on 21/11/15.
+ * Class, that creates sessionFactory runtime
  */
 public class Listener implements ServletContextListener {
 
+
+    /**
+     * Method create session for all DAO
+     */
     public void contextInitialized(ServletContextEvent event) {
 
         ServletContext servletContext = event.getServletContext();
@@ -33,6 +37,11 @@ public class Listener implements ServletContextListener {
         servletContext.setAttribute("ordDao", ordDao);
     }
 
+    /**
+     *
+     * @param sce - ServletContextEvent
+     * Method destroy context
+     */
     public void contextDestroyed(ServletContextEvent sce) {
     }
 }

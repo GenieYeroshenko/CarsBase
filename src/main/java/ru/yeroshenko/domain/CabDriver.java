@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
- * Created by Genie Yeroshenko on 08/11/15.
+ * Class, that identifies domain entity CabDriver
  */
 @Entity
 @DiscriminatorValue("CabDriver")

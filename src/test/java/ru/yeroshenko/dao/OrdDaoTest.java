@@ -147,6 +147,25 @@ public class OrdDaoTest {
     }
 
     @Test
+    public void testUpdate() throws Exception {
+        Car car = getCar();
+
+        Ord ord = new Ord();
+        ord.setRout("SPb");
+        ordDao.createOrd(ord, car.getId());
+        long idOrd = ord.getId();
+        Ord ordFromDb = ordDao.findById(idOrd);
+
+        ordFromDb.setRout("MSK");
+
+        ordDao.update(ordFromDb);
+        Ord ordFromDb2 = ordDao.findById(idOrd);
+        assertEquals("MSK", ordFromDb2.getRout());
+        ordDao.delete(ordFromDb2);
+        carDao.delete(car);
+    }
+
+    @Test
     public void testCreateOrd() throws Exception {
         Car carFromDb = getCar();
 
