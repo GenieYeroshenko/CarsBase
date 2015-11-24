@@ -9,8 +9,6 @@ import ru.yeroshenko.domain.Car;
 
 import java.util.List;
 
-//import ru.yeroshenko.domain.CarType;
-
 /**
  * Created by Genie Yeroshenko on 10/11/15.
  */

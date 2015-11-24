@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Страница авторизации</title>
+    <title>Registration</title>
     <jsp:include page="header.jsp"/>
 
 </head>
@@ -23,8 +23,10 @@
             </div>
             <div class="container">
                 <div class="text-center">
-                    <h1>Страница регистрации</h1>
 
+                    <div style="margin-bottom: 50px; margin-top: 50px;">
+                        <h1>Registration</h1>
+                    </div>
                     <c:choose>
                     <c:when test="${requestScope.error != null}">
                     <div class="alert alert-danger" role="alert">
@@ -33,27 +35,24 @@
                     </c:when>
                     </c:choose>
                     <div>
-                        <label style="line-height:1.6">Логин</label>
+                        <label style="line-height:1.6">Login</label>
                         <input name="login" size="15" type="text"/>
                     </div>
 
                     <div>
-                        <label style="line-height:1.6">Пароль</label>
+                        <label style="line-height:1.6">Password</label>
                         <input name="password" size="15" type="password"/>
                     </div>
 
-                    <div>
-                        <label style="line-height:1.6">Роль</label>
-                        <input name="role" size="15" type="radio" value="cabDriver" checked>Водитель
-                        <input name="role" size="15" type="radio" value="carManager">Диспетчер
+                    <div style="margin-bottom: 15px; margin-top: 15px;">
+                        <label style="line-height:1.6">Role</label>
+                        <input name="role" size="15" type="radio" value="cabDriver" checked>Driver
+                        <input name="role" size="15" type="radio" value="carManager">Manager
                     </div>
-                    <p>&nbsp;</p>
-                    <input name="Save" type="submit" value="Сохранить"/>
-                    <a href="/login">Уже есть учетная запись</a>
-
-                    <p>&nbsp;</p>
-
-                    <p>&nbsp;</p>
+                    <div style="margin-bottom: 50px; margin-top: 50px;">
+                        <input name="Save" type="submit" value="Save"/>
+                        <a href="/login">Already have an account</a>
+                    </div>
 </form>
 </body>
 </html>

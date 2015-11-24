@@ -35,7 +35,7 @@ public class RegistrationServlet extends HttpServlet {
         AccountDao accountDao = (AccountDao) context.getAttribute("accountDao");
 
         if ((accountDao.countAccountsWithLogin(login)) > 0) {
-            request.setAttribute("error", "пользователь с такм логином уже существует");
+            request.setAttribute("error", "login already exists");
             request.getRequestDispatcher("/jsp/registration.jsp").forward(request, response);
         } else if (role.equals("cabDriver")) {
             CabDriver cabDriver = new CabDriver();

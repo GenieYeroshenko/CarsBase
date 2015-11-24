@@ -39,7 +39,7 @@ public class DeleteCarServlet extends HttpServlet {
         try {
             carDao.delete(car);
         } catch (ConstraintViolationException e) {
-            request.setAttribute("error", "на удаляемую машину есть заявка, удаление не возможно");
+            request.setAttribute("error", "There is an order for this car, deleting is forbidden");
             request.getRequestDispatcher("/jsp/car/cars-delete.jsp").forward(request, response);
             return;
         }

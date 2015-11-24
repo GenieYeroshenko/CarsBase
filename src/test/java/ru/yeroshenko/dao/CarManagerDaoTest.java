@@ -27,7 +27,7 @@ public class CarManagerDaoTest {
     @Test
     public void testAdd() throws Exception {
         CarManager carManager = new CarManager();
-        carManager.setLogin("Vasya1");
+        carManager.setLogin("Vasya");
 
         accountDao.add(carManager);
         accountDao.delete(carManager);
@@ -38,7 +38,7 @@ public class CarManagerDaoTest {
     @Test
     public void testDelete() throws Exception {
         CarManager carManager = new CarManager();
-        carManager.setLogin("Vasya3");
+        carManager.setLogin("Vasya");
         accountDao.add(carManager);
         long id = carManager.getId();
         accountDao.delete(carManager);
@@ -51,7 +51,7 @@ public class CarManagerDaoTest {
     @Test
     public void testFindById() throws Exception {
         CarManager carManager = new CarManager();
-        carManager.setLogin("Vasya4");
+        carManager.setLogin("Vasya");
         accountDao.add(carManager);
         long id = carManager.getId();
         CarManager carManagerFromDb = carManagerDao.findById(id);

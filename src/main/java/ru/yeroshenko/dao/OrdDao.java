@@ -78,6 +78,21 @@ public class OrdDao {
         }
     }
 
+    public void update(Ord ord) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(ord);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
     public List<Ord> findAllByDriverAndOrdStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Ord ord where ord.car.cabDriver = :driver and ord.ordStatus in :statuses");

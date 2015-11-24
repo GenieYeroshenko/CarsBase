@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Журнал машин</title>
+    <title>Car list</title>
 
     <jsp:include page="../header.jsp"/>
 </head>
@@ -15,16 +15,16 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/list-ord-driver">Журнал заявок</a></li>
+                <li><a href="/list-ord-driver">Order list</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Журнал машин</a></li>
+                <li class="active"><a href="#">Car list</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/add-car">Добавить машину</a></li>
+                <li><a href="/add-car">Add car</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Выход</a></li>
+                <li><a href="/logout">Exit</a></li>
             </ul>
             <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
@@ -34,7 +34,7 @@
     <div class="text-center">
 
 
-        <h1>Журнал машин</h1>
+        <h1>Car list</h1>
 
         <c:choose>
             <c:when test="${requestScope.error != null}">
@@ -48,10 +48,10 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Тип машины</th>
-                <th scope="col">Марка машины</th>
-                <th scope="col">Номер машины</th>
-                <th scope="col">Состояние машины</th>
+                <th scope="col">Car type</th>
+                <th scope="col">Car model</th>
+                <th scope="col">Licence plate</th>
+                <th scope="col">Serviceability status</th>
                 <th scope="col"></th>
             </tr>
             </thead>
@@ -73,29 +73,29 @@
                     <td>
                         <c:choose>
                             <c:when test="${car.carStatus}">
-                                кондиционная
+                                OK
                             </c:when>
                             <c:otherwise>
-                                не кондиционная
+                                defect
                             </c:otherwise>
                         </c:choose>
                     </td>
                     <td>
                         <c:choose>
                             <c:when test="${car.carStatus}">
-                                <a class="btn btn-default" href="/change-car-status?id=${car.id}">сломать</a>
+                                <a class="btn btn-default" href="/change-car-status?id=${car.id}">crush</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="btn btn-info" href="/change-car-status?id=${car.id}">починить</a>
+                                <a class="btn btn-info" href="/change-car-status?id=${car.id}">fix</a>
                             </c:otherwise>
                         </c:choose>
                         <a></a>
                     </td>
                     <td>
-                        <a class="btn btn-warning" href="/update-car?id=${car.id}">редактировать</a><a></a>
+                        <a class="btn btn-warning" href="/update-car?id=${car.id}">edit</a><a></a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="/delete-car?id=${car.id}">удалить</a><a></a>
+                        <a class="btn btn-danger" href="/delete-car?id=${car.id}">delete</a><a></a>
                     </td>
                 </tr>
             </c:forEach>

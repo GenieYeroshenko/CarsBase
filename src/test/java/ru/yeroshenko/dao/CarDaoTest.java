@@ -95,8 +95,8 @@ public class CarDaoTest {
 
         CabDriver cabDriver1 = new CabDriver();
         CabDriver cabDriver2 = new CabDriver();
-        cabDriver1.setLogin("Vasya11");
-        cabDriver2.setLogin("Kolya12");
+        cabDriver1.setLogin("Vasya");
+        cabDriver2.setLogin("Kolya");
 
         carDao.add(car1, cabDriver1.getId());
         carDao.add(car2, cabDriver1.getId());
@@ -162,7 +162,7 @@ public class CarDaoTest {
         car1.setCarTypeLorry(true);
         car1.setCarStatus(true);
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Kolya10");
+        cabDriver.setLogin("Kolya");
         carDao.add(car1, cabDriver.getId());
 
         Car car2 = new Car();
@@ -171,7 +171,7 @@ public class CarDaoTest {
         car2.setCarTypeLorry(false);
         car2.setCarStatus(false);
         CabDriver cabDriver2 = new CabDriver();
-        cabDriver2.setLogin("Vasya10");
+        cabDriver2.setLogin("Vasya");
         carDao.add(car2, cabDriver2.getId());
 
         List<Car> cars = carDao.findAll();

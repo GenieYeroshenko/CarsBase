@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Журнал заявок</title>
+    <title>Ord list</title>
     <jsp:include page="../header.jsp"/>
 </head>
 <body>
@@ -12,13 +12,13 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Журнал заявок</a></li>
+                <li class="active"><a href="#">Ord list</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/add-ord">Добавить заявку</a></li>
+                <li><a href="/add-ord">Add ord</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Выход</a></li>
+                <li><a href="/logout">Exit</a></li>
             </ul>
             <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
@@ -26,25 +26,25 @@
 </div>
 <div class="container">
     <div class="text-center">
-        <h1>Журнал заявок</h1>
+        <h1>Order list</h1>
 
         <div style="margin-bottom: 20px; margin-top: 50px;">
-            <a href="/list-ord-manager" class="btn btn-default">Все</a>
-            <a href="/list-ord-manager?ordStatus=ASSIGNED" class="btn btn-default">Назначенные</a>
-            <a href="/list-ord-manager?ordStatus=IN_QUEUE" class="btn btn-default">Не назначенные</a>
-            <a href="/list-ord-manager?ordStatus=IN_TRANSIT" class="btn btn-default">В пути</a>
-            <a href="/list-ord-manager?ordStatus=DONE" class="btn btn-default">Выполненные</a>
+            <a href="/list-ord-manager" class="btn btn-default">all</a>
+            <a href="/list-ord-manager?ordStatus=ASSIGNED" class="btn btn-default">assigned</a>
+            <a href="/list-ord-manager?ordStatus=IN_QUEUE" class="btn btn-default">in queue</a>
+            <a href="/list-ord-manager?ordStatus=IN_TRANSIT" class="btn btn-default">in transit</a>
+            <a href="/list-ord-manager?ordStatus=DONE" class="btn btn-default">done</a>
         </div>
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Номер заявки</th>
-                <th scope="col">Дата</th>
-                <th scope="col">Маршрут</th>
-                <th scope="col">Тип машины</th>
-                <th scope="col">Модель машины</th>
-                <th scope="col">Водитель</th>
-                <th scope="col">Статус заявки</th>
+                <th scope="col">Order number</th>
+                <th scope="col">Date</th>
+                <th scope="col">Rote</th>
+                <th scope="col">Car type</th>
+                <th scope="col">Car model</th>
+                <th scope="col">Driver</th>
+                <th scope="col">Order status</th>
             </tr>
             </thead>
             <tbody>
@@ -56,10 +56,10 @@
                     <td>
                         <c:choose>
                             <c:when test="${ord.carTypeLorry}">
-                                грузовая
+                                lorry
                             </c:when>
                             <c:otherwise>
-                                легковая
+                                passenger car
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -68,23 +68,23 @@
                     <td>
                         <c:choose>
                         <c:when test="${ord.ordStatus == 'IN_QUEUE'}">
-                            <c:out value="не назначена"/>
+                            <c:out value="in queue"/>
                         </c:when>
                         <c:when test="${ord.ordStatus == 'ASSIGNED'}">
-                            <c:out value="назначена"/>
+                            <c:out value="assigned"/>
                         </c:when>
                         <c:when test="${ord.ordStatus == 'IN_TRANSIT'}">
-                            <c:out value="в пути"/>
+                            <c:out value="in transit"/>
                         </c:when>
                         <c:when test="${ord.ordStatus == 'DONE'}">
-                            <c:out value="выполнена"/>
+                            <c:out value="done"/>
                         </c:when>
                         </c:choose>
                     <td>
-                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">редактировать</a><a></a>
+                        <a class="btn btn-warning" href="/update-ord?id=${ord.id}">edit</a><a></a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">удалить</a><a></a>
+                        <a class="btn btn-danger" href="/delete-ord?id=${ord.id}">delete</a><a></a>
                     </td>
                 </tr>
             </c:forEach>

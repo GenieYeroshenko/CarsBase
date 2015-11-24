@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Страница авторизации</title>
+    <title>СarsBase</title>
     <jsp:include page="header.jsp"/>
 </head>
 <body>
@@ -21,7 +21,9 @@
             </div>
             <div class="container">
                 <div class="text-center">
-                    <h1>Страница авторизации</h1>
+                    <div style="margin-bottom: 50px; margin-top: 50px;">
+                        <h1>СarsBase</h1>
+                    </div>
                     <c:choose>
                     <c:when test="${requestScope.error != null}">
                     <div class="alert alert-danger" role="alert">
@@ -30,20 +32,17 @@
                     </c:when>
                     </c:choose>
                     <div>
-                        <label style="line-height:1.6">Логин</label>
+                        <label style="line-height:1.6">Login</label>
                         <input name="login" size="15" type="text"/>
                     </div>
                     <div>
-                        <label style="line-height:1.6">Пароль</label>
+                        <label style="line-height:1.6">Password</label>
                         <input name="password" size="15" type="password"/>
                     </div>
-                    <p>&nbsp;</p>
-                    <input name="LogIn" type="submit" value="Войти"/>
-                    <a href="/registration">Регистрация</a>
-
-                    <p>&nbsp;</p>
-
-                    <p>&nbsp;</p>
+                    <div style="margin-bottom: 50px; margin-top: 50px;">
+                        <input name="LogIn" type="submit" value="Enter"/>
+                        <a href="/registration">Registration</a>
+                    </div>
 </form>
 </body>
 </html>

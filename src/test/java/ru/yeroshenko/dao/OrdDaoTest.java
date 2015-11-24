@@ -55,7 +55,7 @@ public class OrdDaoTest {
         Ord ord = new Ord();
         ord.setRout("SPb");
         Car car = new Car();
-        car.setModel("kia333");
+        car.setModel("kia");
         carDao.add(car);
 
         ordDao.createOrd(ord, car.getId());
@@ -73,9 +73,9 @@ public class OrdDaoTest {
         Ord ord = new Ord();
         ord.setRout("SPb");
         Car car = new Car();
-        car.setModel("kia222");
+        car.setModel("kia");
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("forkia222");
+        cabDriver.setLogin("forkia");
         car.setCabDriver(cabDriver);
         carDao.add(car);
 

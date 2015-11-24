@@ -26,7 +26,7 @@ public class CabDriverDaoTest {
     @Test
     public void testAdd() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya1");
+        cabDriver.setLogin("Vasya");
         accountDao.add(cabDriver);
 
         accountDao.delete(cabDriver);
@@ -37,7 +37,7 @@ public class CabDriverDaoTest {
     @Test
     public void testUpdate() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya2");
+        cabDriver.setLogin("Vasya");
         accountDao.add(cabDriver);
 
         long idD = cabDriver.getId();
@@ -50,14 +50,14 @@ public class CabDriverDaoTest {
 
         accountDao.delete(cabDriver);
 
-        assertEquals("Vasya2", cabDriverFromDb.getLogin());
+        assertEquals("Vasya", cabDriverFromDb.getLogin());
         assertEquals("Sveta", cabDriverFromDb2.getLogin());
     }
 
     @Test
     public void testDelete() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya3");
+        cabDriver.setLogin("Vasya");
         accountDao.add(cabDriver);
         long id = cabDriver.getId();
         accountDao.delete(cabDriver);
@@ -70,7 +70,7 @@ public class CabDriverDaoTest {
     @Test
     public void testFindById() throws Exception {
         CabDriver cabDriver = new CabDriver();
-        cabDriver.setLogin("Vasya4");
+        cabDriver.setLogin("Vasya");
         accountDao.add(cabDriver);
         long id = cabDriver.getId();
         CabDriver cabDriverFromDb = cabDriverDao.findById(id);

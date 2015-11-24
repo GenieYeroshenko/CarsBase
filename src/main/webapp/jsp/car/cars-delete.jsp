@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Журнал машин</title>
+    <title>Car list</title>
 
     <jsp:include page="../header.jsp"/>
 </head>
@@ -15,16 +15,16 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/list-ord-driver">Журнал заявок</a></li>
+                <li><a href="/list-ord-driver">Order list</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Журнал машин</a></li>
+                <li class="active"><a href="#">Car list</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/add-car">Добавить машину</a></li>
+                <li><a href="/add-car">Add car</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Выход</a></li>
+                <li><a href="/logout">Exit</a></li>
             </ul>
             <p class="navbar-text navbar-right">${sessionScope.authorizedUser.login}</p>
         </div>
@@ -34,7 +34,7 @@
     <div class="text-center">
 
 
-        <h1>Журнал машин</h1>
+        <h1>Car list</h1>
 
         <c:choose>
             <c:when test="${requestScope.error != null}">
@@ -43,7 +43,7 @@
                 </div>
             </c:when>
         </c:choose>
-        <a class="btn btn-info" href="/list-car">Назад</a>
+        <a class="btn btn-info" href="/list-car">Back</a>
 
     </div>
 </div>
