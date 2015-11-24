@@ -21,8 +21,5 @@
         <mapping class="ru.yeroshenko.domain.Ord" />
         <mapping class="ru.yeroshenko.domain.Account" />
         <mapping class="ru.yeroshenko.domain.CarManager" />
-
-
-
     </session-factory>
 </hibernate-configuration>

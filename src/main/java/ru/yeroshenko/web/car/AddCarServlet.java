@@ -15,10 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by evgeniya on 15/11/15.
+ * Class, that creates dynamic content for adding new Car to data base
  */
 public class AddCarServlet extends HttpServlet {
-
+    /**
+     * @param request  for getting information about new Car from UserForm
+     * @param response for redirecting User to the list of all Cars after adding
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -42,6 +47,13 @@ public class AddCarServlet extends HttpServlet {
         response.sendRedirect("/list-car");
     }
 
+    /**
+     *
+     * @param request for forvarding to Adding form
+     * @param response for getting information about authorization for data security
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);

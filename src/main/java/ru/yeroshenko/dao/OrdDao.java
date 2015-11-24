@@ -26,9 +26,8 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param ord -  order, which created by CarManager
-     * Method deletes order in one transaction
+     * @param ord -  Order, which created by CarManager
+     * Method deletes Order in one transaction
      */
     public void delete(Ord ord) {
         Session session = sessionFactory.openSession();
@@ -47,7 +46,6 @@ public class OrdDao {
     }
 
     /**
-     *
      * @param id - personal id-number
      * @return Order, which was found by id
      */
@@ -59,7 +57,6 @@ public class OrdDao {
     }
 
     /**
-     *
      * @return list of all orders
      */
     public List<Ord> findAll() {
@@ -70,8 +67,7 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param ordStatus - status of the ord, which should be set by CabDriver or CarManager
+     * @param ordStatus - status of the Order, which should be set by CabDriver or CarManager
      * @return list of all orders with specific status
      */
     public List<Ord> findAllByStatus(Ord.OrdStatus ordStatus) {
@@ -84,8 +80,7 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param ord - order, which created by CarManager
+     * @param ord - Order, which created by CarManager
      * Method changes and saves order in one transaction by id
      */
     public void updateOrd(Ord ord, long carId) {
@@ -106,8 +101,7 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param ord - order, which created by CarManager
+     * @param ord - Order, which created by CarManager
      */
     public void update(Ord ord) {
         Session session = sessionFactory.openSession();
@@ -125,10 +119,9 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param cabDriver - User, with a personal access to specialized functions by role
-     * @param statuses - special statuses of order
-     * @return list of orders, which was filtered by Driver and order status
+     * @param cabDriver - User, with a personal access to specialize functions by role
+     * @param statuses  - special statuses of Order
+     * @return list of orders, which was filtered by Driver and Order status
      */
     public List<Ord> findAllByDriverAndOrdStatuses(CabDriver cabDriver, Ord.OrdStatus[] statuses) {
         Session session = sessionFactory.openSession();
@@ -141,8 +134,7 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param cabDriver - User, with a personal access to specialized functions by role
+     * @param cabDriver - User, with a personal access to specialize functions by role
      * @return list of orders, which was filtered by Driver
      */
     public List<Ord> findAllByDriver(CabDriver cabDriver) {
@@ -155,11 +147,9 @@ public class OrdDao {
     }
 
     /**
-     *
-     * @param ord - order, which created by CarManager
+     * @param ord   - Order, which created by CarManager
      * @param carId -  personal id-number
      * Method creates order with car by id
-     *
      */
     public void createOrd(Ord ord, long carId) {
         Session session = HibernateUtil.getSessionFactory().openSession();

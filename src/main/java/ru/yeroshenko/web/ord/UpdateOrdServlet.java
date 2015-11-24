@@ -18,10 +18,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Created by evgeniya on 15/11/15.
+ * Class, that creates dynamic content for updating the Order from data base
  */
 public class UpdateOrdServlet extends HttpServlet {
-
+    /**
+     * @param request  for forvarding to Updating form
+     * @param response for getting information about authorization for data security
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);
@@ -50,6 +55,12 @@ public class UpdateOrdServlet extends HttpServlet {
 
     }
 
+    /**
+     * @param request  for getting information about updating filds of the Order from UserForm
+     * @param response for redirecting User to the list of all Orders after updating
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

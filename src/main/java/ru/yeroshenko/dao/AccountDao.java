@@ -10,9 +10,7 @@ import java.util.List;
 
 
 /**
- *
  * Class with basic methods that service DAO Account
-
  */
 public class AccountDao {
 
@@ -26,7 +24,6 @@ public class AccountDao {
     }
 
     /**
-     *
      * @param login - User login
      * @return list of accounts with the same login
      */
@@ -40,7 +37,6 @@ public class AccountDao {
     }
 
     /**
-     *
      * @param login - User login
      * @return number of accounts with the same login
      */
@@ -54,9 +50,8 @@ public class AccountDao {
     }
 
     /**
-     *
      * @param account - User with login and password
-     * Method saves account in one transaction
+     *                Method saves account in one transaction
      */
     public void add(Account account) {
         Session session = sessionFactory.openSession();
@@ -74,9 +69,8 @@ public class AccountDao {
     }
 
     /**
-     *
      * @param account - User with login and password
-     * Method deletes account in one transaction
+     *                Method deletes account in one transaction
      */
     public void delete(Account account) {
         Session session = sessionFactory.openSession();

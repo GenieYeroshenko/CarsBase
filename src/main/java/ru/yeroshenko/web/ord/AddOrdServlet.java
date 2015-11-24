@@ -18,10 +18,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Created by evgeniya on 15/11/15.
+ * Class, that creates dynamic content for adding new Order to data base
  */
 public class AddOrdServlet extends HttpServlet {
-
+    /**
+     * @param request  for getting information about new Order from UserForm
+     * @param response for redirecting User to the list of all Orders after adding
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -44,7 +49,12 @@ public class AddOrdServlet extends HttpServlet {
         response.sendRedirect("/list-ord-manager");
     }
 
-
+    /**
+     * @param request  for forvarding to Adding form
+     * @param response for getting information about authorization for data security
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);

@@ -15,11 +15,16 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by evgeniya on 15/11/15.
+ * Class, that creates dynamic content to display the information about all Orders for the CarManager from data base
  */
 public class ListOrdCarManagerServlet extends HttpServlet {
 
-
+    /**
+     * @param request  to display the information about all Orders from data base
+     * @param response for getting information about authorization for data security
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);

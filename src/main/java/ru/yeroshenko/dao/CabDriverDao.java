@@ -6,7 +6,6 @@ import org.hibernate.Transaction;
 import ru.yeroshenko.domain.CabDriver;
 
 /**
- *
  * Class with basic methods that service DAO CabDriver
  */
 public class CabDriverDao {
@@ -21,9 +20,8 @@ public class CabDriverDao {
     }
 
     /**
-     *
      * @param cabDriver - User, with a personal access to specialized functions by role
-     * Method changes and saves cabDriver in one transaction
+     *                  Method changes and saves cabDriver in one transaction
      */
     public void update(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();
@@ -41,7 +39,6 @@ public class CabDriverDao {
     }
 
     /**
-     *
      * @param id - personal id-number
      * @return CabDriver, which was found by id
      */
@@ -51,5 +48,4 @@ public class CabDriverDao {
         session.close();
         return cabDriver;
     }
-
 }

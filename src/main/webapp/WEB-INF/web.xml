@@ -9,6 +9,7 @@
     </welcome-file-list>
 
 
+    <!--Servlets for Cars-->
     <servlet>
         <servlet-name>AddCarServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.car.AddCarServlet</servlet-class>
@@ -27,7 +28,6 @@
         <url-pattern>/change-car-status</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>DeleteCarServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.car.DeleteCarServlet</servlet-class>
@@ -37,7 +37,6 @@
         <url-pattern>/delete-car</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>ListCarServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.car.ListCarServlet</servlet-class>
@@ -46,7 +45,6 @@
         <servlet-name>ListCarServlet</servlet-name>
         <url-pattern>/list-car</url-pattern>
     </servlet-mapping>
-
 
     <servlet>
         <servlet-name>UpdateCarServlet</servlet-name>
@@ -58,6 +56,7 @@
     </servlet-mapping>
 
 
+    <!--Servlets for Orders-->
     <servlet>
         <servlet-name>AddOrdServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.ord.AddOrdServlet</servlet-class>
@@ -68,6 +67,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ChangeOrdStatusServlet</servlet-name>
+        <servlet-class>ru.yeroshenko.web.ord.ChangeOrdStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeOrdStatusServlet</servlet-name>
+        <url-pattern>/change-ord-status</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>DeleteOrdServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.ord.DeleteOrdServlet</servlet-class>
     </servlet>
@@ -75,7 +83,6 @@
         <servlet-name>DeleteOrdServlet</servlet-name>
         <url-pattern>/delete-ord</url-pattern>
     </servlet-mapping>
-
 
     <servlet>
         <servlet-name>ListOrdCabDriverServlet</servlet-name>
@@ -95,7 +102,6 @@
         <url-pattern>/list-ord-manager</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>UpdateOrdServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.ord.UpdateOrdServlet</servlet-class>
@@ -105,16 +111,8 @@
         <url-pattern>/update-ord</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>ChangeOrdStatusServlet</servlet-name>
-        <servlet-class>ru.yeroshenko.web.ord.ChangeOrdStatusServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ChangeOrdStatusServlet</servlet-name>
-        <url-pattern>/change-ord-status</url-pattern>
-    </servlet-mapping>
 
-
+    <!--Servlets for Authorization-->
     <servlet>
         <servlet-name>LogInServlet</servlet-name>
         <servlet-class>ru.yeroshenko.web.user.LogInServlet</servlet-class>
@@ -132,7 +130,6 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-
 
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>

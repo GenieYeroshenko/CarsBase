@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by evgeniya on 15/11/15.
+ * Class, that creates dynamic content for deleting the Order from data base
  */
 public class DeleteOrdServlet extends HttpServlet {
-
+    /**
+     * @param request  for getting information from UserForm
+     * @param response for redirecting User to the list of all Orders after deleting, or to login page if User is not authorized
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute(LogInServlet.AUTHORIZED_USER);

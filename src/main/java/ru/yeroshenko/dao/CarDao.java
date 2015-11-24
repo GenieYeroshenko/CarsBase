@@ -24,9 +24,8 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param car - one of the fild of the order, that saved into its table
-     * Method changes and saves car in one transaction
+     * @param car - one of the domain object, it sets to the order, by CarManager
+     *            Method changes and saves car in one transaction
      */
     public void update(Car car) {
         Session session = sessionFactory.openSession();
@@ -44,9 +43,8 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param car - one of the fild of the order, that saved into its table
-     * Method saves car in one transaction
+     * @param car - one of the domain object, it sets to the order, by CarManager
+     *            Method saves car in one transaction
      */
     public void add(Car car) {
         Session session = sessionFactory.openSession();
@@ -64,10 +62,9 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param car- one of the fild of the order, that saved into its table
-     * @param id - personal id-number
-     * Method saves car with cabDriver in one transaction
+     * @param car - one of the domain object, it sets to the order, by CarManager
+     * @param id  - personal id-number
+     *            Method saves car with cabDriver in one transaction
      */
     public void add(Car car, long id) {
         Session session = sessionFactory.openSession();
@@ -87,9 +84,8 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param car -  one of the fild of the order, that saved into its table
-     * Method deletes car in one transaction
+     * @param car - one of the domain object, it sets to the order, by CarManager
+     *            Method deletes car in one transaction
      */
     public void delete(Car car) {
         Session session = sessionFactory.openSession();
@@ -108,8 +104,7 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param id - one of the fild of the order, that saved into its table
+     * @param id - personal id-number
      * @return car, which was found by id
      */
     public Car findById(long id) {
@@ -120,7 +115,6 @@ public class CarDao {
     }
 
     /**
-     *
      * @return list of all cars
      */
     public List<Car> findAll() {
@@ -131,7 +125,6 @@ public class CarDao {
     }
 
     /**
-     *
      * @param cabDriver - User, with a personal access to specialized functions by role
      * @return list of all cars with a specific driver
      */
@@ -145,8 +138,7 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param carTypeLorry - type of car, which should be set by CabDriver
+     * @param carTypeLorry - type of car, which should be set by CabDriver to Car
      * @return list of all cars with specific type
      */
     public List<Car> findAllByType(Boolean carTypeLorry) {
@@ -159,8 +151,7 @@ public class CarDao {
     }
 
     /**
-     *
-     * @param carStatus - serviceability status of the car, which should be set by CabDriver
+     * @param carStatus - serviceability status of the car, which should be set by CabDriver to Car
      * @return list of all cars with specific serviceability status
      */
     public List<Car> findAllByStatus(Boolean carStatus) {
