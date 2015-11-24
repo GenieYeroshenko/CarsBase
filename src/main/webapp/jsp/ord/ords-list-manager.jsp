@@ -15,7 +15,7 @@
                 <li class="active"><a href="#">Ord list</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/add-ord">Add ord</a></li>
+                <li><a href="/add-ord">Add order</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logout">Exit</a></li>
