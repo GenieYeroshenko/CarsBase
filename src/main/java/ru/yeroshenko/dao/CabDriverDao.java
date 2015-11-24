@@ -21,7 +21,7 @@ public class CabDriverDao {
 
     /**
      * @param cabDriver - User, with a personal access to specialized functions by role
-     *                  Method changes and saves cabDriver in one transaction
+     * Method changes and saves cabDriver in one transaction
      */
     public void update(CabDriver cabDriver) {
         Session session = sessionFactory.openSession();

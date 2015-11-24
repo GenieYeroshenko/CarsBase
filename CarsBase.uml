@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ru.yeroshenko.domain.Account</OriginalElement>
+  <nodes>
+    <node x="598.8222222222222" y="-180.0">javax.persistence.DiscriminatorValue</node>
+    <node x="-14.068860874348957" y="-181.25296265157675">javax.persistence.Entity</node>
+    <node x="240.8222222222222" y="262.0">ru.yeroshenko.domain.CarManager</node>
+    <node x="-274.32691530210786" y="-222.0701101215501">javax.persistence.Table</node>
+    <node x="148.8222222222222" y="-213.0">javax.persistence.DiscriminatorColumn</node>
+    <node x="363.8222222222222" y="-180.0">javax.persistence.Inheritance</node>
+    <node x="-52.83663752433017" y="15.929889878449899">ru.yeroshenko.domain.Car</node>
+    <node x="256.2500000000001" y="19.5">ru.yeroshenko.domain.Account</node>
+    <node x="-309.8366375243302" y="16.9298898784499">ru.yeroshenko.domain.Ord</node>
+    <node x="-286.8366375243302" y="260.9298898784499">ru.yeroshenko.domain.Ord.OrdStatus</node>
+    <node x="371.8222222222222" y="263.0">ru.yeroshenko.domain.CabDriver</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.yeroshenko.domain.Ord" target="javax.persistence.Table">
+      <point x="-51.75" y="-92.0" />
+      <point x="-258.53304538683113" y="-30.886021057133576" />
+      <point x="-220.1305074396069" y="-31.860583774308964" />
+      <point x="-53.75" y="69.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Car" target="javax.persistence.Entity">
+      <point x="51.25" y="-92.0" />
+      <point x="100.48984132301302" y="-3.4152132753049216" />
+      <point x="29.327707535260345" y="-4.409333709052987" />
+      <point x="-27.0" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Account" target="javax.persistence.Entity">
+      <point x="-72.375" y="-47.5" />
+      <point x="280.3750000000001" y="-55.0" />
+      <point x="107.73328855970584" y="-56.274389327272786" />
+      <point x="54.0" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.CabDriver" target="ru.yeroshenko.domain.Account">
+      <point x="0.0" y="-14.5" />
+      <point x="418.8222222222222" y="179.0" />
+      <point x="401.0000000000001" y="179.0" />
+      <point x="48.25" y="47.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Account" target="javax.persistence.DiscriminatorValue">
+      <point x="72.375" y="-47.5" />
+      <point x="425.1250000000001" y="-45.0" />
+      <point x="624.1555555555556" y="-45.0" />
+      <point x="-50.66666666666663" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Ord" target="ru.yeroshenko.domain.Ord.OrdStatus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.CarManager" target="ru.yeroshenko.domain.Account">
+      <point x="0.0" y="-14.5" />
+      <point x="293.8222222222222" y="183.0" />
+      <point x="304.5000000000001" y="183.0" />
+      <point x="-48.25" y="47.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Account" target="javax.persistence.DiscriminatorColumn">
+      <point x="-24.125" y="-47.5" />
+      <point x="328.1785921374992" y="-74.37456511252014" />
+      <point x="246.7686300847231" y="-74.8209729750211" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Car" target="ru.yeroshenko.domain.CabDriver">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.CabDriver" target="javax.persistence.DiscriminatorValue">
+      <point x="31.33333333333337" y="-14.5" />
+      <point x="450.15555555555557" y="205.14767375029606" />
+      <point x="727.7211573427873" y="203.61075531272206" />
+      <point x="725.2447340282712" y="-45.0" />
+      <point x="723.2548560234632" y="-126.94763876019141" />
+      <point x="50.66666666666674" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Ord" target="javax.persistence.Entity">
+      <point x="51.75" y="-92.0" />
+      <point x="-155.13435009557728" y="-61.67535524498936" />
+      <point x="-0.8572631834761069" y="-61.57405053624322" />
+      <point x="-54.0" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.CarManager" target="javax.persistence.DiscriminatorValue">
+      <point x="35.33333333333337" y="-14.5" />
+      <point x="328.0195831308712" y="189.27890783748566" />
+      <point x="678.0416641415035" y="187.71047099629487" />
+      <point x="677.246914005536" y="-45.64476450185256" />
+      <point x="676.1194274568758" y="-130.79821077133136" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Ord.OrdStatus" target="ru.yeroshenko.domain.Ord">
+      <point x="0.0" y="-58.5" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Car" target="javax.persistence.Table">
+      <point x="-51.25" y="-92.0" />
+      <point x="-2.3552618307418243" y="-31.521316146328843" />
+      <point x="-113.15866229428127" y="-30.70880488198881" />
+      <point x="53.75" y="69.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Ord" target="ru.yeroshenko.domain.Car">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.CarManager" target="javax.persistence.Entity">
+      <point x="-35.33333333333337" y="-14.5" />
+      <point x="257.8154418639749" y="202.23126269988524" />
+      <point x="153.5187129435772" y="200.77018503371184" />
+      <point x="152.1040749270071" y="-21.626499533750348" />
+      <point x="55.88129967275938" y="-22.265648209091466" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.Account" target="javax.persistence.Inheritance">
+      <point x="24.125" y="-47.5" />
+      <point x="376.8750000000001" y="-55.0" />
+      <point x="471.3222222222222" y="-55.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.yeroshenko.domain.CabDriver" target="javax.persistence.Entity">
+      <point x="-31.33333333333337" y="-14.5" />
+      <point x="387.4888888888888" y="179.0" />
+      <point x="223.34444444444443" y="180.0" />
+      <point x="221.34444444444443" y="-42.08951351248942" />
+      <point x="82.14215989039229" y="-42.573457906804876" />
+      <point x="27.0" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="220.5" y="77.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

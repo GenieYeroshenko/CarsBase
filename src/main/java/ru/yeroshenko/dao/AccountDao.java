@@ -51,7 +51,7 @@ public class AccountDao {
 
     /**
      * @param account - User with login and password
-     *                Method saves account in one transaction
+     * Method saves account in one transaction
      */
     public void add(Account account) {
         Session session = sessionFactory.openSession();
@@ -70,7 +70,7 @@ public class AccountDao {
 
     /**
      * @param account - User with login and password
-     *                Method deletes account in one transaction
+     * Method deletes account in one transaction
      */
     public void delete(Account account) {
         Session session = sessionFactory.openSession();

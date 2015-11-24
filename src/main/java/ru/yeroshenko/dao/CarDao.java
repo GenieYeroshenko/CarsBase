@@ -25,7 +25,7 @@ public class CarDao {
 
     /**
      * @param car - one of the domain object, it sets to the order, by CarManager
-     *            Method changes and saves car in one transaction
+     * Method changes and saves car in one transaction
      */
     public void update(Car car) {
         Session session = sessionFactory.openSession();
@@ -64,7 +64,7 @@ public class CarDao {
     /**
      * @param car - one of the domain object, it sets to the order, by CarManager
      * @param id  - personal id-number
-     *            Method saves car with cabDriver in one transaction
+     * Method saves car with cabDriver in one transaction
      */
     public void add(Car car, long id) {
         Session session = sessionFactory.openSession();
@@ -85,7 +85,7 @@ public class CarDao {
 
     /**
      * @param car - one of the domain object, it sets to the order, by CarManager
-     *            Method deletes car in one transaction
+     * Method deletes car in one transaction
      */
     public void delete(Car car) {
         Session session = sessionFactory.openSession();
